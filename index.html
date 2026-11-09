@@ -122,16 +122,12 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 .list .it{border:1px solid var(--line);border-radius:10px;padding:10px;margin:0 0 8px;display:flex;gap:8px;align-items:center}
 .list .it div{flex:1;font-size:14px}
 .list .it small{color:var(--mut)}
-.list .it.uy{background:#fff5e8;border-color:#efc994}
-.list .it.gec{background:#fdecea;border-color:var(--red)}
 .rzs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
 .rz{font-size:11.5px;font-weight:600;border-radius:9px;padding:2px 7px;background:#e8edf2;color:#44525f}
 .rz.mav{background:#dfeafb;color:#174f97}
 .rz.yes{background:#dff3e6;color:#12683a}
 .rz.kir{background:#fbe0dd;color:#9c2a1e}
 .rz.sar{background:#fdebcf;color:#8a4b12}
-#bListN{display:inline-block;margin-left:5px;min-width:18px;border-radius:9px;background:#f1c40f;color:#111;font-size:12px;font-weight:700;text-align:center;padding:0 4px}
-#bListN[hidden]{display:none}
 .rehber{font-size:14.5px;line-height:1.4}
 .rehber h5{margin:14px 0 6px;padding:6px 9px;border-radius:7px;background:var(--navy);color:#fff;font-size:13.5px}
 .rehber h4{margin:12px 0 4px;font-size:14.5px;color:var(--navy)}
@@ -178,7 +174,7 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 <header class="top">
   <h1>Atık Saha Formu<br><small id="caseLbl">Yeni vaka</small></h1>
   <button id="saveSt" class="ss" aria-live="polite"></button>
-  <button id="bList">Vakalar<span id="bListN" hidden></span></button>
+  <button id="bList">Vakalar</button>
   <button id="bSet" aria-label="Ayarlar">⚙️</button>
 </header>
 <main id="app"></main>
@@ -421,6 +417,7 @@ const kucukBas=c=>KUCUK_BAS.includes(c.tur);
 const morfOf=c=>kucukBas(c)?[]:(c.morf||[]);
 const ASGARI=['Fötal abomazum içeriği','Fötal böbrek'];
 const asgariTamam=c=>{const n=c.numune||[];return n.includes('Bütün fötüs')||ASGARI.every(x=>n.includes(x))};
+/* Eski kayıtlarda kalan kan serumu da destek şartını karşılamaz. */
 const yalnizSvap=c=>{const n=c.numune||[];return n.includes('Vajinal svap')&&n.every(x=>x==='Vajinal svap'||x==='Anne kan serumu')};
 const TEXT_SVAP='Yalnız vajinal svap destek şartını karşılamaz; atık materyali resmî veteriner hekimce bizzat görülmelidir.';
 const TEXT_ASGARI='Asgari numune paketi eksik: fötal abomazum içeriği + fötal böbrek.';
@@ -465,8 +462,8 @@ function checkCase(c){
 
 /* ---------- şema ---------- */
 const EH=['Evet','Hayır'];
-const NUMUNE=['Bütün fötüs','Fötal abomazum içeriği','Fötal böbrek','Fötal dalak','Fötal akciğer','Fötal karaciğer','Fötal beyin','Fötal kalp','Perikard / torasik sıvı','Plasenta (kotiledon)','Anne kan serumu','Vajinal svap'];
-/* Boyutu ölçülebilen doku numuneleri; sıvı, svap, serum ve bütün fötüs dışarıda. */
+const NUMUNE=['Bütün fötüs','Fötal abomazum içeriği','Fötal böbrek','Fötal dalak','Fötal akciğer','Fötal karaciğer','Fötal beyin','Fötal kalp','Perikard / torasik sıvı','Plasenta (kotiledon)','Vajinal svap'];
+/* Boyutu ölçülebilen doku numuneleri; sıvı, svap ve bütün fötüs dışarıda. */
 const ORGAN=['Fötal böbrek','Fötal dalak','Fötal akciğer','Fötal karaciğer','Fötal beyin','Fötal kalp','Plasenta (kotiledon)'];
 const organOlculer=c=>(c.fotos||[]).filter(p=>p.olcumHedef&&p.olcum&&p.olcumEn);
 const boyEn=p=>fmt(p.olcum)+' × '+fmt(p.olcumEn)+' cm';
@@ -585,8 +582,6 @@ const S=[
   {k:'sigVet1',l:'Resmî veteriner hekim (1)',t:'sig'},
   {k:'sigVet2',l:'Resmî veteriner hekim (2)',t:'sig'}]},
  {id:'takip',t:'9 · Takip (tutanağa girmez)',f:[
-  {k:'kan2Bilgi',t:'kan2'},
-  {k:'kan2Tarih',l:'İkinci kanın alındığı tarih',t:'date'},
   {k:'sonuc',l:'Laboratuvar sonucu',t:'radio',o:['Pozitif','Negatif'],half:1},
   {k:'sonucTarih',l:'Sonuç tarihi',t:'date',half:1},
   {k:'destekTarih',l:'Desteğin işlendiği tarih',t:'date'},
@@ -869,7 +864,7 @@ function render(){
  bind();
  S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}));
  S.forEach(s=>s.f.forEach(f=>{if(f.val)showValid(f)}));
- drawPhotos();calcAge();updNumWarn();updKan2Box();updStatus();updLbl();
+ drawPhotos();calcAge();updNumWarn();updStatus();updLbl();
 }
 function showValid(f){
  const el=$('#f_'+f.k),er=$('#err_'+f.k);if(!el||!er)return;
@@ -883,7 +878,6 @@ function updNumWarn(){
 function field(f){
  const v=d[f.k];const id='f_'+f.k;
  if(f.t==='rehber')return `<div class="hint">Nekropsi numunesi değilse o maddeyi de işaretle.</div>${REHBER_TUS}`;
- if(f.t==='kan2')return`<div class="note" id="kan2Box"></div><div class="hint">Numune gönderim tarihi 4. bölümden okunur.</div>`;
  if(f.t==='note')return `<div class="note" id="numNote">Atık desteği için atık materyali resmî veteriner hekimce bizzat görülmelidir; yalnız vajinal svap destek şartını karşılamaz.</div><div class="note w" id="numWarn" hidden></div>${REHBER_TUS}`;
  if(f.t==='photos')return `<div class="fld"><label class="l">Fotoğraflar</label>
   <div class="inl"><label class="btn" style="flex:1">📷 Fotoğraf çek<input type="file" id="fCam" accept="image/*" capture="environment" hidden></label>
@@ -916,7 +910,6 @@ function afterChange(k){
  const f=fieldOf(k);if(f&&f.val)showValid(f);
  if(['morf','fetusCm','tohumlama','atikTarih','tur'].includes(k))calcAge();
  if(k==='numune')updNumWarn();
- if(k==='atikTarih'||k==='kan2Tarih'||k==='kupe'){updKan2Box();updKanSayac()}
  if(k==='atikTarih'||k==='vet2')DESTEK.forEach((l,i)=>{const e=$(`label.l[for="f_d${i+1}"]`);if(e)e.textContent=fieldOf('d'+(i+1)).l(d)});
 }
 function bind(){
@@ -953,7 +946,7 @@ function bind(){
 function updStatus(){
  S.forEach(s=>{
   const el=document.querySelector(`details[data-s="${s.id}"] .st`);if(!el)return;
-  const fs=s.f.filter(f=>!['photos','age','gps','note','kan2','rehber'].includes(f.t));
+  const fs=s.f.filter(f=>!['photos','age','gps','note','rehber'].includes(f.t));
   const n=fs.filter(f=>{const v=d[f.k];return Array.isArray(v)?v.length:(v!==undefined&&v!==''&&!(f.val==='trno'&&noIsEmpty(v)))}).length;
   let t=n+'/'+fs.length; if(s.id==='tespit')t+=' · '+(d.fotos||[]).length+' foto';
   el.textContent=t;el.classList.toggle('full',n===fs.length);
@@ -1516,41 +1509,6 @@ $('#bPrint').onclick=()=>guarded(printTutanak);
 $('#bPhotos').onclick=()=>{if(!(d.fotos||[]).length){toast('Fotoğraf yok');return}doPrint(photosHTML('phonly'))};
 
 /* ---------- takip ---------- */
-const KAN2_BAS=14,KAN2_SON=21,KAN2_YAKIN=3;
-const gunEkle=(iso,n)=>{const[y,m,g]=iso.split('-').map(Number);const x=new Date(y,m-1,g+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
-/* Karşılaştırma ISO metniyle yapılır; saat dilimi ve yaz saati etkilemez. */
-function kan2Durum(c,bugun=todayISO()){
- if(!/^\d{4}-\d{2}-\d{2}$/.test(c.atikTarih||''))return null;
- const bas=gunEkle(c.atikTarih,KAN2_BAS),son=gunEkle(c.atikTarih,KAN2_SON);
- const st=c.kan2Tarih?'alindi':bugun>son?'gecikti':bugun>=gunEkle(bas,-KAN2_YAKIN)?'yakin':'ileride';
- return {st,bas,son};
-}
-/* Küpesi girilmemiş taslak hatırlatma üretmez. */
-function kan2Uyari(c){
- if(noIsEmpty(c.kupe))return null;
- const k=kan2Durum(c);
- return k&&(k.st==='gecikti'||k.st==='yakin')?k.st:null;
-}
-const kan2Aralik=k=>trDate(k.bas)+' – '+trDate(k.son);
-function kan2Metni(c){
- const k=kan2Durum(c);
- if(!k)return 'İkinci kan aralığı için atık tarihini gir.';
- if(k.st==='alindi')return 'İkinci kan alındı: '+trDate(c.kan2Tarih);
- if(k.st==='gecikti')return 'İkinci kan gecikti: '+kan2Aralik(k);
- return 'İkinci kan aralığı: '+kan2Aralik(k);
-}
-function updKan2Box(){
- const e=$('#kan2Box');if(!e)return;
- e.textContent=kan2Metni(d);
- e.classList.toggle('w',!!kan2Uyari(d));
-}
-/* Yalnız gösterge: okunamazsa sayaç eski hâliyle kalır, vaka işlemleri etkilenmez. */
-async function updKanSayac(){
- let all=[];
- try{all=await dbAll()}catch(e){return}
- const n=[...all.filter(c=>c.id!==d.id),d].filter(kan2Uyari).length;
- const b=$('#bListN');b.textContent=n||'';b.hidden=!n;
-}
 function durumRozetleri(c){
  const r=[c.gonTarih?['Numune gönderildi','mav']:['Numune gönderilmedi','']];
  if(c.sonuc==='Pozitif')r.push(['Sonuç: Pozitif','kir']);
@@ -1560,10 +1518,6 @@ function durumRozetleri(c){
  if(kontrol||c.gonTarih)r.push(['Gönderim kontrolü '+kontrol+'/'+GON_KONTROL.length,kontrol===GON_KONTROL.length?'yes':c.gonTarih?'sar':'']);
  if(c.destekTarih)r.push(['Destek işlendi','yes']);
  if(c.d8===PROTOKOL_OFISTE)r.push([isBlank(c.velbis)?'Protokol no bekliyor':'Şart 8 güncellenecek','sar']);
- if(kan2Durum(c)&&!noIsEmpty(c.kupe)){
-  const u=kan2Uyari(c);
-  r.push([kan2Metni(c),u==='gecikti'?'kir':u==='yakin'?'sar':'']);
- }
  return r.map(([m,s])=>`<span class="rz ${s}">${esc(m)}</span>`).join('');
 }
 
@@ -1727,14 +1681,12 @@ async function openCase(c){
  render();
  setSave('ok');
  lsSet('atikCur',d.id);
- updKanSayac();
 }
 async function showList(){
  await flushSave();
  let all=[];
- const oncelik=c=>({gecikti:0,yakin:1}[kan2Uyari(c)]??2);
- try{all=(await dbAll()).sort((a,b)=>oncelik(a)-oncelik(b)||(b.updated||0)-(a.updated||0))}catch(e){toast('Vakalar okunamadı')}
- $('#listBox').innerHTML=all.length?all.map(c=>`<div class="it ${{gecikti:'gec',yakin:'uy'}[kan2Uyari(c)]||''}"><div><b>${esc(shortNo(c.kupe)||'—')}</b> · ${esc(c.mahalle||'')}<br><small>${esc(trDate(c.atikTarih||c.tarih))} · ${(c.fotos||[]).length} foto${c.id===d.id?' · açık':''}</small><div class="rzs">${durumRozetleri(c)}</div></div><button class="btn sm sec2" data-open="${esc(c.id)}">Aç</button><button class="btn sm red" data-rm="${esc(c.id)}">Sil</button></div>`).join(''):'<div class="hint">Kayıt yok.</div>';
+ try{all=(await dbAll()).sort((a,b)=>(b.updated||0)-(a.updated||0))}catch(e){toast('Vakalar okunamadı')}
+ $('#listBox').innerHTML=all.length?all.map(c=>`<div class="it"><div><b>${esc(shortNo(c.kupe)||'—')}</b> · ${esc(c.mahalle||'')}<br><small>${esc(trDate(c.atikTarih||c.tarih))} · ${(c.fotos||[]).length} foto${c.id===d.id?' · açık':''}</small><div class="rzs">${durumRozetleri(c)}</div></div><button class="btn sm sec2" data-open="${esc(c.id)}">Aç</button><button class="btn sm red" data-rm="${esc(c.id)}">Sil</button></div>`).join(''):'<div class="hint">Kayıt yok.</div>';
  $('#listBox').querySelectorAll('[data-open]').forEach(b=>b.onclick=async()=>{const c=all.find(x=>x.id===b.dataset.open);if(!c||!await safeToLeave())return;await openCase(c);$('#mList').classList.remove('on');window.scrollTo(0,0)});
  $('#listBox').querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{
   if(!await askDelete('Vaka kalıcı olarak silinsin mi?','Vaka ve fotoğrafları geri alınamaz şekilde silinir.'))return;
@@ -1743,7 +1695,6 @@ async function showList(){
   showList();
  });
  $('#mList').classList.add('on');
- updKanSayac();
 }
 $('#bList').onclick=showList;
 $('#bNew').onclick=async()=>{
@@ -1776,7 +1727,7 @@ function sanitizeCase(o){
  const c={...o};
  S.forEach(s=>s.f.forEach(f=>{
   const v=c[f.k];
-  if(v==null||['photos','age','note','kan2','rehber'].includes(f.t))return;
+  if(v==null||['photos','age','note','rehber'].includes(f.t))return;
   if(f.t==='check')c[f.k]=Array.isArray(v)?v.filter(x=>typeof x==='string'):[];
   else if(f.t==='sig'){if(!(typeof v==='string'&&SAFE_SIG.test(v)))delete c[f.k]}
   else if(f.t==='date'){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(v)))delete c[f.k]}
