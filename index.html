@@ -1,0 +1,1907 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#14324f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Atık Formu">
+<link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAIAAACyr5FlAAAISklEQVR4nOzdCVCUZRzH8f++u9woyqkoco6io6lo5kGQKJYloiYG2qHlGHZOWdqlpKhdNk1ppTOlNqZJllpWGI1oyWiZeDQlako6KjlaqEUccmzP1Axj6X/fd9dd5Hne32ccR+RBeOXL7rvP8x620KRMArgSGwEwEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewEAewzBGHZrP4hli8/Mkd7PXV9trfqamBVKd4HHY7eXVO9o4ZbtE0ch97U1P9saKLJ3dYLKQwq3/HRFKV1du3R4535ACLu7+H4h+0tk/QAiMbKw+TvZEU5c6fp9ZGaxdvC+5KHmML6aYFxZK6VI7DFtaTPMwW3ovUpfI+hzWgI3lYC3yKa0jpHVLNSp7WAp/i2sE8B7AQB7AQB7DkiyM7Iy1tcFJiXFT3hGjHI5PnlZ2srCdP6hIZXlK60fGYsiPHD5afKN6xZ+2mYpKKTHF0CAt+c96jKQN6k1RExOLX2BHJWbemPjjn9dNnK0kS0sxzjBmRXLJusXRlXEp88WITRtzYnyQhTRw5o4cFtQkgyYlNmJI1kiQhRxz33H5z2qC+pIThQ/qJzSEZyBFH7sTRpJDJ428hGUgQh6ZpsVEdyHlx4b7kYa59iujICE2T4X+eWr1OEaFWqyuz1MldA8nDUhPbkPPaBPqLjaJWT4I4fHy8yCWTU0L6Rrvn6K8r6t3Fb0pKCLnE5Y1qSSov2XvbtPdy47IHBZO7WSyivNBV0+M1TeVDwRSfPm/rp714R+cnb+tQcqiq/EwduUNcuE9yt8CQQPVXHkyxtiK+kZn92hE4CQtvwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcwEIcV2XN/qJPy7bvOnHAqmkJIVHTBmSO7ZFKqkAcrsvd+PInZd80v7nv18MPfPLK1qOlb2Q8TkpQ+aQmjxIdXFpGs3U/Fr++40NSAuJwxYJtKzcc+Jp777u7PyUlIA6nrd735ZKdHzkYcPav80d+P0nywz6Hc7Yc/X7m5jd1h1mUuJ0C4nDCD6ePTF3/QpO9SXdkdDtXLijS2iAOo05eOJOzdk5tw0XdkRN6DbMpcdlrxGHI+dqq7LWzK2v+0B0ZFRQxP/1+UgLi0HexsX5SQd7RylO6I4N8Awqy89v4ePCKMS0Jceiw2+25G1/aU3FId6R4Klk9YW5scCSpAnHoyN+6ovDwt0ZGLsmY0a+TUvdEQxyOrNq7+e3v1hsZ+VTq3Zk9UkgtiIMlpjRmGZjSELJ6pj06eAIpR7U4xDLpF4d27j5V1rltWGps3+kDx4X6u3LBJ7GKdt/HC+1k1x2ZEtNHmZW2/1Enjt+qz09Y81zZ2WP/vnmhtuqnM7+sKP08P33apD7OXU762LlfJxbk1TXq346je1jMivHPkaLUWVt5ZNNrzWU0q2moe6Jw8fLdn5Fh52uqcgrmnKv5U3ekeEwqyMn39/L4dZKvFUXi2FtxeGt5KffeZ79a+pax/UrhrnVzxSOH7jA/m48oIyygPalLkacVsYvgeEB+8XKxFDb9hnEOxohFk6nrF4r9FdKjWbSV42f3CFf5jsOkzCOHkYntecXLF+9c52DAs0VLDU5pLBr5cEpsH1KdInEkhsUYGbZw23vcvMWyXRtX7vmCDHh4UFZO73QyAUXiGBqXFG7s6V88flzeh3j1+/yWd4x8+MiuA5+56R4yB0XiEC8ZFozINThY9LFo++rmN0tPHRSrJ0Y+MCmy29Ixs8g01HkpOypxSO6AsQYHv1rywdwt74o//FJZMenDvPqmBt0PiWnfUayreVsluBWGuyg1Q5o37L5AH79F29cYGbx014Y/L1aXHNt/ofYv3cHBfm3FWnw7P4/f3adVUW36fEbyRPEUI544jAxeve9LI8N8bd4fZM/rosSRf05RcOHt38kMg33ospDlnXFPX9chgcxHzVVZN/bx/PCpw+KvJ1NS9rwV0cfsoVPo6kzpN2ra9ZlkViqf1PTAwNsXpBt9fXu5tLj+89OnkYkpfrDPvf1H0T8Lb+SkXhHxYldDrKGQial/JJgLfXRqGyZenvh5+ZC5meInQ/Txws3TDQ4O8PYryJkf4h9EpmeWh83JSbe9MvIh3WE2zfp+Vl58cCcCUx1gfGefW8TvTxYucTBmScaMgV16EvzDXEefO+5jZsqd6p1ecDVMtzcu+lg2ZpaYEf/f34uF+MeGZBNcwoznrYzufqOYDl+1t7D8XEVDU2NUUMT4nkPFcjzBf5n0pCax/j477V4Ch3DGG7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AQB7AkOEzw6PGK6po6UkhNbZ3YKGr1JIjDbreXHTlOCjnw83GxUdTqyXGA8cqPN5NClq2R4/aRcsSxdlNx0fbvSQmF277bUFRCMpDm1IQZC96uqq4hyYlNmPniMpKENHGcPls5aNyD3+zaT9ISX7zYBLEhJAlLaJJkFyfJzkhLG5yUGBfVPSGaZCD2pg+WnyjesUc8OZJU5IsDWgwmwYCFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOICFOID1NwAAAP//16uA7AAAAAZJREFUAwBmsvTLEpPWTgAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<title>Atık Saha Formu</title>
+<style>
+:root{--navy:#14324f;--bg:#eef2f6;--card:#fff;--line:#d5dde6;--txt:#1b2733;--mut:#5d6b7a;--acc:#1f6fd1;--ok:#18864b;--warn:#b5651d;--red:#c0392b}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+header.top{position:sticky;top:0;z-index:20;background:var(--navy);color:#fff;padding:10px 14px calc(10px) ;padding-top:calc(10px + env(safe-area-inset-top));display:flex;align-items:center;gap:10px}
+header.top h1{font-size:17px;margin:0;flex:1;font-weight:600}
+header.top small{opacity:.75;font-size:12px}
+header.top button{background:rgba(255,255,255,.15);color:#fff;border:0;border-radius:8px;padding:7px 10px;font-size:14px}
+main{padding:10px 10px 120px;max-width:760px;margin:0 auto}
+details.sec{background:var(--card);border-radius:12px;margin:0 0 10px;box-shadow:0 1px 2px rgba(0,0,0,.06);overflow:hidden}
+details.sec>summary{list-style:none;padding:13px 14px;font-weight:600;font-size:16px;display:flex;align-items:center;gap:8px;cursor:pointer;border-bottom:1px solid transparent}
+details.sec[open]>summary{border-bottom-color:var(--line)}
+details.sec>summary::-webkit-details-marker{display:none}
+details.sec>summary .st{margin-left:auto;font-size:12px;font-weight:500;color:var(--mut)}
+details.sec>summary .st.full{color:var(--ok)}
+.body{padding:10px 14px 14px}
+.fld{margin:0 0 12px}
+.fld>label.l{display:block;font-size:13px;color:var(--mut);margin:0 0 4px;font-weight:600}
+input[type=text],input[type=tel],input[type=number],input[type=date],input[type=time],textarea,select{width:100%;font-size:16px;padding:10px 11px;border:1px solid var(--line);border-radius:9px;background:#fbfcfd;color:var(--txt);min-height:44px}
+textarea{min-height:70px;resize:vertical}
+input:focus,textarea:focus{outline:2px solid var(--acc);border-color:transparent;background:#fff}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts label{position:relative}
+.opts input{position:absolute;opacity:0;pointer-events:none}
+.opts span{display:inline-block;padding:9px 12px;border:1px solid var(--line);border-radius:20px;background:#fbfcfd;font-size:15px;user-select:none;min-height:40px}
+.opts input:checked+span{background:var(--navy);border-color:var(--navy);color:#fff}
+/* minmax(0,…): iPhone'un tarih alanı sütunu esnetmesin; end: iki satırlı başlıkta alanlar aynı hizada kalsın. */
+.row2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;align-items:end}
+.row2>*{min-width:0}
+input[type=date],input[type=time]{display:block;min-width:0;max-width:100%}
+input::-webkit-date-and-time-value{text-align:left}
+@supports (-webkit-touch-callout:none){input[type=date],input[type=time]{-webkit-appearance:none;appearance:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:10px;padding:11px 14px;font-size:15px;font-weight:600;background:var(--acc);color:#fff;min-height:44px}
+.btn.sec2{background:#e3eaf2;color:var(--navy)}
+.btn.red{background:#fbe9e7;color:var(--red)}
+.btn.ok{background:var(--ok)}
+.btn.sm{padding:7px 10px;font-size:13px;min-height:34px}
+.inl{display:flex;gap:8px;align-items:center}
+.inl input{flex:1}
+.hint{font-size:12.5px;color:var(--mut);margin-top:4px}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin:8px 0}
+.ph{position:relative;border-radius:8px;overflow:hidden;background:#dde3ea;aspect-ratio:1}
+.ph img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:2px 4px}
+.ph .acts{position:absolute;top:3px;right:3px;display:flex;gap:3px}
+.ph .acts button{border:0;border-radius:6px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:4px 6px}
+.agebox{background:#f3f7fb;border:1px solid var(--line);border-radius:10px;padding:10px;margin:0 0 12px}
+.agebox h4{margin:0 0 6px;font-size:14px;color:var(--navy)}
+.agebox .res{font-size:14px;margin-top:8px;line-height:1.5}
+.agebox .res b{color:var(--navy)}
+.warn{color:var(--warn)}
+.err{display:none;color:var(--red);font-size:12.5px;margin-top:4px;font-weight:600}
+.err.on{display:block}
+input.bad{border-color:var(--red);background:#fff6f5}
+.note{font-size:13px;line-height:1.4;border-radius:9px;padding:9px 11px;margin:0 0 10px;background:#eef4fb;border:1px solid #c9dbef;color:var(--navy)}
+.note.w{background:#fff5e8;border-color:#efc994;color:#7a4510}
+header.top #bSet{padding:7px 8px;min-width:40px;min-height:40px}
+header.top button.ss{background:none;padding:4px 2px;font-size:12px;white-space:nowrap;opacity:.85;min-height:32px}
+header.top button.ss.bad{opacity:1;background:var(--red);padding:4px 8px;font-weight:700}
+.modal.c{align-items:center;padding:14px}
+.modal.c .sheet{border-radius:16px}
+#mAsk{z-index:80}
+#askB{font-size:15px;white-space:pre-line}
+.chkh{font-size:13px;font-weight:700;margin:10px 0 4px;color:var(--navy)}
+.chkit{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fbfcfd;border-radius:9px;padding:10px 11px;margin:0 0 6px;font-size:14.5px;color:var(--txt);min-height:44px}
+.chkit.u{background:#fff5e8;border-color:#efc994}
+#mCheck .btns{position:sticky;bottom:calc(-14px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 calc(14px + env(safe-area-inset-bottom));margin-bottom:calc(-14px - env(safe-area-inset-bottom))}
+button,input,textarea{font-family:inherit}
+.sig{border:1px dashed #9fb0c2;border-radius:10px;background:#fff;touch-action:none;width:100%;height:150px;display:block}
+.sigw{margin:0 0 14px}
+.sigw .inl{justify-content:space-between;margin-bottom:4px}
+.sigw .inl b{font-size:14px}
+nav.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:30}
+nav.bar button{border:0;background:#eef3f8;border-radius:10px;padding:8px 2px;font-size:12px;font-weight:600;color:var(--navy);display:flex;flex-direction:column;align-items:center;gap:2px;min-height:52px}
+nav.bar button i{font-style:normal;font-size:19px}
+nav.bar button.pri{background:#1fa855;color:#fff}
+.modal{position:fixed;inset:0;background:rgba(10,20,30,.55);z-index:50;display:none;align-items:flex-end;justify-content:center}
+.modal.on{display:flex}
+.sheet{background:#fff;width:100%;max-width:760px;max-height:92vh;border-radius:16px 16px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom));overflow:auto}
+.sheet h3{margin:0 0 10px;font-size:17px}
+.sheet textarea{min-height:300px;font-family:inherit;font-size:14px}
+.btns{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+#meas{position:fixed;inset:0;background:#111;z-index:60;display:none;flex-direction:column}
+#meas.on{display:flex}
+#meas .mt{color:#fff;padding:8px 10px;padding-top:calc(8px + env(safe-area-inset-top));display:flex;flex-wrap:wrap;gap:6px;align-items:center;background:#1c2630}
+#meas .mt .mode{display:flex;gap:4px}
+#meas .mt button{border:0;border-radius:8px;padding:8px 10px;font-size:13px;font-weight:600;background:#334354;color:#fff}
+#meas .mt button.on{background:#f1c40f;color:#111}
+#meas .mt button.f{background:#e74c3c}
+#meas .mt button.g{background:#1fa855}
+#meas .mt .rw{display:flex;flex-wrap:wrap;gap:6px;align-items:center;width:100%}
+#meas .mt button,#meas .mt select{min-height:44px}
+#meas .mt select{flex:1;min-width:0;width:auto;border:0;border-radius:8px;padding:6px 30px 6px 10px;font:600 16px Arial,sans-serif;color:#fff;-webkit-appearance:none;appearance:none;background:#334354 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E") no-repeat right 10px center}
+#meas .mt select option{color:#111;background:#fff}
+#meas .mt input{width:70px;min-height:44px;padding:4px 6px;font-size:16px}
+#meas .mt .cmw{display:flex;gap:4px;align-items:center;font-size:13px}
+#meas .mt .cmw[hidden]{display:none}
+#meas .mt .sq{min-width:44px;font-size:18px;padding:4px}
+#mPersp{background:#5a4300;color:#ffe9a8;font-size:12.5px;padding:5px 10px;text-align:center}
+#meas .wrap{flex:1;min-height:0;overflow:hidden;position:relative;touch-action:none;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
+#mCv{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#meas #mLoupe{position:absolute;display:none;width:132px;height:132px;border-radius:50%;box-shadow:0 0 0 2px #f1c40f,0 3px 12px rgba(0,0,0,.6);pointer-events:none}
+#meas #mLoupe.on{display:block}
+#meas .mb{color:#fff;background:#1c2630;padding:8px 10px calc(8px + env(safe-area-inset-bottom));font-size:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+#meas .mb .r{flex:1;min-width:150px;height:4.1em;overflow:hidden;font-size:13px;line-height:1.3}
+#meas .mb b{color:#f1c40f;font-size:17px}
+.toast{position:fixed;left:50%;bottom:90px;transform:translateX(-50%);background:#1b2733;color:#fff;padding:9px 14px;border-radius:20px;font-size:14px;z-index:90;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+.list .it{border:1px solid var(--line);border-radius:10px;padding:10px;margin:0 0 8px;display:flex;gap:8px;align-items:center}
+.list .it div{flex:1;font-size:14px}
+.list .it small{color:var(--mut)}
+.list .it.uy{background:#fff5e8;border-color:#efc994}
+.list .it.gec{background:#fdecea;border-color:var(--red)}
+.rzs{display:flex;flex-wrap:wrap;gap:4px;margin-top:5px}
+.rz{font-size:11.5px;font-weight:600;border-radius:9px;padding:2px 7px;background:#e8edf2;color:#44525f}
+.rz.mav{background:#dfeafb;color:#174f97}
+.rz.yes{background:#dff3e6;color:#12683a}
+.rz.kir{background:#fbe0dd;color:#9c2a1e}
+.rz.sar{background:#fdebcf;color:#8a4b12}
+#bListN{display:inline-block;margin-left:5px;min-width:18px;border-radius:9px;background:#f1c40f;color:#111;font-size:12px;font-weight:700;text-align:center;padding:0 4px}
+#bListN[hidden]{display:none}
+.rehber{font-size:14.5px;line-height:1.4}
+.rehber h5{margin:14px 0 6px;padding:6px 9px;border-radius:7px;background:var(--navy);color:#fff;font-size:13.5px}
+.rehber h4{margin:12px 0 4px;font-size:14.5px;color:var(--navy)}
+.rehber h4.no span{display:inline-block;margin-right:6px;padding:1px 6px;border-radius:5px;background:#1d7f8c;color:#fff;font-size:12px}
+.rehber ul,.rehber ol{margin:4px 0;padding-left:20px}
+.rehber .ana{margin:5px 0;padding:6px 9px;border-radius:7px;background:#e4f2f3;color:#155e68;font-weight:600;font-size:13.5px}
+.rehber .btns{position:sticky;bottom:calc(-14px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 calc(14px + env(safe-area-inset-bottom));margin-bottom:calc(-14px - env(safe-area-inset-bottom))}
+.rehberTus{margin:6px 0 12px}
+#print{display:none}
+@media print{
+  @page{size:A4;margin:11mm 12mm}
+  body{background:#fff}
+  /* Çıktıda yalnız belge bulunur; barındırma hizmetinin sayfaya eklediği öğeler de girmez. */
+  body>*:not(#print),html>*:not(head):not(body){display:none!important}
+  #print{display:block;color:#000;font:9.6pt/1.32 "Times New Roman",Times,serif}
+  #print .hd{text-align:center;font-weight:bold;line-height:1.25}
+  #print .hd .t{font-size:12.5pt;margin-top:6px;letter-spacing:.3px}
+  #print .meta{display:flex;justify-content:space-between;margin:4px 0 6px;font-size:9pt}
+  #print p{margin:3px 0;text-align:justify}
+  #print h5{font-size:9.8pt;margin:7px 0 2px;padding:2px 4px;border:0.6pt solid #000;background:#e6e6e6;-webkit-print-color-adjust:exact;print-color-adjust:exact;break-after:avoid;page-break-after:avoid}
+  #print table{width:100%;border-collapse:collapse;break-inside:avoid;page-break-inside:avoid}
+  #print tr{break-inside:avoid;page-break-inside:avoid}
+  #print .kapanis{break-after:avoid;page-break-after:avoid}
+  #print td,#print th{border:0.6pt solid #000;padding:2px 4px;vertical-align:top}
+  #print td.k{width:21%;font-weight:bold;background:#f2f2f2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print th{background:#f2f2f2;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print .sigt td{height:26mm;text-align:center;vertical-align:bottom;width:33.3%}
+  #print .sigt img{max-height:18mm;max-width:95%;display:block;margin:0 auto 2px}
+  #print .small{font-size:8.3pt}
+  #print .box{border:0.6pt solid #000;padding:3px 5px;margin-top:4px;break-inside:avoid;page-break-inside:avoid}
+  #print .pg{break-before:page}
+  #print .phg{display:grid;grid-template-columns:1fr 1fr;gap:5mm}
+  #print .phg figure{margin:0;break-inside:avoid;text-align:center}
+  #print .phg img{width:100%;max-height:118mm;object-fit:contain;border:0.5pt solid #999}
+  #print .phg figcaption{font-size:8.5pt;margin-top:1mm}
+  #print .phonly img{max-height:125mm}
+  #print .kart svg{display:block;margin:6mm auto 0;overflow:visible}
+  #print .kart .box{font-size:10.5pt;margin-top:5mm}
+  #print .kart p{text-align:center;font-size:10pt;margin-top:3mm}
+}
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Atık Saha Formu<br><small id="caseLbl">Yeni vaka</small></h1>
+  <button id="saveSt" class="ss" aria-live="polite"></button>
+  <button id="bList">Vakalar<span id="bListN" hidden></span></button>
+  <button id="bSet" aria-label="Ayarlar">⚙️</button>
+</header>
+<main id="app"></main>
+
+<nav class="bar">
+  <button id="bWa" class="pri"><i>💬</i>WhatsApp</button>
+  <button id="bPrint"><i>🖨️</i>Tutanak</button>
+  <button id="bPhotos"><i>🖼️</i>Foto eki</button>
+  <button id="bNew"><i>＋</i>Yeni vaka</button>
+</nav>
+
+<div class="modal" id="mWa"><div class="sheet">
+  <h3>WhatsApp mesajı</h3>
+  <textarea id="waTxt"></textarea>
+  <div class="hint">Gerekirse burada düzelt, sonra paylaş.</div>
+  <div class="btns">
+    <button class="btn ok" id="waShare">WhatsApp'ta paylaş</button>
+    <button class="btn sec2" id="waCopy">Kopyala</button>
+    <button class="btn sec2" id="waRegen">Yeniden üret</button>
+    <button class="btn red" data-close="mWa">Kapat</button>
+  </div>
+</div></div>
+
+<div class="modal" id="mList"><div class="sheet">
+  <h3>Kayıtlı vakalar</h3>
+  <div class="list" id="listBox"></div>
+  <div class="btns">
+    <button class="btn sec2" id="bExport">Bu vakayı ZIP'e kaydet</button>
+    <button class="btn sec2" id="bExportAll">Tüm vakaları ZIP'e kaydet</button>
+    <label class="btn sec2" style="cursor:pointer">Dosyadan aç<input type="file" id="fImport" accept=".zip,.json,application/zip,application/json" multiple hidden></label>
+    <button class="btn red" data-close="mList">Kapat</button>
+  </div>
+  <div class="hint">Vakalar bu telefonun tarayıcısında saklanır. Tarayıcı verisini silersen gider; önemli vakaları dosyaya da kaydet.</div>
+</div></div>
+
+<div class="modal" id="mSet" role="dialog" aria-modal="true"><div class="sheet">
+  <h3>Ayarlar</h3>
+  <div class="fld"><label class="l" for="setVet1">Resmî veteriner hekim (1)</label><input type="text" id="setVet1"></div>
+  <div class="fld"><label class="l" for="setVet2">Resmî veteriner hekim (2)</label><input type="text" id="setVet2"></div>
+  <div class="fld"><label class="l" for="setEnstitu">Gönderildiği enstitü</label><input type="text" id="setEnstitu"></div>
+  <div class="fld"><label class="l" for="setIl">İl kodu (küpe ve işletme no başlangıcı)</label><input type="text" id="setIl" inputmode="numeric" maxlength="2"><div class="err" id="err_setIl"></div></div>
+  <div class="hint">Yeni açılan vakalarda kullanılır; kayıtlı vakalar değişmez.</div>
+  <div class="hint" id="cevDurum" role="status"></div>
+  <div class="btns">
+    <button class="btn ok" id="setSave">Kaydet</button>
+    <button class="btn sec2" data-close="mSet">Kapat</button>
+  </div>
+</div></div>
+
+<div class="modal" id="mRehber" role="dialog" aria-modal="true"><div class="sheet rehber">
+  <h3>Numune gönderim rehberi</h3>
+  <h5>Ambalaj ve soğuk zincir</h5>
+  <b>Üçlü ambalaj sistemi</b>
+  <ul>
+    <li><b>Ana kap:</b> numuneyi doğrudan içerir.</li>
+    <li><b>İkincil ambalaj:</b> ana kabı korur, sızdırmazlığı destekler.</li>
+    <li><b>Dış ambalaj:</b> taşımada sistemi dış etkilerden korur.</li>
+  </ul>
+  <h4 class="no"><span>01</span>Üçlü ambalajı eksiksiz kullan</h4>
+  <ul>
+    <li>Göndermeden önce üç bileşenin mevcut ve sağlam olduğunu kontrol et.</li>
+    <li>Ambalajda hasar, açıklık veya deformasyon olmamalı.</li>
+  </ul>
+  <div class="ana">Üç bileşen birlikte ve eksiksiz kullanılır.</div>
+  <h4 class="no"><span>02</span>Sızdırmazlık ve kapak kontrolü</h4>
+  <ul>
+    <li>Ana kabın contasını ve vidalı kapağını kontrol et.</li>
+    <li>Tüp, poşet, kutu veya enjektörleri güvenli kapat.</li>
+    <li>Numuneleri birbirine temas edip bulaş oluşturmayacak şekilde yerleştir.</li>
+  </ul>
+  <div class="ana">Sızıntı; çalışan, taşıyıcı, çevre ve diğer numuneler için risktir.</div>
+  <h4 class="no"><span>03</span>Soğuk zinciri koru</h4>
+  <ul>
+    <li>Buz akülerini gönderimden önce -18 °C'de dondur.</li>
+    <li>Aküleri yeterli sayıda ve doğru yerleştir.</li>
+    <li>Numunenin gerektirdiği taşıma sıcaklığını koru.</li>
+  </ul>
+  <div class="ana">Uygun sıcaklık, güvenilir sonuç için kritiktir.</div>
+  <h5>Etiketleme ve kayıt</h5>
+  <h4 class="no"><span>04</span>Bilgi, kod, etiket, işaret</h4>
+  <ul>
+    <li>Kaptaki bilgi, kod, etiket, tehlike işareti ve ambalajı kontrol et.</li>
+    <li>Veteriner Biyolojik Numunelerin Alınması, Nakledilmesi, İthalatı, İhracatı ve Laboratuvar Şartlarına Dair Yönetmelik EK-6'ya göre işaretle ve etiketle.</li>
+  </ul>
+  <h4 class="no"><span>05</span>VELBİS kaydını doğru ve eksiksiz oluştur</h4>
+  <ul>
+    <li>Hayvan / işletme bilgileri ve numune türü</li>
+    <li>Numunenin alındığı materyal ve numune alma tarihi</li>
+    <li>Klinik bilgiler ile ön tanı / şüphe</li>
+  </ul>
+  <div class="ana">Gönderim öncesi: Kategori A/B sınıflandırması, ambalaj ve etiket uygunluğu, sızdırmazlık, VELBİS protokolü ve soğuk zincir birlikte doğrulanır.</div>
+  <h5>Nekropsi ve saha hazırlığı</h5>
+  <h4 class="no"><span>06</span>Nekropsi numunesinde raporu unutma</h4>
+  <ul>
+    <li>İlgili mücadele programı ekindeki nekropsi raporunu doldur.</li>
+    <li>Raporun bir örneğini numuneyle birlikte gönder.</li>
+  </ul>
+  <h4 class="no"><span>07</span>Doğru eğitimden yararlan</h4>
+  <ul>
+    <li>Uzaktan Eğitim Kapısı: Veteriner Hekimlikte Nekropsi ve Numune Alma</li>
+    <li>Çiftlik hayvanları, kedi-köpek, su hayvanları ve kümes hayvanları nekropsi eğitimleri</li>
+  </ul>
+  <h4 class="no"><span>08</span>Sarf malzemelerini stokta tut</h4>
+  <ul>
+    <li>Kap, kutu, tüp ve buz aküsü</li>
+    <li>Kişisel koruyucu ekipman (KKE)</li>
+    <li>Diğer sarf malzemeleri</li>
+  </ul>
+  <div class="ana">Malzeme tamamen tükenmeden İl Tarım ve Orman Müdürlüğü ile iletişime geç.</div>
+  <h5>Saha biyogüvenliği</h5>
+  <h4 class="no"><span>09</span>Nekropsi setlerini doğru temizle</h4>
+  <ul>
+    <li>Cihaz bulunmayan birimlerde her kullanımdan sonra:</li>
+    <li>Yıkama → dezenfeksiyon → durulama → temiz muhafaza</li>
+  </ul>
+  <div class="ana">Hiçbir aşama atlanmaz.</div>
+  <h4 class="no"><span>10</span>Numune alma sahasında bulaşı önle</h4>
+  <ul>
+    <li>Dış ambalajı ve ikincil ambalajı (strafor) numune alma sahasına taşıma.</li>
+    <li>Numuneyi koyup kap ve conta bütünlüğünü kontrol ettikten sonra, ana kabı dış ambalajlara yerleştirmeden önce dış yüzeyini uygun sıvı dezenfektanla silerek temizle.</li>
+  </ul>
+  <ol class="akis">
+    <li>Numune alma sahası</li>
+    <li>Ana kap</li>
+    <li>Ana kabın dezenfeksiyonu</li>
+    <li>İkincil ambalaj</li>
+    <li>Dış ambalaj</li>
+  </ol>
+  <h5>Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü</h5>
+  <div>Adnan Menderes Mah. Fatih Sultan Mehmet Bulvarı No: 6/25070 Palandöken/ERZURUM</div>
+  <div><a href="tel:+904423168142">0442 316 81 42</a> · <a href="tel:+904423170732">0442 317 07 32</a></div>
+  <div><a href="mailto:erzurum.vke@tarimorman.gov.tr">erzurum.vke@tarimorman.gov.tr</a></div>
+  <div class="hint">Kaynak: Tarım ve Orman Bakanlığı, Hayvancılık Genel Müdürlüğü ile Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü, Veteriner Biyolojik Numune Gönderim Rehberi (saha rehberi). Metin özetlenmiştir.</div>
+  <div class="btns"><button class="btn sec2" data-close="mRehber">Kapat</button></div>
+</div></div>
+
+<div class="modal" id="mCheck" role="dialog" aria-modal="true"><div class="sheet">
+  <h3>Çıktı öncesi kontrol</h3>
+  <div id="checkBox"></div>
+  <div class="hint">Satıra dokununca ilgili alana gider.</div>
+  <div class="btns">
+    <button class="btn" id="checkGo">Yine de devam et</button>
+    <button class="btn sec2" data-close="mCheck">Kapat</button>
+  </div>
+</div></div>
+
+<div class="modal c" id="mAsk" role="alertdialog" aria-modal="true"><div class="sheet">
+  <h3 id="askT"></h3>
+  <div id="askB"></div>
+  <div class="btns" id="askBtns"></div>
+</div></div>
+
+<div id="meas">
+  <div class="mt">
+    <div class="rw">
+      <select id="mHedef" aria-label="Ölçülen"></select>
+      <button id="mClose" class="f">Kapat</button>
+    </div>
+    <div class="rw">
+      <select id="refTip" aria-label="Referans">
+        <option value="kart">10 cm kart</option>
+        <option value="a4k">A4 kısa kenar (21 cm)</option>
+        <option value="a4u">A4 uzun kenar (29,7 cm)</option>
+        <option value="serbest">Serbest değer</option>
+      </select>
+      <span class="cmw" id="refCmW" hidden><input type="text" id="refCm" inputmode="decimal" aria-label="Referans uzunluğu (cm)">cm</span>
+    </div>
+    <div class="rw">
+      <div class="mode">
+        <button id="mRef" class="on">1 · Ref.</button>
+        <button id="mFet">2 · Fötüs</button>
+        <button id="mEn" hidden>3 · En</button>
+      </div>
+      <button id="mZout" class="sq" aria-label="Uzaklaştır">－</button>
+      <button id="mZin" class="sq" aria-label="Yakınlaştır">＋</button>
+      <button id="mUndo">Geri al</button>
+    </div>
+  </div>
+  <div id="mPersp">Fotoğraf tam tepeden, kart fötüsle aynı zeminde olmalı.</div>
+  <div class="wrap" id="mWrap"><canvas id="mCv"></canvas><canvas id="mLoupe"></canvas></div>
+  <div class="mb">
+    <div class="r" id="mInfo"></div>
+    <button class="btn g ok sm" id="mSave">Ölçüyü kaydet</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div id="print"></div>
+
+<script>
+'use strict';
+/* ---------- yardımcılar ---------- */
+const $=s=>document.querySelector(s);
+const pad=n=>String(n).padStart(2,'0');
+const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const nowHM=()=>{const d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())};
+const trDate=s=>{if(!s)return '';const m=String(s).match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?m[3]+'.'+m[2]+'.'+m[1]:s};
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const num=v=>{const x=parseFloat(String(v||'').replace(',','.'));return isFinite(x)?x:null};
+const fmt=(x,d=1)=>x.toFixed(d).replace('.',',').replace(/,0$/,'');
+const kisa=no=>{no=(no||'').toUpperCase().replace(/[\s-]/g,'');const m=no.match(/^TR(\d{2})(\d+)$/);return m?'TR'+m[1]+'-'+String(parseInt(m[2],10)):no};
+const basHarf=ad=>(ad||'').trim().split(/\s+/).filter(Boolean).map(w=>w[0].toLocaleUpperCase('tr-TR')+'.').join('');
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('on'),1800)}
+
+/* ---------- sayfa içi onay ---------- */
+let askRes=null;
+function closeAsk(v){$('#mAsk').classList.remove('on');const r=askRes;askRes=null;if(r)r(v)}
+function ask({title,body,buttons}){
+ if(askRes)closeAsk(null);
+ $('#askT').textContent=title;$('#askB').textContent=body||'';
+ const box=$('#askBtns');box.innerHTML='';
+ return new Promise(res=>{
+  askRes=res;
+  buttons.forEach(b=>{const x=document.createElement('button');x.className='btn '+(b.cls||'');x.textContent=b.label;x.onclick=()=>closeAsk(b.val);box.appendChild(x)});
+  $('#mAsk').classList.add('on');
+ });
+}
+const askInfo=(title,body)=>ask({title,body,buttons:[{label:'Tamam',val:true}]});
+const askDelete=(title,body)=>ask({title,body,buttons:[{label:'Sil',val:true,cls:'red'},{label:'Vazgeç',val:false,cls:'sec2'}]});
+
+/* ---------- doğrulama ---------- */
+const normNo=v=>String(v||'').toUpperCase().replace(/[\s-]/g,'');
+const trNoValid=v=>/^TR\d{12}$/.test(normNo(v));
+const noIsEmpty=v=>/^(TR\d{0,2})?$/.test(normNo(v));
+const shortNo=no=>noIsEmpty(no)?'':kisa(no);
+function tcValid(v){
+ const s=String(v||'').trim();if(!/^[1-9]\d{10}$/.test(s))return false;
+ const n=[...s].map(Number);
+ const tek=n[0]+n[2]+n[4]+n[6]+n[8],cift=n[1]+n[3]+n[5]+n[7];
+ if((((tek*7-cift)%10)+10)%10!==n[9])return false;
+ return n.slice(0,10).reduce((a,b)=>a+b,0)%10===n[10];
+}
+const VAL={
+ trno:{ok:trNoValid,empty:noIsEmpty,msg:'TR + 12 hane olmalı (örn. TR750000123456).'},
+ tc:{ok:tcValid,empty:v=>!String(v||'').trim(),msg:'Geçersiz T.C. kimlik no (11 hane ve algoritma kontrolü).'}};
+const isBlank=v=>v==null||(Array.isArray(v)?!v.length:String(v).trim()==='');
+const KUCUK_BAS=['Koyun','Keçi'];
+const kucukBas=c=>KUCUK_BAS.includes(c.tur);
+const morfOf=c=>kucukBas(c)?[]:(c.morf||[]);
+const ASGARI=['Fötal abomazum içeriği','Fötal böbrek'];
+const asgariTamam=c=>{const n=c.numune||[];return n.includes('Bütün fötüs')||ASGARI.every(x=>n.includes(x))};
+const yalnizSvap=c=>{const n=c.numune||[];return n.includes('Vajinal svap')&&n.every(x=>x==='Vajinal svap'||x==='Anne kan serumu')};
+const TEXT_SVAP='Yalnız vajinal svap destek şartını karşılamaz; atık materyali resmî veteriner hekimce bizzat görülmelidir.';
+const TEXT_ASGARI='Asgari numune paketi eksik: fötal abomazum içeriği + fötal böbrek.';
+const GEBELIK_AYI_ETIKET='Gebeliğin kaçıncı ayında atık yaptığı';
+const PROTOKOL_OFISTE='Ofiste oluşturulacak';
+const D8_OFISTE_METNI="Numune alındı; VELBİS'te Marazi Madde Gönderme Protokolü ofiste oluşturulacak ve protokol numarası tutanağa işlenecek";
+const yalnizPlasenta=c=>{const m=c.materyal||[];return m.length===1&&m[0]==='Plasenta / zarlar'};
+
+/* Çıktı öncesi kontrol: eksik = doldurulması gereken, uyari = alan mantığı uyarısı. Çıktıyı engellemez. */
+function checkCase(c){
+ const eksik=[],uyari=[];
+ const req=(k,msg)=>{if(isBlank(c[k]))eksik.push({k,msg})};
+ const reqVal=(k,ad,v)=>{if(v.empty(c[k]))eksik.push({k,msg:ad});else if(!v.ok(c[k]))eksik.push({k,msg:ad+': '+v.msg})};
+ const baska=c.hazir==='Başka kişi';
+ req('vet1','Resmî veteriner hekim (1) adı');
+ req('sahipAd','Hayvan sahibinin adı soyadı');
+ reqVal('sahipTc','Hayvan sahibinin T.C. kimlik no',VAL.tc);
+ reqVal('isletmeNo','İşletme no',VAL.trno);
+ req('mahalle','Köyü / mahallesi');
+ if(baska)req('hazirKisi','Yerinde hazır bulunan kişinin bilgileri');
+ reqVal('kupe','Küpe no',VAL.trno);
+ req('tur','Hayvanın türü');
+ req('atikTarih','Atık tarihi');
+ req('materyal','Görülen materyal');
+ if(!yalnizPlasenta(c))req('fetusCm','Fötüs uzunluğu');
+ req('tahminiAy',GEBELIK_AYI_ETIKET);
+ if(!(c.fotos||[]).length)eksik.push({k:'fotos',msg:'En az bir fotoğraf'});
+ req('numune','Alınan numune');
+ const bosDestek=[1,2,3,4,5,6,7,8].filter(i=>isBlank(c['d'+i]));
+ if(bosDestek.length)eksik.push({k:'d'+bosDestek[0],msg:'İşaretlenmeyen destek şartları: '+bosDestek.join(', ')});
+ req('sigSahip',baska?'Hazır bulunan kişinin imzası':'Hayvan sahibinin imzası');
+ req('sigVet1','Resmî veteriner hekim (1) imzası');
+ if(c.d4!=='Evet')uyari.push({k:'d4',msg:'Destek şartı 4 “Evet” değil: atık materyali resmî veteriner hekimce bizzat görülmediyse destek şartı karşılanmaz.'});
+ const ofiste=c.d8===PROTOKOL_OFISTE;
+ if(isBlank(c.velbis))uyari.push({k:'velbis',msg:'VELBİS protokol no boş. Destek hakkı protokol oluşturulunca kazanılır; '+(ofiste?'ofiste oluşturunca numarasını yaz, şart 8’i “Evet” yap.':'protokolü oluştur, numarasını yaz.')});
+ else if(ofiste)uyari.push({k:'d8',msg:'VELBİS protokol no yazıldı; şart 8’i “Evet” yap.'});
+ if(yalnizSvap(c))uyari.push({k:'numune',msg:TEXT_SVAP});
+ if(!isBlank(c.numune)&&!asgariTamam(c))uyari.push({k:'numune',msg:TEXT_ASGARI});
+ uyari.push(...organUyarilari(c));
+ return {eksik,uyari};
+}
+
+/* ---------- şema ---------- */
+const EH=['Evet','Hayır'];
+const NUMUNE=['Bütün fötüs','Fötal abomazum içeriği','Fötal böbrek','Fötal dalak','Fötal akciğer','Fötal karaciğer','Fötal beyin','Fötal kalp','Perikard / torasik sıvı','Plasenta (kotiledon)','Anne kan serumu','Vajinal svap'];
+/* Boyutu ölçülebilen doku numuneleri; sıvı, svap, serum ve bütün fötüs dışarıda. */
+const ORGAN=['Fötal böbrek','Fötal dalak','Fötal akciğer','Fötal karaciğer','Fötal beyin','Fötal kalp','Plasenta (kotiledon)'];
+const organOlculer=c=>(c.fotos||[]).filter(p=>p.olcumHedef&&p.olcum&&p.olcumEn);
+const boyEn=p=>fmt(p.olcum)+' × '+fmt(p.olcumEn)+' cm';
+function organUyarilari(c){
+ const adlar=organOlculer(c).map(p=>p.olcumHedef),n=c.numune||[];
+ const isaretsiz=[...new Set(adlar.filter(a=>!n.includes(a)))];
+ const iki=[...new Set(adlar.filter((a,i)=>adlar.indexOf(a)!==i))];
+ const u=[];
+ if(isaretsiz.length)u.push({k:'numune',msg:'Ölçülen organ numune listesinde işaretli değil: '+isaretsiz.join(', ')});
+ if(iki.length)u.push({k:'numune',msg:'Aynı organ iki kez ölçüldü, ikisi de tutanağa yazılır: '+iki.join(', ')});
+ return u;
+}
+const GON_KONTROL=['Üçlü ambalaj sistemi eksiksiz mi?','Ana kabın contası ve vidalı kapağı doğru kapalı mı?','Tüp / poşet / kutu / enjektörler güvenli kapalı mı?','Numuneler birbirine temas etmiyor mu?',"Buz aküleri -18 °C'de donduruldu mu?",'Numunenin Kategori A/B sınıflandırması kontrol edildi mi?',"Bilgi, kod ve etiketler EK-6'ya göre uygun mu?",'VELBİS protokolü eksiksiz ve doğru oluşturuldu mu?','Nekropsi numunesiyse rapor eklendi mi?','Ambalaj bütünlüğü ve sızdırmazlık son kez kontrol edildi mi?'];
+const REHBER_TUS='<button class="btn sec2 sm rehberTus" type="button" data-rehber>📘 Numune gönderim rehberi</button>';
+const atikYil=c=>{const m=/^(\d{4})-/.exec(c.atikTarih||'');return m?m[1]:String(new Date().getFullYear())};
+const destekMetni=(l,c)=>l.replace('{yil}',atikYil(c)).replace('{hekim}',hekimEki(c));
+const DESTEK=[
+ 'Hayvan kulak küpesi ile tanımlı ve küpe numarası okunuyor',
+ "Hayvan TÜRKVET'e kayıtlı",
+ 'Atık tarihinde hayvan, hayvan sahibinin bu işletmesinde kayıtlı (TÜRKVET sorgusu yapıldı)',
+ 'Atık materyali resmî veteriner {hekim} bizzat görüldü',
+ "Atık {yil} takvim yılı içinde gerçekleşti ve aynı yıl içinde VETBİS'e kaydedilecek",
+ 'Bu hayvan için {yil} yılında daha önce atık desteği kaydı yok',
+ "Bu hayvan için TARSİM atık hasarı teminatı kapsamında ödeme yapılmasına karar verilmedi",
+ "Numune alındı; VELBİS'te Marazi Madde Gönderme Protokolü oluşturuldu ve protokol numarası tutanağa yazıldı"];
+const ONLEM=['Hayvan sürüden ayrıldı (ayrı bölmeye alındı)','Fötüs ve yavru zarları kontrollü imha edilerek gömüldü','Atık yeri ve çevresi dezenfekte ettirildi','Bruselloz şüphesiyle işletmeye geçici hareket kısıtı konuldu',"VETBİS'e şüpheli vaka kaydı girildi",'Hayvanın sütünün ayrı sağılıp kaynatılarak kullanılması bildirildi','Hayvan sahibi süreç ve yükümlülükleri hakkında bilgilendirildi'];
+const MORF=[
+ {k:'tirnak',l:'Tırnak kapsülü şekillenmiş',min:4},
+ {k:'kas',l:'Kaş / kirpik / dudak çevresinde tüy var',min:5},
+ {k:'kuyruk',l:'Kuyruk ucunda tüy var',min:5.5},
+ {k:'kismi',l:'Vücutta kısmi tüy (sırt, bacak)',min:6.5},
+ {k:'tam',l:'Tüm vücut tüylü',min:7.5},
+ {k:'dis',l:'Kesici dişler sürmüş',min:8},
+ {k:'tuysuz',l:'Vücutta hiç tüy yok',max:7}];
+
+const S=[
+ {id:'vaka',t:'Vaka ve tespit eden hekimler',open:true,f:[
+  {k:'tarih',l:'Tutanak tarihi',t:'date',def:todayISO,half:1},
+  {k:'saat',l:'Saat',t:'time',def:nowHM,half:1},
+  {k:'vet1',l:'Resmî veteriner hekim (1)',t:'text',def:()=>ayar.vet1},
+  {k:'vet2',l:'Resmî veteriner hekim (2)',t:'text',def:()=>ayar.vet2}]},
+ {id:'sahip',t:'1 · Hayvan sahibi ve işletme',f:[
+  {k:'sahipAd',l:'Adı soyadı',t:'text'},
+  {k:'sahipTc',l:'T.C. kimlik no',t:'tel',half:1,val:'tc'},
+  {k:'telefon',l:'Telefon',t:'tel',half:1},
+  {k:'isletmeNo',l:'İşletme no',t:'text',def:()=>'TR'+ayar.il,up:1,val:'trno'},
+  {k:'mahalle',l:'Köyü / mahallesi',t:'text'},
+  {k:'koordinat',l:'Koordinat',t:'gps'},
+  {k:'hazir',l:'Yerinde hazır bulunan',t:'radio',o:['Hayvan sahibinin kendisi','Başka kişi'],def:'Hayvan sahibinin kendisi'},
+  {k:'hazirKisi',l:'Başka kişi ise: adı soyadı / T.C. / yakınlığı',t:'text'}]},
+ {id:'hayvan',t:'2 · Atık yapan hayvan',f:[
+  {k:'kupe',l:'Küpe no',t:'text',def:()=>'TR'+ayar.il,up:1,val:'trno'},
+  {k:'tur',l:'Türü',t:'radio',o:['Sığır','Manda','Koyun','Keçi'],def:'Sığır'},
+  {k:'irk',l:'Irkı',t:'text',list:['Simental','Simental melezi','Holştayn','Montofon (Esmer)','Angus','Şarole','Limuzin','Hereford','Doğu Anadolu Kırmızısı','Yerli Kara','Melez']},
+  {k:'dogum',l:'Doğum tarihi',t:'date',half:1},
+  {k:'tohumlama',l:'Tohumlama / aşım tarihi (beyan)',t:'date',half:1},
+  {k:'tohumSekli',l:'Tohumlama şekli',t:'radio',o:['Suni','Tabii']},
+  {k:'atikTarih',l:'Atık tarihi',t:'date',def:todayISO,half:1},
+  {k:'atikSaat',l:'Atık saati (yaklaşık)',t:'time',half:1},
+  {k:'materyal',l:'Görülen materyal',t:'check',o:['Fötüs','Plasenta / zarlar'],def:['Fötüs']},
+  {k:'turkvet',l:"TÜRKVET'te bu sahip adına ve bu işletmede kayıtlı",t:'radio',o:EH},
+  {k:'asiBru',l:'Brusella aşısı (S19 / RB51 / Rev-1)',t:'radio',o:EH,half:1},
+  {k:'asiBruT',l:'Brusella aşı tarihi',t:'date',half:1},
+  {k:'asiSap',l:'Şap aşısı',t:'radio',o:EH,half:1},
+  {k:'asiSapT',l:'Şap son uygulama tarihi',t:'date',half:1},
+  {k:'asi30',l:'Son 30 günde başka aşı / ilaç',t:'radio',o:EH},
+  {k:'asi30A',l:'Varsa adı / tarihi',t:'text'}]},
+ {id:'tespit',t:'3 · Tespit, fotoğraf, ölçüm, bulgular',f:[
+  {k:'gorTarih',l:'Görüldüğü tarih',t:'date',def:todayISO,half:1},
+  {k:'gorSaat',l:'Görüldüğü saat',t:'time',def:nowHM,half:1},
+  {k:'gorYer',l:'Görüldüğü yer',t:'radio',o:['İşletme','Diğer'],def:'İşletme'},
+  {k:'fotos',t:'photos'},
+  {k:'fetusCm',l:'Fötüs uzunluğu, burun ucu – kuyruk kökü (cm)',t:'number',measure:1},
+  {k:'morf',t:'age'},
+  {k:'tahminiAy',l:GEBELIK_AYI_ETIKET+' (tutanağa yazılacak)',t:'text',ph:'örn. 6–6,5'},
+  {k:'plasenta',l:'Plasenta / zarlar',t:'radio',o:['Var','Yok','Atılmamış']},
+  {k:'anne',l:'Annenin durumu',t:'check',o:['Normal','Ateş','Yavru zarı atılmamış (retensiyo)','Vajinal akıntı']},
+  {k:'anneAtes',l:'Ateş varsa (°C)',t:'number'},
+  {k:'bulguNot',l:'Diğer bulgular',t:'textarea'}]},
+ {id:'numune',t:'4 · Numune ve laboratuvar',f:[
+  {k:'numNot',t:'note'},
+  {k:'numune',l:'Alınan numuneler',t:'check',o:NUMUNE},
+  {k:'kapSayi',l:'Numune kabı sayısı',t:'number',half:1},
+  {k:'muhafaza',l:'Muhafaza',t:'radio',o:['Soğuk zincir (+4 °C)','Donuk'],def:'Soğuk zincir (+4 °C)',half:1},
+  {k:'numTarih',l:'Numune alış tarihi',t:'date',def:todayISO,half:1},
+  {k:'numSaat',l:'Numune alış saati',t:'time',def:nowHM,half:1},
+  {k:'velbis',l:'VELBİS protokol no',t:'text',ph:()=>'EVE/'+new Date().getFullYear()+'/….'},
+  {k:'enstitu',l:'Gönderildiği enstitü',t:'text',def:()=>ayar.enstitu},
+  {k:'gonTarih',l:'Gönderim tarihi',t:'date',half:1},
+  {k:'gonSekli',l:'Gönderim şekli',t:'radio',o:['Elden','Kargo'],half:1},
+  {k:'kargoNo',l:'Kargo takip no / teslim alan',t:'text'}]},
+ {id:'epid',t:'5 · Epidemiyolojik bilgiler (beyan)',f:[
+  {k:'gebeSayi',l:'İşletmedeki gebe hayvan (baş)',t:'number'},
+  {k:'atik12',l:'Son 12 ayda başka atık',t:'radio',o:['Yok','Var'],half:1},
+  {k:'atik12A',l:'Varsa adet',t:'number',half:1},
+  {k:'giris',l:'Son 12 ayda hayvan girişi',t:'radio',o:['Yok','Var']},
+  {k:'girisA',l:'Varsa tarih / geldiği yer',t:'text'},
+  {k:'mera',l:'Ortak mera / yayla',t:'radio',o:['Hayır','Evet'],half:1},
+  {k:'boga',l:'Ortak / kiralık boğa',t:'radio',o:['Hayır','Evet'],half:1},
+  {k:'meraA',l:'Mera / boğa açıklaması',t:'text'},
+  {k:'barinma',l:'Barınma / besleme',t:'radio',o:['Ahır','Mera','Karışık']},
+  {k:'silaj',l:'Silaj',t:'radio',o:['Kullanılıyor','Kullanılmıyor']}]},
+ {id:'destek',t:'6 · Destek şartlarının kontrolü',f:[
+  ...DESTEK.map((l,i)=>({k:'d'+(i+1),l:c=>(i+1)+'. '+destekMetni(l,c),t:'radio',o:i===7?[...EH,PROTOKOL_OFISTE]:EH})),
+  {k:'tarsim',l:'TARSİM sigortası',t:'radio',o:['Yok','Var'],half:1},
+  {k:'police',l:'Varsa poliçe no',t:'text',half:1}]},
+ {id:'onlem',t:'7 · Alınan önlemler',f:[
+  {k:'onlem',l:'İşaretle',t:'check',o:ONLEM,col:1},
+  {k:'onlemDiger',l:'Diğer önlemler',t:'textarea'}]},
+ {id:'imza',t:'8 · Beyan, şerh ve imzalar',f:[
+  {k:'okuma',l:'Tutanak',t:'radio',o:['Hayvan sahibi kendisi okudu','Yüksek sesle okunarak anlatıldı'],def:'Hayvan sahibi kendisi okudu'},
+  {k:'itiraz',l:'Hayvan sahibinin itiraz / beyan şerhi',t:'radio',o:['Yoktur','Vardır'],def:'Yoktur'},
+  {k:'itirazA',l:'Şerh varsa',t:'textarea'},
+  {k:'nusha',l:'Nüsha sayısı',t:'number',def:'2'},
+  {k:'sigSahip',l:'Hayvan sahibi / hazır bulunan',t:'sig'},
+  {k:'sigVet1',l:'Resmî veteriner hekim (1)',t:'sig'},
+  {k:'sigVet2',l:'Resmî veteriner hekim (2)',t:'sig'}]},
+ {id:'takip',t:'9 · Takip (tutanağa girmez)',f:[
+  {k:'kan2Bilgi',t:'kan2'},
+  {k:'kan2Tarih',l:'İkinci kanın alındığı tarih',t:'date'},
+  {k:'sonuc',l:'Laboratuvar sonucu',t:'radio',o:['Pozitif','Negatif'],half:1},
+  {k:'sonucTarih',l:'Sonuç tarihi',t:'date',half:1},
+  {k:'destekTarih',l:'Desteğin işlendiği tarih',t:'date'},
+  {k:'gonKontrol',l:'Göndermeden önce son kontrol',t:'check',o:GON_KONTROL,col:1},
+  {k:'gonKontrolNot',t:'rehber'}]}
+];
+
+/* ---------- ayarlar ---------- */
+const AYAR_ID='genel';
+const AYAR_ILK={vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75'};
+let ayar=AYAR_ILK;
+const ilGecerli=v=>/^\d{2}$/.test(v)&&+v>=1&&+v<=81;
+function loadAyarKaydi(r){
+ if(!r)return;
+ const yazi=k=>typeof r[k]==='string'?r[k]:AYAR_ILK[k];
+ ayar={vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il};
+}
+function showIlHata(hatali){
+ const e=$('#err_setIl');
+ e.textContent=hatali?'01 ile 81 arasında iki haneli il kodu yaz (örn. 75).':'';
+ e.classList.toggle('on',hatali);
+ $('#setIl').classList.toggle('bad',hatali);
+}
+function openAyar(){
+ $('#setVet1').value=ayar.vet1;$('#setVet2').value=ayar.vet2;$('#setEnstitu').value=ayar.enstitu;$('#setIl').value=ayar.il;
+ showIlHata(false);
+ cevrimdisiDurumu().then(metin=>{$('#cevDurum').textContent=metin});
+ $('#mSet').classList.add('on');
+}
+async function saveAyar(){
+ const il=$('#setIl').value.trim();
+ if(!ilGecerli(il)){showIlHata(true);return}
+ const yeni={vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il};
+ try{await dbWrite('ayarlar',t=>t.objectStore('ayarlar').put({id:AYAR_ID,...yeni}))}
+ catch(e){toast('Ayarlar kaydedilemedi');return}
+ ayar=yeni;
+ $('#mSet').classList.remove('on');
+ toast('Ayarlar kaydedildi; yeni vakalarda geçerli');
+}
+
+/* ---------- durum ---------- */
+let d={}; let curId=null;
+function defaults(){const o={id:uid(),schema:SCHEMA,created:Date.now(),fotos:[],morf:[]};S.forEach(s=>s.f.forEach(f=>{if(f.def!==undefined)o[f.k]=typeof f.def==='function'?f.def():(Array.isArray(f.def)?f.def.slice():f.def)}));return o}
+
+/* ---------- IndexedDB ---------- */
+const DB_NAME='atikSaha',DB_VER=3,SCHEMA=2,QUOTA_WARN=.8,SAVE_DELAY=400;
+let db=null;
+function openDB(){return new Promise(res=>{try{
+ const r=indexedDB.open(DB_NAME,DB_VER);
+ r.onupgradeneeded=()=>{const x=r.result;
+  if(!x.objectStoreNames.contains('cases'))x.createObjectStore('cases',{keyPath:'id'});
+  if(!x.objectStoreNames.contains('photos'))x.createObjectStore('photos',{keyPath:'id'}).createIndex('caseId','caseId');
+  if(!x.objectStoreNames.contains('ayarlar'))x.createObjectStore('ayarlar',{keyPath:'id'})};
+ let engellendi=false;
+ r.onblocked=()=>{engellendi=true;askInfo('Eski sürüm açık','Formun eski sürümü başka bir sekmede ya da pencerede açık. Kayıtlar taşınamıyor; onu kapat, uygulama kendiliğinden açılır.')};
+ r.onsuccess=()=>{if(engellendi)closeAsk(null);db=r.result;db.onversionchange=()=>{db.close();db=null;setSave('bad')};res()};
+ r.onerror=e=>{e.preventDefault();res()};
+}catch(e){res()}})}
+const txDone=t=>new Promise((res,rej)=>{t.oncomplete=()=>res();t.onerror=t.onabort=()=>rej(t.error||new Error('Kayıt işlemi iptal edildi'))});
+function dbWrite(stores,fn){
+ if(!db)return Promise.reject(new Error('Veritabanı açılamadı'));
+ try{const t=db.transaction(stores,'readwrite');const p=txDone(t);fn(t);return p}catch(e){return Promise.reject(e)}
+}
+function dbRead(store,fn){return new Promise((res,rej)=>{
+ if(!db)return rej(new Error('Veritabanı açılamadı'));
+ try{const r=fn(db.transaction(store).objectStore(store));r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error)}catch(e){rej(e)}
+})}
+const dbPut=o=>dbWrite('cases',t=>t.objectStore('cases').put(o));
+const dbAll=()=>dbRead('cases',s=>s.getAll());
+const dbGet=id=>dbRead('cases',s=>s.get(id));
+const dbGetPhoto=id=>dbRead('photos',s=>s.get(id));
+/* Vakayı fotoğraflarıyla tek işlemde yazar; purge varsa vakanın eski fotoğrafları da aynı işlemde silinir. */
+function dbWriteCase(rec,recs,purge){return dbWrite(['cases','photos'],t=>{
+ const ps=t.objectStore('photos');
+ const put=()=>{recs.forEach(r=>ps.put(r));t.objectStore('cases').put(rec)};
+ if(!purge)return put();
+ const q=ps.index('caseId').getAllKeys(rec.id);
+ q.onsuccess=()=>{q.result.forEach(k=>ps.delete(k));put()};
+})}
+function dbDel(id){return dbWrite(['cases','photos'],t=>{
+ t.objectStore('cases').delete(id);
+ const ps=t.objectStore('photos');const q=ps.index('caseId').getAllKeys(id);
+ q.onsuccess=()=>q.result.forEach(k=>ps.delete(k));
+})}
+const lsGet=k=>{try{return localStorage.getItem(k)}catch(e){return null}};
+const lsSet=(k,v)=>{try{localStorage.setItem(k,v)}catch(e){}};
+const lsDel=k=>{try{localStorage.removeItem(k)}catch(e){}};
+const PENDING_KEY='atikPending';
+
+/* ---------- migration: v1 kayıtlarındaki gömülü fotoğraflar ayrı store'a ---------- */
+/* Fotoğraflar Blob değil ArrayBuffer olarak saklanır: Safari'de IndexedDB Blob'ları güvenilir değil. */
+function dataURLtoBytes(u){
+ const m=/^data:([\w/+.-]+);base64,([A-Za-z0-9+/=\s]+)$/.exec(u||'');if(!m)return null;
+ try{const b=atob(m[2]);const a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);return {buf:a.buffer,type:m[1]}}catch(e){return null}
+}
+const recToBlob=r=>new Blob([r.buf],{type:r.type||'image/jpeg'});
+const blobToDataURL=b=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=()=>rej(r.error);r.readAsDataURL(b)});
+/* Çözülemeyen fotoğraf src'siyle kayıtta kalır, asla silinmez. */
+function splitCase(c){
+ const recs=[];
+ const fotos=(c.fotos||[]).map(p=>{
+  if(!p.src)return p;
+  const bytes=dataURLtoBytes(p.src);if(!bytes)return p;
+  recs.push({id:p.id,caseId:c.id,buf:bytes.buf,type:bytes.type,t:p.t||0});
+  const{src,...meta}=p;return meta;
+ });
+ return {rec:{...c,fotos,schema:SCHEMA},recs};
+}
+async function migrateCases(){
+ let bad=0,failed=0;
+ for(const c of await dbAll()){
+  if(!(c.fotos||[]).some(p=>p.src))continue;
+  const{rec,recs}=splitCase(c);
+  bad+=rec.fotos.filter(p=>p.src).length;
+  if(!recs.length)continue;
+  try{await dbWriteCase(rec,recs,false)}catch(e){failed++}
+ }
+ return {bad,failed};
+}
+
+/* ---------- fotoğraf nesneleri ---------- */
+const PH=new Map();
+const photoSrc=p=>PH.get(p.id)||p.src||'';
+function dropPhotoURLs(){PH.forEach(u=>URL.revokeObjectURL(u));PH.clear()}
+async function loadPhotos(c){
+ if(!db)return;
+ for(const p of c.fotos||[]){
+  if(p.src||PH.has(p.id))continue;
+  const r=await dbGetPhoto(p.id);
+  if(r)PH.set(p.id,URL.createObjectURL(recToBlob(r)));
+ }
+}
+/* Fotoğraf işlemleri tek sırada çalışır; aksi hâlde eşzamanlı iki işlem birbirinin listesini ezer. */
+let photoQ=Promise.resolve();
+function inPhotoQueue(fn){const run=photoQ.then(fn);photoQ=run.catch(()=>{});return run}
+/* Fotoğraf çağrıldığı andaki vakaya aittir; o arada vaka değiştiyse eklenmez (null döner). */
+function addPhotoBlob(blob,extra){
+ const c=d;
+ return inPhotoQueue(async()=>{
+  if(c!==d)return null;
+  const buf=await blob.arrayBuffer();
+  if(c!==d)return null;
+  const meta={id:uid(),t:Date.now(),...extra};
+  const fotos=[...c.fotos,meta];
+  if(db)await dbWriteCase({...c,fotos,updated:Date.now()},[{id:meta.id,caseId:c.id,buf,type:blob.type,t:meta.t}],false);
+  c.fotos=fotos;
+  if(c===d){PH.set(meta.id,URL.createObjectURL(blob));lsSet('atikCur',c.id);save()}
+  return meta;
+ });
+}
+/* Fotoğrafın baytlarını yerinde değiştirir; kimliği ve sırası korunur. */
+function updatePhotoBlob(id,blob,extra){
+ const c=d;
+ return inPhotoQueue(async()=>{
+  if(c!==d)return null;
+  const buf=await blob.arrayBuffer();
+  const eski=c.fotos.find(p=>p.id===id);
+  if(c!==d||!eski)return null;
+  const meta={...eski,...extra};
+  const fotos=c.fotos.map(p=>p.id===id?meta:p);
+  if(db)await dbWriteCase({...c,fotos,updated:Date.now()},[{id,caseId:c.id,buf,type:blob.type,t:meta.t}],false);
+  c.fotos=fotos;
+  if(c===d){const u=PH.get(id);if(u)URL.revokeObjectURL(u);PH.set(id,URL.createObjectURL(blob));lsSet('atikCur',c.id);save()}
+  return meta;
+ });
+}
+function removePhoto(id){
+ const c=d;
+ return inPhotoQueue(async()=>{
+  const fotos=c.fotos.filter(p=>p.id!==id);
+  if(db)await dbWrite(['cases','photos'],t=>{t.objectStore('photos').delete(id);t.objectStore('cases').put({...c,fotos,updated:Date.now()})});
+  c.fotos=fotos;
+  if(c===d){const u=PH.get(id);if(u){URL.revokeObjectURL(u);PH.delete(id)}save()}
+ });
+}
+/* ---------- kayıt ve göstergesi ---------- */
+let saveT=null,dirty=false,inflight=null,lastSaved=null,saveErrShown=false;
+function fmtSaved(ts){
+ const x=new Date(ts),now=new Date();const hm=pad(x.getHours())+':'+pad(x.getMinutes());
+ return x.toDateString()===now.toDateString()?hm:pad(x.getDate())+'.'+pad(x.getMonth()+1)+' '+hm;
+}
+function setSave(st){
+ const e=$('#saveSt');
+ e.classList.toggle('bad',st==='bad');
+ e.textContent=st==='saving'?'kaydediliyor…':st==='bad'?'KAYDEDİLEMEDİ':lastSaved?'kaydedildi '+fmtSaved(lastSaved):'';
+ e.dataset.st=st;
+}
+function explainSaveErr(e){
+ const dolu=e&&e.name==='QuotaExceededError';
+ return dolu?'Cihazdaki depolama dolu. Son değişiklik kaydedilemedi. Eski vakaları dosyaya kaydedip silerek yer aç.'
+  :db?'Son değişiklik kaydedilemedi. Sayfayı kapatma; bir süre sonra tekrar dene ve vakayı dosyaya kaydet.'
+  :'Bu tarayıcı veriyi saklayamıyor (gizli sekme ya da dosyadan açma olabilir). Sayfa kapanınca vaka kaybolur; vakayı dosyaya kaydet.';
+}
+function reportSaveErr(e){
+ setSave('bad');
+ if(saveErrShown)return;
+ saveErrShown=true;
+ askInfo('Kayıt yapılamadı',explainSaveErr(e));
+}
+function save(){dirty=true;setSave('saving');clearTimeout(saveT);saveT=setTimeout(flushSave,SAVE_DELAY)}
+/* Sonuç: true = kayıtlı, false = yazılamadı. Yazma senkron başlar; sayfa kapanışında da çağrılır. */
+function flushSave(){
+ clearTimeout(saveT);
+ if(!dirty)return inflight||Promise.resolve(true);
+ dirty=false;
+ const c=d;c.updated=Date.now();
+ lsSet('atikCur',c.id);
+ const run=(async()=>{
+  try{
+   await dbPut(c);
+   lastSaved=c.updated;saveErrShown=false;
+   if(inflight===run&&!dirty){lsDel(PENDING_KEY);setSave('ok')}
+   return true;
+  }catch(e){
+   if(c===d)dirty=true;
+   reportSaveErr(e);
+   return false;
+  }finally{
+   if(inflight===run)inflight=null;
+   updLbl();updStatus();
+  }
+ })();
+ inflight=run;
+ return run;
+}
+/* Vakadan ayrılmadan önce: kayıt yazılamadıysa geçiş yapılmaz, değişiklik bellekte korunur. */
+async function safeToLeave(){
+ let ok=await flushSave();
+ if(ok&&dirty)ok=await flushSave();
+ if(!ok)toast('Vaka kaydedilemedi; önce vakayı dosyaya kaydet ya da yer aç');
+ return ok;
+}
+/* Sayfa kapanırken IndexedDB yazımı tamamlanmayabilir; bekleyen değişiklik önce senkron olarak yedeklenir. */
+function stashPending(){
+ if(!dirty&&!inflight)return;
+ lsSet(PENDING_KEY,JSON.stringify({...d,updated:Date.now()}));
+ flushSave();
+}
+async function recoverPending(){
+ const raw=lsGet(PENDING_KEY);if(!raw)return;
+ let c=null;try{c=JSON.parse(raw)}catch(e){lsDel(PENDING_KEY);return}
+ if(!c||!SAFE_ID.test(String(c.id))){lsDel(PENDING_KEY);return}
+ const kayitli=await dbGet(c.id);
+ if(!kayitli||(c.updated||0)>(kayitli.updated||0)){await dbPut(c);lsSet('atikCur',c.id)}
+ lsDel(PENDING_KEY);
+}
+window.addEventListener('pagehide',stashPending);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stashPending()});
+
+/* ---------- depolama kotası ---------- */
+let quotaWarned=false;
+async function checkQuota(){
+ if(!navigator.storage||!navigator.storage.estimate)return;
+ let q;try{q=await navigator.storage.estimate()}catch(e){return}
+ if(!q.quota)return;
+ const oran=q.usage/q.quota;
+ if(oran<QUOTA_WARN){quotaWarned=false;return}
+ if(quotaWarned)return;
+ quotaWarned=true;
+ askInfo('Depolama dolmak üzere','Bu cihazdaki depolamanın %'+Math.round(oran*100)+' kadarı dolu. Eski vakaları dosyaya kaydedip silerek yer aç.');
+}
+function askPersist(){try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{})}catch(e){}}
+
+function updLbl(){$('#caseLbl').textContent=(d.kupe&&d.kupe.length>4?kisa(d.kupe):'Yeni vaka')+(d.mahalle?' · '+d.mahalle:'')}
+
+/* ---------- form çizimi ---------- */
+function render(){
+ const app=$('#app');let h='';
+ S.forEach(s=>{
+  h+=`<details class="sec" data-s="${s.id}" ${s.open?'open':''}><summary>${esc(s.t)}<span class="st"></span></summary><div class="body">`;
+  let buf=[];
+  const flush=()=>{if(buf.length){h+=buf.length>1?`<div class="row2">${buf.join('')}</div>`:buf[0];buf=[]}};
+  s.f.forEach(f=>{
+   const x=field(f);
+   if(f.half){buf.push(x);if(buf.length===2)flush()}else{flush();h+=x}
+  });flush();
+  h+='</div></details>';
+ });
+ app.innerHTML=h;
+ bind();
+ S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}));
+ S.forEach(s=>s.f.forEach(f=>{if(f.val)showValid(f)}));
+ drawPhotos();calcAge();updNumWarn();updKan2Box();updStatus();updLbl();
+}
+function showValid(f){
+ const el=$('#f_'+f.k),er=$('#err_'+f.k);if(!el||!er)return;
+ const v=VAL[f.val];const bad=!v.empty(d[f.k])&&!v.ok(d[f.k]);
+ el.classList.toggle('bad',bad);er.textContent=bad?v.msg:'';er.classList.toggle('on',bad);
+}
+function updNumWarn(){
+ const e=$('#numWarn');if(!e)return;
+ const ok=asgariTamam(d);e.hidden=ok;e.textContent=ok?'':TEXT_ASGARI;
+}
+function field(f){
+ const v=d[f.k];const id='f_'+f.k;
+ if(f.t==='rehber')return `<div class="hint">Nekropsi numunesi değilse o maddeyi de işaretle.</div>${REHBER_TUS}`;
+ if(f.t==='kan2')return`<div class="note" id="kan2Box"></div><div class="hint">Numune gönderim tarihi 4. bölümden okunur.</div>`;
+ if(f.t==='note')return `<div class="note" id="numNote">Atık desteği için atık materyali resmî veteriner hekimce bizzat görülmelidir; yalnız vajinal svap destek şartını karşılamaz.</div><div class="note w" id="numWarn" hidden></div>${REHBER_TUS}`;
+ if(f.t==='photos')return `<div class="fld"><label class="l">Fotoğraflar</label>
+  <div class="inl"><label class="btn" style="flex:1">📷 Fotoğraf çek<input type="file" id="fCam" accept="image/*" capture="environment" hidden></label>
+  <label class="btn sec2" style="flex:1">Galeriden ekle<input type="file" id="fGal" accept="image/*" multiple hidden></label></div>
+  <div class="photos" id="phBox"></div>
+  <div class="hint">Ölçüm için: fötüsün yanına, aynı zemine bilinen boyda bir nesne koy (10 cm kart, A4 kâğıt 21 × 29,7 cm, cetvel). Tam tepeden çek, sonra fotoğraftaki 📏 tuşuna bas. Organ numunesi de aynı ekranda, üstteki listeden seçilerek ölçülür.</div>
+  <button class="btn sec2 sm" id="bCard" type="button">🖨️ Ölçek kartı yazdır</button></div>`;
+ if(f.t==='age'){
+  return `<div class="agebox"><h4>Yaş tahmini yardımcısı</h4><div class="opts">${MORF.map(m=>`<label><input type="checkbox" data-k="morf" value="${m.k}" ${(d.morf||[]).includes(m.k)?'checked':''}><span>${esc(m.l)}</span></label>`).join('')}</div><div class="res" id="ageRes"></div></div>`;
+ }
+ if(f.t==='sig')return `<div class="sigw"><div class="inl"><b>${esc(f.l)}</b><button class="btn red sm" data-sigclr="${f.k}">Sil</button></div><canvas class="sig" id="sig_${f.k}"></canvas></div>`;
+ let inner='';
+ if(f.t==='radio'||f.t==='check'){
+  const ty=f.t==='radio'?'radio':'checkbox';
+  inner=`<div class="opts" ${f.col?'style="flex-direction:column;align-items:flex-start"':''}>${f.o.map(o=>{const on=f.t==='radio'?v===o:(v||[]).includes(o);return `<label><input type="${ty}" name="${id}" data-k="${f.k}" value="${esc(o)}" ${on?'checked':''}><span>${esc(o)}</span></label>`}).join('')}</div>`;
+ }else if(f.t==='textarea'){inner=`<textarea id="${id}" data-k="${f.k}">${esc(v||'')}</textarea>`}
+ else if(f.t==='gps'){inner=`<div class="inl"><input type="text" id="${id}" data-k="${f.k}" value="${esc(v||'')}" placeholder="K, D"><button class="btn sec2" id="bGps">📍 Konum al</button></div>`}
+ else{
+  const ty=f.t==='number'?'text':f.t;const im=f.t==='number'?'inputmode="decimal"':(f.t==='tel'?'inputmode="numeric"':'');
+  const lst=f.list?`list="dl_${f.k}"`:'';
+  inner=`<input type="${ty}" id="${id}" data-k="${f.k}" value="${esc(v||'')}" ${im} ${lst} ${f.ph?`placeholder="${esc(typeof f.ph==='function'?f.ph():f.ph)}"`:''} ${f.up?'autocapitalize="characters"':''}>`;
+  if(f.list)inner+=`<datalist id="dl_${f.k}">${f.list.map(o=>`<option value="${esc(o)}">`).join('')}</datalist>`;
+  if(f.measure)inner=`<div class="inl">${inner}<button class="btn sec2" id="bMeasPick">📏 Fotoğraftan ölç</button></div>`;
+ }
+ return `<div class="fld"><label class="l" for="${id}">${esc(typeof f.l==='function'?f.l(d):f.l)}</label>${inner}${f.val?`<div class="err" id="err_${f.k}"></div>`:''}</div>`;
+}
+const fieldOf=k=>{for(const s of S)for(const f of s.f)if(f.k===k)return f;return null};
+/* Alan değişince bağlı göstergeleri yeniler. */
+function afterChange(k){
+ const f=fieldOf(k);if(f&&f.val)showValid(f);
+ if(['morf','fetusCm','tohumlama','atikTarih','tur'].includes(k))calcAge();
+ if(k==='numune')updNumWarn();
+ if(k==='atikTarih'||k==='kan2Tarih'||k==='kupe'){updKan2Box();updKanSayac()}
+ if(k==='atikTarih'||k==='vet2')DESTEK.forEach((l,i)=>{const e=$(`label.l[for="f_d${i+1}"]`);if(e)e.textContent=fieldOf('d'+(i+1)).l(d)});
+}
+function bind(){
+ document.querySelectorAll('#app [data-k]').forEach(el=>{
+  const k=el.dataset.k;
+  const h=()=>{
+   if(el.type==='checkbox'){const arr=[...document.querySelectorAll(`#app input[data-k="${k}"]:checked`)].map(i=>i.value);d[k]=arr}
+   else if(el.type==='radio'){if(el.checked)d[k]=el.value}
+   else{let val=el.value;if(el.getAttribute('autocapitalize')==='characters'){val=normNo(val);if(el.value!==val)el.value=val}d[k]=val}
+   afterChange(k);
+   save();
+  };
+  el.addEventListener(el.type==='checkbox'||el.type==='radio'?'change':'input',h);
+ });
+ // radio: tekrar dokununca seçimi kaldır
+ document.querySelectorAll('#app input[type=radio]').forEach(el=>{
+  el.parentElement.addEventListener('click',e=>{if(el.checked&&d[el.dataset.k]===el.value&&el._was){e.preventDefault();el.checked=false;delete d[el.dataset.k];el._was=false;afterChange(el.dataset.k);save();updStatus()}else{setTimeout(()=>{document.querySelectorAll(`input[name="${el.name}"]`).forEach(i=>i._was=i.checked)},0)}});
+  el._was=el.checked;
+ });
+ $('#fCam').onchange=e=>addFiles(e.target.files);
+ $('#fGal').onchange=e=>addFiles(e.target.files);
+ $('#bGps').onclick=getGps;
+ $('#bCard').onclick=()=>doPrint(olcekKartiHTML());
+ document.querySelectorAll('[data-rehber]').forEach(b=>b.onclick=()=>$('#mRehber').classList.add('on'));
+ $('#bMeasPick').onclick=()=>{if(!d.fotos.length){toast('Önce fotoğraf ekle');return}const last=[...d.fotos].reverse().find(p=>!p.olcum)||d.fotos[d.fotos.length-1];openMeas(last.id)};
+ document.querySelectorAll('[data-sigclr]').forEach(b=>b.onclick=async()=>{
+  const k=b.dataset.sigclr;
+  if(!d[k])return;
+  if(!await askDelete('İmza silinsin mi?','Silinen imza geri alınamaz.'))return;
+  delete d[k];initSig(k);save();
+ });
+ $('details[data-s="imza"]').addEventListener('toggle',e=>{if(e.target.open)S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}))});
+}
+function updStatus(){
+ S.forEach(s=>{
+  const el=document.querySelector(`details[data-s="${s.id}"] .st`);if(!el)return;
+  const fs=s.f.filter(f=>!['photos','age','gps','note','kan2','rehber'].includes(f.t));
+  const n=fs.filter(f=>{const v=d[f.k];return Array.isArray(v)?v.length:(v!==undefined&&v!==''&&!(f.val==='trno'&&noIsEmpty(v)))}).length;
+  let t=n+'/'+fs.length; if(s.id==='tespit')t+=' · '+(d.fotos||[]).length+' foto';
+  el.textContent=t;el.classList.toggle('full',n===fs.length);
+ });
+}
+
+/* ---------- GPS ---------- */
+function getGps(){
+ if(!navigator.geolocation){toast('Konum desteklenmiyor');return}
+ toast('Konum alınıyor…');
+ navigator.geolocation.getCurrentPosition(p=>{const v=p.coords.latitude.toFixed(6)+', '+p.coords.longitude.toFixed(6);d.koordinat=v;$('#f_koordinat').value=v;save();toast('Konum alındı (±'+Math.round(p.coords.accuracy)+' m)')},
+  ()=>toast('Konum alınamadı; izin ver ya da elle yaz'),{enableHighAccuracy:true,timeout:15000});
+}
+
+/* ---------- fotoğraflar ---------- */
+/* Yön: tarayıcı EXIF'i naturalWidth ve drawImage'da uygular; test/p1.spec.mjs bunu doğrular. */
+function shrink(file,max=1600,q=.8){return new Promise(res=>{
+ const url=URL.createObjectURL(file);const im=new Image();
+ im.onload=()=>{
+  let w=im.naturalWidth,h=im.naturalHeight;const r=Math.min(1,max/Math.max(w,h));w=Math.round(w*r);h=Math.round(h*r);
+  const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);
+  c.toBlob(b=>{URL.revokeObjectURL(url);res(b)},'image/jpeg',q);
+ };
+ im.onerror=()=>{URL.revokeObjectURL(url);res(null)};
+ im.src=url;
+})}
+async function addFiles(files){
+ const list=[...files];let okunamadi=0;
+ const c=d;
+ for(const f of list){
+  const b=await shrink(f);
+  if(c!==d){toast('Vaka değişti; kalan fotoğraflar eklenmedi');break}
+  if(!b){okunamadi++;continue}
+  try{await addPhotoBlob(b)}catch(e){reportSaveErr(e);break}
+ }
+ drawPhotos();updStatus();
+ document.querySelectorAll('#fCam,#fGal').forEach(i=>i.value='');
+ if(okunamadi)toast(okunamadi+' fotoğraf okunamadı');
+ checkQuota();
+}
+/* Ölçüm fotoğrafı yalnız kaynağı ve noktaları duruyorsa düzeltilebilir; eski sürüm ölçümlerinde bu bilgi yoktur. */
+function measBtn(p){
+ if(!p.olcum)return `<button data-meas="${esc(p.id)}" aria-label="Ölç">📏</button>`;
+ const duzeltilir=p.olcumVeri&&d.fotos.some(x=>x.id===p.olcumKaynak);
+ return duzeltilir?`<button data-meas="${esc(p.id)}" aria-label="Ölçümü düzelt">✏️</button>`:'';
+}
+function drawPhotos(){
+ const b=$('#phBox');if(!b)return;
+ b.innerHTML=(d.fotos||[]).map((p,i)=>`<div class="ph"><img src="${esc(photoSrc(p))}" alt=""><div class="acts">${measBtn(p)}<button data-del="${esc(p.id)}">✕</button></div><div class="cap">${i+1}${p.olcum?' · '+(p.olcumHedef?esc(p.olcumHedef)+' '+boyEn(p):'ölçüm '+fmt(p.olcum)+' cm'):''}</div></div>`).join('');
+ b.querySelectorAll('[data-del]').forEach(x=>x.onclick=async()=>{
+  if(!await askDelete('Fotoğraf silinsin mi?','Silinen fotoğraf geri alınamaz.'))return;
+  try{await removePhoto(x.dataset.del)}catch(e){reportSaveErr(e)}
+  drawPhotos();updStatus();
+ });
+ b.querySelectorAll('[data-meas]').forEach(x=>x.onclick=()=>openMeas(x.dataset.meas));
+}
+
+/* ---------- ölçüm ---------- */
+/* Tuval ekran boyutunda kalır, yakınlaştırma dönüşümle yapılır: iOS'taki tuval boyutu sınırına takılmaz.
+   Noktalar fotoğraf pikseli cinsindendir, görünümden bağımsızdır. Nokta dizileri değiştirilmez, yenisi atanır. */
+const REF={kart:10,a4k:21,a4u:29.7,serbest:null};
+const ZOOM_MAX=10,HIT_R=26,MOVE_MIN=3,LOUPE_D=132,LOUPE_X=3,LOUPE_Z_MAX=6,LOUPE_DELAY=150,LOUPE_GAP=50,LOUPE_EDGE=4,MAX_PTS=200,DPR_MAX=3;
+const M={img:null,src:null,rec:null,hedef:'',tip:'kart',serbest:'',ref:[],fet:[],en:[],mode:'ref',hist:[],dirty:false,saving:false};
+const VW={s:1,tx:0,ty:0,fit:1,w:0,h:0,dpr:1};
+const G={ptrs:new Map(),act:null,pinch:null,timer:null};
+const cv=$('#mCv'),cx=cv.getContext('2d'),lp=$('#mLoupe'),lx=lp.getContext('2d');
+function dist(a,b){return Math.hypot(a.x-b.x,a.y-b.y)}
+function polyLen(p){let s=0;for(let i=1;i<p.length;i++)s+=dist(p[i-1],p[i]);return s}
+const roundCm=x=>Math.round(x*2)/2;
+const roundOrgan=x=>Math.round(x*10)/10;
+const stagePt=e=>{const r=cv.getBoundingClientRect();return{x:e.clientX-r.left,y:e.clientY-r.top}};
+const toImg=p=>({x:(p.x-VW.tx)/VW.s,y:(p.y-VW.ty)/VW.s});
+const toStage=p=>({x:p.x*VW.s+VW.tx,y:p.y*VW.s+VW.ty});
+const inImg=p=>p.x>=0&&p.y>=0&&p.x<=M.img.naturalWidth&&p.y<=M.img.naturalHeight;
+const clampImg=p=>({x:Math.min(M.img.naturalWidth,Math.max(0,p.x)),y:Math.min(M.img.naturalHeight,Math.max(0,p.y))});
+const clampZoom=s=>Math.min(VW.fit*ZOOM_MAX,Math.max(VW.fit,s));
+function refCmVal(){const r=M.tip==='serbest'?num(M.serbest):REF[M.tip];return r&&r>0?r:null}
+/* Sürükleme sürerken noktanın geçici konumu; bırakılana dek M değişmez. */
+function livePts(set){
+ const a=G.act;if(!a||a.set!==set)return M[set];
+ return a.i<0?[...M[set],a.p]:M[set].map((q,i)=>i===a.i?a.p:q);
+}
+function cmPerPx(){
+ const r=refCmVal(),ref=livePts('ref');if(ref.length<2||!r)return null;
+ const px=dist(ref[0],ref[1]);return px>0?r/px:null;
+}
+
+/* ---------- ölçüm: görünüm ---------- */
+function setView(s,tx,ty){
+ const W=M.img.naturalWidth*s,H=M.img.naturalHeight*s;
+ VW.s=s;
+ VW.tx=W<=VW.w?(VW.w-W)/2:Math.min(0,Math.max(VW.w-W,tx));
+ VW.ty=H<=VW.h?(VW.h-H)/2:Math.min(0,Math.max(VW.h-H,ty));
+}
+function sizeStage(reset){
+ const w=$('#mWrap');VW.w=w.clientWidth;VW.h=w.clientHeight;if(!VW.w||!VW.h||!M.img)return;
+ VW.dpr=Math.min(DPR_MAX,window.devicePixelRatio||1);
+ cv.width=Math.round(VW.w*VW.dpr);cv.height=Math.round(VW.h*VW.dpr);
+ lp.width=lp.height=Math.round(LOUPE_D*VW.dpr);
+ const tamEkran=reset||VW.s<=VW.fit*1.001;
+ VW.fit=Math.min(VW.w/M.img.naturalWidth,VW.h/M.img.naturalHeight);
+ if(tamEkran)setView(VW.fit,0,0);else setView(clampZoom(VW.s),VW.tx,VW.ty);
+ drawMeas();
+}
+function zoomBy(f){
+ const c={x:VW.w/2,y:VW.h/2},i=toImg(c),s=clampZoom(VW.s*f);
+ setView(s,c.x-i.x*s,c.y-i.y*s);drawMeas();
+}
+function drawMarks(ctx,lw,r){
+ const line=(pts,col)=>{
+  if(!pts.length)return;
+  ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=lw;ctx.lineJoin='round';
+  ctx.beginPath();pts.forEach((p,i)=>{i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y)});ctx.stroke();
+  if(r)pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,r,0,7);ctx.fill()});
+ };
+ line(livePts('ref'),'#f1c40f');line(livePts('fet'),'#ff3b30');line(livePts('en'),'#2ecc71');
+}
+function drawMeas(){
+ if(!M.img||!VW.w)return;
+ cx.setTransform(1,0,0,1,0,0);cx.fillStyle='#111';cx.fillRect(0,0,cv.width,cv.height);
+ const k=VW.dpr*VW.s;cx.setTransform(k,0,0,k,VW.dpr*VW.tx,VW.dpr*VW.ty);
+ cx.drawImage(M.img,0,0);drawMarks(cx,2.5/VW.s,5/VW.s);
+ updInfo();drawLoupe();
+}
+let rafId=0;
+function reqDraw(){if(!rafId)rafId=requestAnimationFrame(()=>{rafId=0;drawMeas()})}
+function drawLoupe(){
+ const a=G.act;
+ if(!a||!a.loupe){lp.classList.remove('on');return}
+ const D=LOUPE_D,f=a.f;
+ let left=f.x-D/2,top=f.y-D-LOUPE_GAP;
+ if(top<LOUPE_EDGE){top=Math.max(LOUPE_EDGE,f.y-D/2);left=f.x>VW.w/2?f.x-D-LOUPE_GAP:f.x+LOUPE_GAP}
+ left=Math.min(VW.w-D-LOUPE_EDGE,Math.max(LOUPE_EDGE,left));
+ top=Math.min(VW.h-D-LOUPE_EDGE,top);
+ lp.style.left=left+'px';lp.style.top=top+'px';lp.classList.add('on');
+ const z=Math.min(LOUPE_Z_MAX,VW.s*LOUPE_X);
+ lx.setTransform(VW.dpr,0,0,VW.dpr,0,0);lx.clearRect(0,0,D,D);
+ lx.save();lx.beginPath();lx.arc(D/2,D/2,D/2,0,7);lx.clip();lx.fillStyle='#111';lx.fillRect(0,0,D,D);
+ lx.translate(D/2,D/2);lx.scale(z,z);lx.translate(-a.p.x,-a.p.y);
+ lx.drawImage(M.img,0,0);drawMarks(lx,1.5/z,0);
+ lx.restore();
+ /* Nişangâh: ortası boş, tam nokta görünür kalır. */
+ const c=D/2,ic=6,dis=26,kol=[[c-dis,c,c-ic,c],[c+ic,c,c+dis,c],[c,c-dis,c,c-ic],[c,c+ic,c,c+dis]];
+ [['#000',3],['#fff',1.2]].forEach(([renk,kalin])=>{
+  lx.strokeStyle=renk;lx.lineWidth=kalin;lx.beginPath();
+  kol.forEach(([x1,y1,x2,y2])=>{lx.moveTo(x1,y1);lx.lineTo(x2,y2)});lx.stroke();
+ });
+}
+function organBilgi(boy,en,k){
+ if(boy.length<2)return 'Boyun iki ucuna dokun ('+boy.length+'/2).';
+ if(en.length<2)return 'Enin iki ucuna dokun ('+en.length+'/2).';
+ if(!k)return M.ref.length<2?'Önce referansı işaretle.':'Referans uzunluğunu gir.';
+ return '<b>'+fmt(roundOrgan(polyLen(boy)*k))+' × '+fmt(roundOrgan(polyLen(en)*k))+' cm</b> (yaklaşık). Noktayı sürükleyerek düzelt.';
+}
+function updInfo(){
+ const ref=livePts('ref'),fet=livePts('fet'),k=cmPerPx();let t;
+ if(M.mode==='ref')t=ref.length<2?'Referansın iki ucuna dokun ('+ref.length+'/2). Sürükle: büyüteç. İki parmak: yakınlaştır.':'Referans tamam. Noktayı sürükleyerek düzelt ya da “2 · Fötüs”e geç.';
+ else if(M.hedef)t=organBilgi(fet,livePts('en'),k);
+ else if(fet.length<2)t='Burun ucundan başla; sırt boyunca kuyruk köküne kadar noktalar koy.';
+ else if(!k)t=ref.length<2?'Önce referansı işaretle.':'Referans uzunluğunu gir.';
+ else t='Fötüs: <b>'+fmt(roundCm(polyLen(fet)*k))+' cm</b> ('+fet.length+' nokta). Noktayı sürükleyerek düzelt.';
+ $('#mInfo').innerHTML=t;
+}
+function setMode(m){M.mode=m;$('#mRef').classList.toggle('on',m==='ref');$('#mFet').classList.toggle('on',m==='fet');$('#mEn').classList.toggle('on',m==='en');drawMeas()}
+function syncRefUI(){$('#refTip').value=M.tip;$('#refCmW').hidden=M.tip!=='serbest';$('#refCm').value=M.serbest}
+
+/* ---------- ölçüm: dokunma ---------- */
+function hitPoint(f){
+ let best=null,bd=HIT_R;
+ ['ref','fet','en'].forEach(set=>M[set].forEach((q,i)=>{
+  const x=dist(toStage(q),f);
+  if(x<bd){bd=x;best={set,i}}
+ }));
+ return best;
+}
+const canAdd=()=>M.mode==='fet'&&!M.hedef?M.fet.length<MAX_PTS:M[M.mode].length<2;
+function startAct(f){
+ const h=hitPoint(f),im=toImg(f);
+ if(h){
+  const q=M[h.set][h.i];
+  G.act={set:h.set,i:h.i,p:q,dx:q.x-im.x,dy:q.y-im.y,f,f0:f,loupe:false};
+ }else{
+  if(!inImg(im)||!canAdd())return;
+  G.act={set:M.mode,i:-1,p:im,dx:0,dy:0,f,f0:f,loupe:false};
+ }
+ G.timer=setTimeout(()=>{if(G.act){G.act={...G.act,loupe:true};drawMeas()}},LOUPE_DELAY);
+}
+function dropAct(){clearTimeout(G.timer);G.act=null}
+function commitAct(a){
+ if(a.i>=0&&a.p===M[a.set][a.i])return;
+ M.hist=[...M.hist,{ref:M.ref,fet:M.fet,en:M.en,mode:M.mode}];
+ M[a.set]=a.i<0?[...M[a.set],a.p]:M[a.set].map((q,i)=>i===a.i?a.p:q);
+ M.dirty=true;
+ if(a.set==='ref'&&a.i<0&&M.ref.length===2)setMode('fet');
+ else if(a.set==='fet'&&a.i<0&&M.hedef&&M.fet.length===2)setMode('en');
+}
+function startPinch(){
+ dropAct();
+ const[a,b]=[...G.ptrs.values()];
+ G.pinch={d:dist(a,b)||1,mx:(a.x+b.x)/2,my:(a.y+b.y)/2,s:VW.s,tx:VW.tx,ty:VW.ty};
+ drawMeas();
+}
+function movePinch(){
+ const[a,b]=[...G.ptrs.values()],P=G.pinch;
+ const s=clampZoom(P.s*dist(a,b)/P.d);
+ const ix=(P.mx-P.tx)/P.s,iy=(P.my-P.ty)/P.s;
+ setView(s,(a.x+b.x)/2-ix*s,(a.y+b.y)/2-iy*s);
+}
+function resetGesture(){dropAct();G.pinch=null;G.ptrs.clear()}
+function endPtr(e,kabul){
+ if(!G.ptrs.has(e.pointerId))return;
+ G.ptrs.delete(e.pointerId);
+ if(G.pinch){if(G.ptrs.size<2)G.pinch=null;return}
+ const a=G.act;if(!a)return;
+ dropAct();
+ if(kabul)commitAct(a);
+ drawMeas();
+}
+cv.addEventListener('pointerdown',e=>{
+ if(!M.img||e.button>0)return;
+ e.preventDefault();
+ if(e.isPrimary)resetGesture();
+ try{cv.setPointerCapture(e.pointerId)}catch(err){/* işaretçi yakalanamazsa olaylar tuval üzerinden gelmeye devam eder */}
+ const f=stagePt(e);G.ptrs.set(e.pointerId,f);
+ if(G.ptrs.size===2)startPinch();
+ else if(G.ptrs.size===1)startAct(f);
+});
+cv.addEventListener('pointermove',e=>{
+ if(!G.ptrs.has(e.pointerId))return;
+ e.preventDefault();
+ const f=stagePt(e);G.ptrs.set(e.pointerId,f);
+ if(G.pinch){if(G.ptrs.size>=2){movePinch();reqDraw()}return}
+ const a=G.act;if(!a)return;
+ const oynadi=a.loupe||dist(f,a.f0)>=MOVE_MIN;
+ if(oynadi)clearTimeout(G.timer);
+ const im=toImg(f);
+ G.act={...a,f,loupe:oynadi,p:oynadi?clampImg({x:im.x+a.dx,y:im.y+a.dy}):a.p};
+ reqDraw();
+});
+cv.addEventListener('pointerup',e=>endPtr(e,true));
+cv.addEventListener('pointercancel',e=>endPtr(e,false));
+/* iOS Safari sayfa yakınlaştırmasını ve büyüteç menüsünü yalnız touch-action ile her zaman durdurmaz. */
+['touchstart','touchmove'].forEach(t=>$('#mWrap').addEventListener(t,e=>e.preventDefault(),{passive:false}));
+['gesturestart','gesturechange'].forEach(t=>$('#mWrap').addEventListener(t,e=>e.preventDefault()));
+new ResizeObserver(()=>{if(M.img&&$('#meas').classList.contains('on'))sizeStage(false)}).observe($('#mWrap'));
+
+/* ---------- ölçüm: açma, kapama, kaydetme ---------- */
+/* Ölçüm fotoğrafı açılırsa kaynağı, kaynak açılırsa varsa ölçümü bulunur; yeniden kayıt çoğaltmaz, günceller. */
+function openMeas(id){
+ const p=d.fotos.find(x=>x.id===id);if(!p)return;
+ const kaynak=(p.olcumVeri&&d.fotos.find(x=>x.id===p.olcumKaynak))||p;
+ const hedef=kaynak!==p&&p.olcumHedef||'';
+ /* Açık klavye sonradan kapanırsa fotoğraf alanı büyür; ölçümden önce kapatılır. */
+ if(document.activeElement)document.activeElement.blur();
+ const im=new Image();
+ im.onerror=()=>toast('Fotoğraf açılamadı');
+ im.onload=()=>{
+  resetGesture();
+  Object.assign(M,{img:im,src:kaynak,tip:'kart',serbest:'',ref:[],dirty:false,saving:false});
+  $('#meas').classList.add('on');
+  loadHedef(hedef);
+  sizeStage(true);
+ };
+ im.src=photoSrc(kaynak);
+}
+const kayitBul=(kaynakId,h)=>d.fotos.find(x=>x.olcumKaynak===kaynakId&&x.olcumVeri&&(x.olcumHedef||'')===h);
+/* Aynı fotoğrafta her hedefin ayrı kaydı olur; yeni hedef, duran referansı kullanır. */
+function loadHedef(h){
+ const kayit=kayitBul(M.src.id,h),v=kayit&&kayit.olcumVeri;
+ const refV=v||(M.ref.length?null:(d.fotos.find(x=>x.olcumKaynak===M.src.id&&x.olcumVeri)||{}).olcumVeri);
+ if(refV)Object.assign(M,{tip:refV.tip,serbest:refV.tip==='serbest'?String(refV.cm).replace('.',','):'',ref:refV.ref});
+ Object.assign(M,{hedef:h,rec:kayit?kayit.id:null,fet:v?v.fet:[],en:v&&v.en?v.en:[],hist:[]});
+ if(v)M.dirty=false;
+ syncRefUI();syncHedefUI();
+ /* Uyarı metni satır sayısını değiştirebilir; görünüm çizim beklenmeden güncellenir, aksi hâlde nokta kayar. */
+ sizeStage(false);
+ setMode(M.ref.length<2?'ref':h&&M.fet.length===2&&M.en.length<2?'en':'fet');
+}
+function syncHedefUI(){
+ const kayitli=d.fotos.filter(p=>p.olcumKaynak===M.src.id&&p.olcumHedef).map(p=>p.olcumHedef);
+ const l=ORGAN.filter(o=>(d.numune||[]).includes(o)||kayitli.includes(o));
+ $('#mHedef').innerHTML='<option value="">Fötüs</option>'+(l.length?l.map(o=>`<option value="${esc(o)}">${esc(o)}</option>`).join(''):'<option disabled>Organ için önce numuneyi işaretle</option>');
+ $('#mHedef').value=M.hedef;
+ $('#mFet').textContent=M.hedef?'2 · Boy':'2 · Fötüs';
+ $('#mEn').hidden=!M.hedef;
+ $('#mPersp').textContent='Fotoğraf tam tepeden, kart fötüsle aynı zeminde olmalı.'+(M.hedef?' Kalın organda ölçü biraz büyük çıkabilir.':'');
+}
+function leaveMeas(){resetGesture();lp.classList.remove('on');$('#meas').classList.remove('on');M.img=null}
+async function closeMeas(){
+ if(M.saving)return;
+ if(M.dirty&&!await askDelete('Ölçüm kaydedilmedi','Yapılan işaretlemeler silinecek.'))return;
+ leaveMeas();
+}
+function measBlob(txt){
+ const im=M.img,W=im.naturalWidth;
+ const c=document.createElement('canvas');c.width=W;c.height=im.naturalHeight;
+ const g=c.getContext('2d');g.drawImage(im,0,0);
+ const lw=Math.max(3,W/350);drawMarks(g,lw,lw*1.8);
+ const fs=Math.round(W/28);
+ g.font='bold '+fs+'px Arial';g.fillStyle='rgba(0,0,0,.6)';g.fillRect(10,10,g.measureText(txt).width+24,fs*1.5);
+ g.fillStyle='#fff';g.fillText(txt,22,10+fs*1.1);
+ return new Promise(r=>c.toBlob(r,'image/jpeg',.82));
+}
+/* Elle yazılmış farklı bir değer sorulmadan ezilmez. null: ölçüme dön. */
+function askFieldValue(L){
+ const eski=num(d.fetusCm);
+ const onceki=M.rec?(d.fotos.find(p=>p.id===M.rec)||{}).olcum:null;
+ if(eski==null||eski===L||eski===onceki)return Promise.resolve(true);
+ return ask({title:'Fötüs uzunluğu',body:'Alanda '+fmt(eski)+' cm yazılı, ölçüm '+fmt(L)+' cm çıktı. Alanda hangisi kalsın?',buttons:[{label:'Ölçümü yaz ('+fmt(L)+' cm)',val:true},{label:'Alandakini koru ('+fmt(eski)+' cm)',val:false,cls:'sec2'},{label:'Ölçüme dön',val:null,cls:'sec2'}]});
+}
+/* null: işaretleme eksik. Fötüs 0,5 cm'ye, organ küçük olduğu için 0,1 cm'ye yuvarlanır. */
+function measValues(){
+ const k=cmPerPx();if(!k||M.fet.length<2)return null;
+ if(!M.hedef){
+  const L=roundCm(polyLen(M.fet)*k);
+  return L>0?{L,txt:fmt(L)+' cm'}:null;
+ }
+ if(M.en.length<2)return null;
+ const L=roundOrgan(polyLen(M.fet)*k),E=roundOrgan(polyLen(M.en)*k);
+ return L>0&&E>0?{L,E,txt:M.hedef+' '+fmt(L)+' × '+fmt(E)+' cm'}:null;
+}
+const yuvarla=a=>a.map(p=>({x:Math.round(p.x*10)/10,y:Math.round(p.y*10)/10}));
+async function saveMeas(){
+ if(M.saving)return;
+ const o=measValues();if(!o){toast(M.hedef?'Referansı, boyu ve eni işaretle':'Referansı ve fötüsü işaretle');return}
+ M.saving=true;
+ try{
+  const yaz=M.hedef?false:await askFieldValue(o.L);if(yaz===null)return;
+  const blob=await measBlob(o.txt);
+  if(!blob){toast('Ölçüm görseli üretilemedi');return}
+  const veri={tip:M.tip,cm:refCmVal(),ref:yuvarla(M.ref),fet:yuvarla(M.fet),...(M.hedef?{en:yuvarla(M.en)}:{})};
+  const extra={olcum:o.L,olcumKaynak:M.src.id,olcumVeri:veri,...(M.hedef?{olcumHedef:M.hedef,olcumEn:o.E}:{})};
+  const meta=M.rec?await updatePhotoBlob(M.rec,blob,extra):await addPhotoBlob(blob,extra);
+  if(!meta){toast('Ölçüm kaydedilemedi');return}
+  if(yaz){d.fetusCm=String(o.L).replace('.',',');const inp=$('#f_fetusCm');if(inp)inp.value=d.fetusCm}
+  leaveMeas();drawPhotos();calcAge();save();updStatus();toast('Ölçü kaydedildi: '+o.txt);
+  checkQuota();
+ }catch(e){reportSaveErr(e)}
+ finally{M.saving=false}
+}
+$('#refTip').onchange=e=>{M.tip=e.target.value;M.dirty=true;syncRefUI();drawMeas()};
+$('#refCm').oninput=e=>{M.serbest=e.target.value;M.dirty=true;drawMeas()};
+$('#mRef').onclick=()=>setMode('ref');
+$('#mFet').onclick=()=>setMode('fet');
+$('#mEn').onclick=()=>setMode('en');
+$('#mHedef').onchange=async e=>{
+ const yeni=e.target.value;
+ if(M.dirty&&(M.fet.length||M.en.length)&&!await askDelete('Ölçüm kaydedilmedi','Bu hedefteki işaretlemeler silinecek.')){e.target.value=M.hedef;return}
+ loadHedef(yeni);
+};
+$('#mZin').onclick=()=>zoomBy(1.5);
+$('#mZout').onclick=()=>zoomBy(1/1.5);
+$('#mUndo').onclick=()=>{
+ if(M.hist.length){
+  const h=M.hist[M.hist.length-1];
+  M.hist=M.hist.slice(0,-1);M.ref=h.ref;M.fet=h.fet;M.en=h.en;M.dirty=true;setMode(h.mode);
+  return;
+ }
+ /* Kayıtlı ölçüm açıldığında geçmiş boştur; son nokta silinir. */
+ if(!M[M.mode].length)return;
+ M[M.mode]=M[M.mode].slice(0,-1);M.dirty=true;drawMeas();
+};
+$('#mClose').onclick=closeMeas;
+$('#mSave').onclick=saveMeas;
+
+/* ---------- yaş tahmini ---------- */
+let ageSug='';
+function calcAge(){
+ const box=$('#ageRes');if(!box)return;const out=[];ageSug='';
+ const kucuk=kucukBas(d);
+ box.closest('.agebox').hidden=kucuk;
+ if(kucuk){box.innerHTML='';return}
+ if(d.tur==='Manda')out.push('<span class="warn">Mandada sığır formülü kullanılır; değeri yaklaşık değerlendir.</span>');
+ const L=num(d.fetusCm);let est=null;
+ if(L){const g=2.5*(L+21);est=g/30.44;out.push(`Uzunluğa göre: <b>≈ ${fmt(est)} ay</b> (${Math.round(g)} gün; olası aralık ${fmt(est-.7)}–${fmt(est+.7)} ay)`)}
+ const sel=MORF.filter(m=>(d.morf||[]).includes(m.k));
+ const mn=Math.max(0,...sel.filter(m=>m.min).map(m=>m.min));const mxs=sel.filter(m=>m.max).map(m=>m.max);const mx=mxs.length?Math.min(...mxs):null;
+ if(sel.length)out.push(`Morfolojiye göre: ${mn?'en az <b>'+fmt(mn)+' ay</b>':''}${mn&&mx?', ':''}${mx?'en fazla <b>'+fmt(mx)+' ay</b>':''}`);
+ if(d.tohumlama&&d.atikTarih){const gun=Math.round((new Date(d.atikTarih)-new Date(d.tohumlama))/864e5);if(gun>0)out.push(`Beyan edilen tohumlamaya göre: <b>${fmt(gun/30.44)} ay</b> (${gun} gün)`)}
+ let e=est;if(e!=null){if(mn&&e<mn)e=mn;if(mx&&e>mx)e=mx;const lo=Math.floor(e*2)/2;ageSug=fmt(lo)+'–'+fmt(lo+.5);
+  if(mn&&est<mn-.7)out.push('<span class="warn">Uzunluk morfolojiden küçük; fötüs rahimde erken ölmüş ya da ölçü eksik olabilir.</span>');
+  if(mx&&est>mx+.7)out.push('<span class="warn">Uzunluk morfolojiden büyük; ölçüyü kontrol et.</span>');
+  out.push(`Önerilen kayıt: <b>yaklaşık ${ageSug} aylık</b> <button class="btn sm" id="bAgeUse">Alana yaz</button>`)}
+ else if(!sel.length)out.push('Uzunluğu gir ya da fotoğraftan ölç; bulguları işaretle.');
+ box.innerHTML=out.join('<br>');
+ const b=$('#bAgeUse');if(b)b.onclick=()=>{d.tahminiAy=ageSug;$('#f_tahminiAy').value=ageSug;save();updStatus();toast('Yazıldı')};
+}
+
+/* ---------- imza ---------- */
+function initSig(k){
+ const c=$('#sig_'+k);if(!c)return;const dpr=window.devicePixelRatio||1;const r=c.getBoundingClientRect();
+ const W=Math.max(300,r.width||600),H=150;c.width=W*dpr;c.height=H*dpr;const g=c.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);
+ g.lineWidth=2.2;g.lineCap='round';g.lineJoin='round';g.strokeStyle='#0b1f3a';
+ if(d[k]){const im=new Image();im.onload=()=>g.drawImage(im,0,0,W,H);im.src=d[k]}
+ let drawing=false,last=null;
+ const pos=e=>{const b=c.getBoundingClientRect();return{x:(e.clientX-b.left)*(W/b.width),y:(e.clientY-b.top)*(H/b.height)}};
+ c.onpointerdown=e=>{drawing=true;last=pos(e);c.setPointerCapture(e.pointerId);e.preventDefault()};
+ c.onpointermove=e=>{if(!drawing)return;const p=pos(e);g.beginPath();g.moveTo(last.x,last.y);g.lineTo(p.x,p.y);g.stroke();last=p;e.preventDefault()};
+ c.onpointerup=c.onpointercancel=()=>{if(!drawing)return;drawing=false;d[k]=c.toDataURL('image/png');save()};
+}
+
+/* ---------- çıktı öncesi kontrol ---------- */
+function goField(k){
+ $('#mCheck').classList.remove('on');
+ const sec=S.find(s=>s.f.some(f=>f.k===k));
+ const det=sec&&$(`details[data-s="${sec.id}"]`);if(det)det.open=true;
+ const el=$('#f_'+k)||$('#sig_'+k)||(k==='fotos'?$('#phBox'):null)||$(`input[data-k="${k}"]`);
+ if(!el)return;
+ const hedef=el.closest('.fld,.sigw')||el;
+ hedef.scrollIntoView({block:'center'});
+ if(el.matches('input:not([type=radio]):not([type=checkbox]),textarea'))el.focus({preventScroll:true});
+}
+function showCheck(r,next){
+ const satir=(x,c)=>`<button class="chkit ${c}" data-go="${esc(x.k)}">${esc(x.msg)}</button>`;
+ $('#checkBox').innerHTML=
+  (r.eksik.length?`<div class="chkh">Eksik veya hatalı (${r.eksik.length})</div>`+r.eksik.map(x=>satir(x,'')).join(''):'')+
+  (r.uyari.length?`<div class="chkh">Uyarılar (${r.uyari.length})</div>`+r.uyari.map(x=>satir(x,'u')).join(''):'');
+ $('#checkBox').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>goField(b.dataset.go));
+ $('#checkGo').onclick=()=>{$('#mCheck').classList.remove('on');next()};
+ $('#mCheck').classList.add('on');
+}
+function guarded(next){
+ const r=checkCase(d);
+ if(!r.eksik.length&&!r.uyari.length)return next();
+ showCheck(r,next);
+}
+
+/* ---------- WhatsApp ---------- */
+const hekimEki=c=>isBlank(c.vet2)?'hekimce':'hekimlerce';
+function waText(){
+ const L=[];const t=trDate(d.atikTarih||d.tarih);
+ L.push('*ATIK VAKASI*');
+ L.push('*Tarih:* '+t);
+ L.push('*Yer:* '+[d.mahalle,shortNo(d.isletmeNo),basHarf(d.sahipAd)].filter(Boolean).join(', '));
+ const ay=d.tahminiAy?d.tahminiAy+' aylık gebe':'';
+ L.push('*Hayvan:* '+[shortNo(d.kupe),ay,d.irk].filter(Boolean).join(', '));
+ L.push('');
+ let p=`${t} tarihinde ${d.mahalle||'…'}, ${shortNo(d.isletmeNo)||'…'} numaralı işletmede ${shortNo(d.kupe)||'…'} küpe numaralı ${d.irk?d.irk+' ırkı ':''}${(d.tur||'Sığır').toLocaleLowerCase('tr-TR')}${d.tahminiAy?' yaklaşık '+d.tahminiAy+' aylık gebelikte':''} atık yapmıştır.`;
+ p+=' Atık materyali resmî veteriner '+hekimEki(d)+' yerinde görülmüştür.';
+ const mf=morfOf(d);
+ if(d.fetusCm)p+=' Fötüs yaklaşık '+d.fetusCm+' cm uzunluğundadır.';
+ const MS={tuysuz:'Vücutta tüy bulunmamaktadır.',kas:'Kaş, kirpik ve dudak çevresinde tüy bulunmaktadır.',kuyruk:'Kuyruk ucunda tüy bulunmaktadır.',kismi:'Vücutta kısmi tüylenme vardır.',tam:'Vücut tamamen tüylüdür.',tirnak:'Tırnaklar şekillenmiştir.',dis:'Kesici dişler sürmüştür.'};
+ ['tirnak','tuysuz','kas','kuyruk','kismi','tam','dis'].forEach(k=>{if(mf.includes(k))p+=' '+MS[k]});
+ const an=(d.anne||[]).filter(x=>x!=='Normal');
+ if((d.anne||[]).includes('Normal')&&!an.length)p+=' Annenin genel durumu normaldir.';
+ else if(an.length)p+=' Annede '+an.map(x=>x==='Ateş'&&d.anneAtes?'ateş ('+d.anneAtes+' °C)':x.toLocaleLowerCase('tr-TR')).join(', ')+' tespit edilmiştir.';
+ if(d.plasenta==='Atılmamış')p+=' Yavru zarları atılmamıştır.';
+ L.push(p);
+ if(d.bulguNot)L.push(d.bulguNot);
+ L.push('');
+ L.push('*Numune:*');
+ (d.numune||[]).forEach(n=>L.push('• '+n));
+ if(d.velbis)L.push('VELBİS protokol no: '+d.velbis);
+ if(d.enstitu&&(d.numune||[]).length){
+  const muh={'Donuk':'donuk olarak ','Soğuk zincir (+4 °C)':'soğuk zincirde '}[d.muhafaza]||'';
+  L.push('Numuneler '+muh+d.enstitu.replace(/ Müdürlüğü$/,'')+"'ne gönderilecektir.");
+ }
+ L.push('');
+ L.push('*Alınan önlemler:*');
+ (d.onlem||[]).forEach(n=>L.push('• '+n));
+ if(d.onlemDiger)d.onlemDiger.split('\n').filter(Boolean).forEach(n=>L.push('• '+n));
+ return L.join('\n').replace(/\n{3,}/g,'\n\n');
+}
+const cap1=s=>s?s[0].toLocaleUpperCase('tr-TR')+s.slice(1):s;
+$('#bWa').onclick=()=>guarded(()=>{$('#waTxt').value=waText();$('#mWa').classList.add('on')});
+$('#waRegen').onclick=()=>{$('#waTxt').value=waText()};
+$('#waCopy').onclick=async()=>{const t=$('#waTxt').value;try{await navigator.clipboard.writeText(t);toast('Kopyalandı')}catch(e){$('#waTxt').select();document.execCommand('copy');toast('Kopyalandı')}};
+/* Paylaşım menüsü yoksa metin panoya alınır ve WhatsApp uygulaması açılır; web sunucusuna gidilmez, çevrimdışında sayfadan çıkılmaz. */
+$('#waShare').onclick=async()=>{
+ const t=$('#waTxt').value;
+ if(navigator.share){try{await navigator.share({text:t});return}catch(e){if(e.name==='AbortError')return}}
+ try{await navigator.clipboard.writeText(t);toast('Metin kopyalandı')}catch(e){$('#waTxt').select();document.execCommand('copy');toast('Metin kopyalandı')}
+ location.href='whatsapp://send?text='+encodeURIComponent(t);
+};
+
+/* ---------- yazdırma ---------- */
+const CB=(sel,opts)=>opts.map(o=>((Array.isArray(sel)?sel.includes(o):sel===o)?'☒ ':'☐ ')+esc(o)).join('&nbsp;&nbsp; ');
+const V=(x,ph='')=>x?esc(x):'<span style="color:#fff">'+ph+'</span>';
+const tdv=(k,v)=>`<td class="k">${k}</td><td>${v}</td>`;
+function tutanakHTML(){
+ const T=trDate(d.tarih);
+ const sig=(k,ad,unv)=>`<td>${d[k]?`<img src="${d[k]}">`:''}<div><b>${esc(ad||'')}</b></div><div>${unv}</div></td>`;
+ let h=`<div class="hd">T.C.<br>DAMAL KAYMAKAMLIĞI<br>İlçe Tarım ve Orman Müdürlüğü<div class="t">ATIK TESPİT VE NUMUNE ALMA TUTANAĞI</div></div>
+ <div class="meta"><span>Tarih: ${esc(T)||'…/…/20…'}</span><span>Saat: ${esc(d.saat||'')}</span></div>
+ <p>Aşağıda bilgileri yazılı işletmede atık yapan hayvana ilişkin olarak işletmeye gidilmiş; atık materyali resmî veteriner ${hekimEki(d)} yerinde bizzat görülerek aşağıdaki tespitler yapılmış ve işbu tutanak düzenlenmiştir.</p>
+ <h5>1. HAYVAN SAHİBİ VE İŞLETME BİLGİLERİ</h5>
+ <table><tr>${tdv('Adı soyadı',V(d.sahipAd))}${tdv('T.C. kimlik no',V(d.sahipTc))}</tr>
+ <tr>${tdv('İşletme no',V(noIsEmpty(d.isletmeNo)?'':d.isletmeNo))}${tdv('Telefon',V(d.telefon))}</tr>
+ <tr>${tdv('Köyü / mahallesi',V(d.mahalle))}${tdv('Koordinat',V(d.koordinat))}</tr>
+ <tr><td class="k">Yerinde hazır bulunan</td><td colspan="3">${CB(d.hazir,['Hayvan sahibinin kendisi','Başka kişi'])}${d.hazirKisi?' — '+esc(d.hazirKisi):''}</td></tr></table>
+ <h5>2. ATIK YAPAN HAYVANA AİT BİLGİLER</h5>
+ <table><tr>${tdv('Küpe no',V(noIsEmpty(d.kupe)?'':d.kupe))}${tdv('Türü',CB(d.tur,['Sığır','Manda','Koyun','Keçi']))}</tr>
+ <tr>${tdv('Irkı',V(d.irk))}${tdv('Doğum tarihi',V(trDate(d.dogum)))}</tr>
+ <tr>${tdv('Tohumlama / aşım',V(trDate(d.tohumlama))+' &nbsp; '+CB(d.tohumSekli,['Suni','Tabii']))}${tdv('Atık tarihi / saati',V(trDate(d.atikTarih))+' '+esc(d.atikSaat||''))}</tr>
+ <tr>${tdv('Görülen materyal',CB(d.materyal,['Fötüs','Plasenta / zarlar']))}${tdv('TÜRKVET kaydı',"Bu sahip adına ve bu işletmede kayıtlı: "+CB(d.turkvet,EH))}</tr></table>
+ <table style="margin-top:-0.6pt"><tr><th style="width:30%">Aşı / uygulama</th><th style="width:22%">Yapıldı mı</th><th>Son uygulama tarihi / açıklama</th></tr>
+ <tr><td>Brusella (S19 / RB51 / Rev-1)</td><td>${CB(d.asiBru,EH)}</td><td>${V(trDate(d.asiBruT))}</td></tr>
+ <tr><td>Şap</td><td>${CB(d.asiSap,EH)}</td><td>${V(trDate(d.asiSapT))}</td></tr>
+ <tr><td>Son 30 günde başka aşı / ilaç</td><td>${CB(d.asi30,EH)}</td><td>${V(d.asi30A)}</td></tr></table>
+ <h5>3. ATIĞIN RESMÎ VETERİNER HEKİMCE TESPİTİ VE BULGULAR</h5>
+ <table><tr>${tdv('Görüldüğü tarih / saat',V(trDate(d.gorTarih))+' '+esc(d.gorSaat||''))}${tdv('Görüldüğü yer',CB(d.gorYer,['İşletme','Diğer']))}</tr>
+ <tr><td class="k">${GEBELIK_AYI_ETIKET}</td><td colspan="3">${d.tahminiAy?'Yaklaşık '+esc(d.tahminiAy):'……'} aylık gebelikte</td></tr>
+ <tr>${tdv('Fötüs uzunluğu',d.fetusCm?'Yaklaşık '+esc(d.fetusCm)+' cm':(yalnizPlasenta(d)?'Fötüs görülmedi':'Yaklaşık …… cm'))}${tdv('Plasenta / zarlar',CB(d.plasenta,['Var','Yok','Atılmamış']))}</tr>
+ ${kucukBas(d)?'':`<tr><td class="k">Fötüs morfolojisi</td><td colspan="3">${CB(morfOf(d).map(k=>(MORF.find(m=>m.k===k)||{}).l),MORF.map(m=>m.l))}</td></tr>`}
+ <tr><td class="k">Annenin durumu</td><td colspan="3">${CB(d.anne,['Normal','Ateş','Yavru zarı atılmamış (retensiyo)','Vajinal akıntı'])}${d.anneAtes?' — '+esc(d.anneAtes)+' °C':''}</td></tr>
+ <tr><td class="k">Fotoğraf</td><td colspan="3">${(d.fotos||[]).length} adet (ekte)</td></tr>
+ ${d.bulguNot?`<tr><td class="k">Diğer bulgular</td><td colspan="3">${esc(d.bulguNot)}</td></tr>`:''}</table>
+ <h5>4. NUMUNE VE LABORATUVAR BİLGİLERİ</h5>
+ <table><tr><td class="k">Alınan numune</td><td colspan="3">${CB(d.numune,NUMUNE)}</td></tr>
+ <tr>${tdv('Numune kabı sayısı',V(d.kapSayi))}${tdv('Muhafaza',CB(d.muhafaza,['Soğuk zincir (+4 °C)','Donuk']))}</tr>
+ <tr>${tdv('Numune alış tarihi / saati',V(trDate(d.numTarih))+' '+esc(d.numSaat||''))}${tdv('VELBİS protokol no',V(d.velbis))}</tr>
+ <tr>${tdv('Gönderildiği enstitü',V(d.enstitu))}${tdv('Gönderim tarihi / şekli',V(trDate(d.gonTarih))+' &nbsp; '+CB(d.gonSekli,['Elden','Kargo']))}</tr>
+ ${d.kargoNo?`<tr><td class="k">Kargo / teslim alan</td><td colspan="3">${esc(d.kargoNo)}</td></tr>`:''}
+ ${organOlculer(d).length?`<tr><td class="k">Numune ölçüleri</td><td colspan="3">Yaklaşık: ${organOlculer(d).map(p=>esc(p.olcumHedef)+' '+boyEn(p)).join('; ')}</td></tr>`:''}</table>
+ <h5>5. EPİDEMİYOLOJİK BİLGİLER (HAYVAN SAHİBİNİN BEYANI)</h5>
+ <table><tr>${tdv('İşletmedeki gebe hayvan',(d.gebeSayi?esc(d.gebeSayi):'……')+' baş')}${tdv('Son 12 ayda atık',CB(d.atik12,['Yok','Var'])+(d.atik12A?' — '+esc(d.atik12A)+' adet':''))}</tr>
+ <tr><td class="k">Son 12 ayda hayvan girişi</td><td colspan="3">${CB(d.giris,['Yok','Var'])}${d.girisA?' — '+esc(d.girisA):''}</td></tr>
+ <tr>${tdv('Ortak mera / yayla',CB(d.mera,['Hayır','Evet']))}${tdv('Ortak / kiralık boğa',CB(d.boga,['Hayır','Evet']))}</tr>
+ ${d.meraA?`<tr><td class="k">Açıklama</td><td colspan="3">${esc(d.meraA)}</td></tr>`:''}
+ <tr>${tdv('Barınma / besleme',CB(d.barinma,['Ahır','Mera','Karışık']))}${tdv('Silaj',CB(d.silaj,['Kullanılıyor','Kullanılmıyor']))}</tr></table>
+ <h5>6. DESTEK ŞARTLARININ KONTROLÜ</h5>
+ <table><tr><th style="width:6%">No</th><th>Kontrol edilen destek şartı</th><th style="width:9%">Evet</th><th style="width:9%">Hayır</th></tr>
+ ${DESTEK.map((l,i)=>{const v=d['d'+(i+1)];return `<tr><td style="text-align:center">${i+1}</td><td>${esc(i===7&&v===PROTOKOL_OFISTE?D8_OFISTE_METNI:destekMetni(l,d))}${i===6?` (Sigorta: ${CB(d.tarsim,['Yok','Var'])}${d.police?', poliçe no: '+esc(d.police):''})`:''}</td><td style="text-align:center">${v==='Evet'?'☒':'☐'}</td><td style="text-align:center">${v==='Hayır'?'☒':'☐'}</td></tr>`}).join('')}</table>
+ <p class="small"><i>Herhangi bir maddede “Hayır” işaretlenmesi hâlinde destek şartları sağlanmamış sayılır. Atık desteğinin ödenmesi yürürlükteki mevzuat ve Bakanlık talimatına göre değerlendirilir. Bu tutanak ödeme taahhüdü değildir.</i></p>
+ <h5>7. ALINAN ÖNLEMLER</h5>
+ <div class="box">${ONLEM.map(o=>((d.onlem||[]).includes(o)?'☒ ':'☐ ')+esc(o)).join('<br>')}${d.onlemDiger?'<br>☒ '+esc(d.onlemDiger).replace(/\n/g,'<br>☒ '):''}</div>
+ <h5>8. HAYVAN SAHİBİNİN BEYANI VE BİLGİLENDİRME</h5>
+ <div class="box"><p>Tutanaktaki bilgilerin ve 5 inci bölümdeki beyanlarımın doğru olduğunu; hayvanın TÜRKVET'te kayıtlı sahibi olduğumu (veya kayıtlı sahibin bilgisi ve adına hareket ettiğimi); bu hayvan için ${atikYil(d)} yılında başka atık desteği almadığımı; bu atık için TARSİM'den hasar ödemesi almadığımı, alırsam derhâl İlçe Müdürlüğüne bildireceğimi beyan ederim. Alınan önlemler, uymam gereken yükümlülükler ile itiraz ve başvuru yolları bana anlatıldı; tutanağın bir nüshasını teslim aldım.</p>
+ <p>${CB(d.okuma,['Hayvan sahibi kendisi okudu','Yüksek sesle okunarak anlatıldı'])}</p>
+ <p>İtiraz / beyan şerhi: ${CB(d.itiraz,['Yoktur','Vardır'])}${d.itirazA?' — '+esc(d.itirazA):''}</p>
+ <p class="small">Kişisel verileriniz (ad-soyad, T.C. kimlik no, telefon, adres, işletme ve hayvan kayıtları, imza, fotoğraflar) atık tespiti, hayvan sağlığı tedbirlerinin uygulanması ve atık desteği işlemlerinin yürütülmesi amacıyla 6698 sayılı Kanun md. 5/2 kapsamında işlenir; yalnızca mevzuatın gerektirdiği ölçüde ilgili kamu kurumlarına aktarılır. Kanunun 11 inci maddesindeki haklarınızı İlçe Müdürlüğüne yazılı başvuru ile kullanabilirsiniz.</p></div>
+ <p class="kapanis" style="margin-top:6px">İşbu tutanak ${esc(d.nusha||'2')} nüsha olarak düzenlenmiş, okunarak taraflarca imza altına alınmıştır. ${esc(T)}</p>
+ <table class="sigt"><tr>${sig('sigSahip',d.hazir==='Başka kişi'&&d.hazirKisi?d.hazirKisi.split('/')[0].trim():d.sahipAd,d.hazir==='Başka kişi'?'Hazır bulunan':'Hayvan sahibi')}${sig('sigVet1',d.vet1,'Resmî Veteriner Hekim')}${sig('sigVet2',d.vet2,'Resmî Veteriner Hekim')}</tr></table>`;
+ return h;
+}
+function photosHTML(cls){
+ const f=d.fotos||[];if(!f.length)return '';
+ return `<div class="phg ${cls||''}">${f.map((p,i)=>`<figure><img src="${esc(photoSrc(p))}"><figcaption>Fotoğraf ${i+1}</figcaption></figure>`).join('')}</div>`;
+}
+/* Ölçüler mm cinsindendir; %100 yazdırıldığında gerçek boydadır. */
+function olcekKartiHTML(){
+ const izgara=[],cizgi=[],sayi=[];
+ for(let i=10;i<100;i+=10)izgara.push(`M${i} 0V100M0 ${i}H100`);
+ for(let mm=0;mm<=180;mm++)cizgi.push(`M${mm} 0V${mm%10===0?6:mm%5===0?4:2.2}`);
+ for(let cm=0;cm<=18;cm++)sayi.push(`<text x="${cm*10}" y="10.2" text-anchor="middle">${cm}</text>`);
+ return `<div class="kart"><div class="hd"><div class="t">ÖLÇEK KARTI</div></div>
+<div class="box"><b>Yazdırma ölçeği %100 olmalı</b> ("Gerçek boyut"); "Sayfaya sığdır" kapalı kalsın. Çıktıdaki 10 cm'yi cetvelle kontrol et; tutmuyorsa kartı kullanma.</div>
+<svg id="kartKare" style="width:100mm;height:100mm" viewBox="0 0 100 100" font-family="Arial" font-size="4.5"><path d="${izgara.join('')}" fill="none" stroke="#888" stroke-width=".12"/><rect width="100" height="100" fill="none" stroke="#000" stroke-width=".4"/><rect x="33" y="46" width="34" height="8" fill="#fff"/><text x="50" y="51.6" text-anchor="middle">10 × 10 cm</text></svg>
+<p>Her kare 1 cm. Fötüsle aynı zemine koy; fotoğrafı tam tepeden çek.</p>
+<svg id="kartCetvel" style="width:180mm;height:12mm" viewBox="0 0 180 12" font-family="Arial" font-size="3"><path d="M0 0H180${cizgi.join('')}" fill="none" stroke="#000" stroke-width=".15"/>${sayi.join('')}</svg>
+<p>Cetvel: cm</p></div>`;
+}
+function doPrint(html){const P=$('#print');P.innerHTML=html;const imgs=[...P.querySelectorAll('img')];Promise.all(imgs.map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r}))).then(()=>setTimeout(()=>window.print(),150))}
+async function printTutanak(){
+ let h=tutanakHTML();
+ if((d.fotos||[]).length&&await ask({title:'Fotoğraf eki',body:'Fotoğraflar tutanağın sonuna ek olarak eklensin mi?',buttons:[{label:'Evet, ekle',val:true},{label:'Hayır',val:false,cls:'sec2'}]}))h+=`<div class="pg"></div><h5 style="margin-top:0">EK: FOTOĞRAFLAR</h5>`+photosHTML();
+ doPrint(h);
+}
+$('#bPrint').onclick=()=>guarded(printTutanak);
+$('#bPhotos').onclick=()=>{if(!(d.fotos||[]).length){toast('Fotoğraf yok');return}doPrint(photosHTML('phonly'))};
+
+/* ---------- takip ---------- */
+const KAN2_BAS=14,KAN2_SON=21,KAN2_YAKIN=3;
+const gunEkle=(iso,n)=>{const[y,m,g]=iso.split('-').map(Number);const x=new Date(y,m-1,g+n);return x.getFullYear()+'-'+pad(x.getMonth()+1)+'-'+pad(x.getDate())};
+/* Karşılaştırma ISO metniyle yapılır; saat dilimi ve yaz saati etkilemez. */
+function kan2Durum(c,bugun=todayISO()){
+ if(!/^\d{4}-\d{2}-\d{2}$/.test(c.atikTarih||''))return null;
+ const bas=gunEkle(c.atikTarih,KAN2_BAS),son=gunEkle(c.atikTarih,KAN2_SON);
+ const st=c.kan2Tarih?'alindi':bugun>son?'gecikti':bugun>=gunEkle(bas,-KAN2_YAKIN)?'yakin':'ileride';
+ return {st,bas,son};
+}
+/* Küpesi girilmemiş taslak hatırlatma üretmez. */
+function kan2Uyari(c){
+ if(noIsEmpty(c.kupe))return null;
+ const k=kan2Durum(c);
+ return k&&(k.st==='gecikti'||k.st==='yakin')?k.st:null;
+}
+const kan2Aralik=k=>trDate(k.bas)+' – '+trDate(k.son);
+function kan2Metni(c){
+ const k=kan2Durum(c);
+ if(!k)return 'İkinci kan aralığı için atık tarihini gir.';
+ if(k.st==='alindi')return 'İkinci kan alındı: '+trDate(c.kan2Tarih);
+ if(k.st==='gecikti')return 'İkinci kan gecikti: '+kan2Aralik(k);
+ return 'İkinci kan aralığı: '+kan2Aralik(k);
+}
+function updKan2Box(){
+ const e=$('#kan2Box');if(!e)return;
+ e.textContent=kan2Metni(d);
+ e.classList.toggle('w',!!kan2Uyari(d));
+}
+/* Yalnız gösterge: okunamazsa sayaç eski hâliyle kalır, vaka işlemleri etkilenmez. */
+async function updKanSayac(){
+ let all=[];
+ try{all=await dbAll()}catch(e){return}
+ const n=[...all.filter(c=>c.id!==d.id),d].filter(kan2Uyari).length;
+ const b=$('#bListN');b.textContent=n||'';b.hidden=!n;
+}
+function durumRozetleri(c){
+ const r=[c.gonTarih?['Numune gönderildi','mav']:['Numune gönderilmedi','']];
+ if(c.sonuc==='Pozitif')r.push(['Sonuç: Pozitif','kir']);
+ else if(c.sonuc==='Negatif')r.push(['Sonuç: Negatif','yes']);
+ else if(c.gonTarih)r.push(['Sonuç bekleniyor','']);
+ const kontrol=GON_KONTROL.filter(x=>Array.isArray(c.gonKontrol)&&c.gonKontrol.includes(x)).length;
+ if(kontrol||c.gonTarih)r.push(['Gönderim kontrolü '+kontrol+'/'+GON_KONTROL.length,kontrol===GON_KONTROL.length?'yes':c.gonTarih?'sar':'']);
+ if(c.destekTarih)r.push(['Destek işlendi','yes']);
+ if(c.d8===PROTOKOL_OFISTE)r.push([isBlank(c.velbis)?'Protokol no bekliyor':'Şart 8 güncellenecek','sar']);
+ if(kan2Durum(c)&&!noIsEmpty(c.kupe)){
+  const u=kan2Uyari(c);
+  r.push([kan2Metni(c),u==='gecikti'?'kir':u==='yakin'?'sar':'']);
+ }
+ return r.map(([m,s])=>`<span class="rz ${s}">${esc(m)}</span>`).join('');
+}
+
+/* ---------- ZIP ---------- */
+/* Sıkıştırmasız ZIP. Fotoğraflar zaten JPEG olduğu için sıkıştırma kazancı yoktur. */
+const ZIP_YEREL=0x04034b50,ZIP_MERKEZ=0x02014b50,ZIP_SON=0x06054b50,ZIP_UTF8=0x0800,ZIP_MAKS_GIRDI=65535,ZIP_MAKS_BAYT=0xFFFFFFFF;
+const ZIP_URL_SURE=60000;
+const CRC_T=(()=>{const t=new Uint32Array(256);for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;t[n]=c>>>0}return t})();
+function crc32(u8){let c=0xFFFFFFFF;for(let i=0;i<u8.length;i++)c=CRC_T[(c^u8[i])&255]^(c>>>8);return(c^0xFFFFFFFF)>>>0}
+function dosZaman(x){return {saat:(x.getHours()<<11)|(x.getMinutes()<<5)|(x.getSeconds()>>1),tarih:((x.getFullYear()-1980)<<9)|((x.getMonth()+1)<<5)|x.getDate()}}
+function zipBaslik(sig,boy,ortak,ozel){
+ const v=new DataView(new ArrayBuffer(boy));
+ v.setUint32(0,sig,true);
+ ozel(v);
+ const o=sig===ZIP_YEREL?6:8;
+ v.setUint16(o,ZIP_UTF8,true);v.setUint16(o+2,0,true);v.setUint16(o+4,ortak.z.saat,true);v.setUint16(o+6,ortak.z.tarih,true);
+ v.setUint32(o+8,ortak.crc,true);v.setUint32(o+12,ortak.boyut,true);v.setUint32(o+16,ortak.boyut,true);v.setUint16(o+20,ortak.adBoy,true);
+ return v.buffer;
+}
+function zipYazici(){
+ const enc=new TextEncoder(),z=dosZaman(new Date()),parcalar=[],merkez=[];
+ let ofset=0,merkezBoy=0,adet=0;
+ return {
+  ekle(g){
+   if(adet>=ZIP_MAKS_GIRDI)throw new Error('ZIP için çok fazla dosya');
+   const ad=enc.encode(g.ad),ortak={z,crc:crc32(g.bytes),boyut:g.bytes.length,adBoy:ad.length};
+   parcalar.push(new Blob([zipBaslik(ZIP_YEREL,30,ortak,v=>v.setUint16(4,20,true)),ad,g.bytes]));
+   const yerelOfset=ofset;
+   merkez.push(zipBaslik(ZIP_MERKEZ,46,ortak,v=>{v.setUint16(4,20,true);v.setUint16(6,20,true);v.setUint32(42,yerelOfset,true)}),ad);
+   ofset+=30+ad.length+g.bytes.length;merkezBoy+=46+ad.length;adet++;
+  },
+  bitir(){
+   if(ofset+merkezBoy>ZIP_MAKS_BAYT)throw new Error('ZIP 4 GB sınırını aşıyor');
+   const v=new DataView(new ArrayBuffer(22));
+   v.setUint32(0,ZIP_SON,true);v.setUint16(8,adet,true);v.setUint16(10,adet,true);v.setUint32(12,merkezBoy,true);v.setUint32(16,ofset,true);
+   return new Blob([...parcalar,...merkez,v.buffer],{type:'application/zip'});
+  }
+ };
+}
+/* Dosya güvenilmez: tüm sınırlar ve CRC denetlenir, hata atılır. Yalnız sıkıştırmasız girdi okunur. */
+function zipOku(buf){
+ const v=new DataView(buf),n=buf.byteLength;
+ let son=-1;
+ for(let i=n-22;i>=0&&i>=n-22-65535;i--)if(v.getUint32(i,true)===ZIP_SON){son=i;break}
+ if(son<0)throw new Error('ZIP sonu bulunamadı');
+ const adet=v.getUint16(son+10,true),dec=new TextDecoder(),m=new Map();
+ let p=v.getUint32(son+16,true);
+ for(let k=0;k<adet;k++){
+  if(p+46>n||v.getUint32(p,true)!==ZIP_MERKEZ)throw new Error('ZIP dizini bozuk');
+  if(v.getUint16(p+10,true)!==0)throw new Error('Sıkıştırılmış ZIP okunmaz');
+  const crc=v.getUint32(p+16,true),boyut=v.getUint32(p+24,true),adBoy=v.getUint16(p+28,true),ekBoy=v.getUint16(p+30,true),notBoy=v.getUint16(p+32,true),yerel=v.getUint32(p+42,true);
+  if(p+46+adBoy>n||yerel+30>n||v.getUint32(yerel,true)!==ZIP_YEREL)throw new Error('ZIP girdisi bozuk');
+  const bas=yerel+30+v.getUint16(yerel+26,true)+v.getUint16(yerel+28,true);
+  if(bas+boyut>n)throw new Error('ZIP girdisi taşıyor');
+  const b=new Uint8Array(buf,bas,boyut);
+  if(crc32(b)!==crc)throw new Error('ZIP verisi bozuk');
+  m.set(dec.decode(new Uint8Array(buf,p+46,adBoy)),b);
+  p+=46+adBoy+ekBoy+notBoy;
+ }
+ return m;
+}
+const FOTO_UZANTI={'image/jpeg':'jpg','image/png':'png','image/webp':'webp'};
+const UZANTI_TUR={jpg:'image/jpeg',png:'image/png',webp:'image/webp'};
+const klasorAdi=c=>(shortNo(c.kupe)||'vaka').replace(/[^\w-]/g,'')+'_'+(c.atikTarih||c.tarih||'tarihsiz').replace(/[^\d-]/g,'')+'_'+String(c.id).replace(/[^\w-]/g,'');
+/* Veritabanı yazılamıyor ya da yoksa fotoğraf bellekteki kopyadan alınır. */
+async function fotoKaydi(p){
+ if(p.src)return dataURLtoBytes(p.src);
+ let r=null;
+ try{r=await dbGetPhoto(p.id)}catch(e){r=null}
+ if(r)return r;
+ const u=PH.get(p.id);
+ if(!u)return null;
+ const b=await(await fetch(u)).blob();
+ return {buf:await b.arrayBuffer(),type:b.type};
+}
+/* Çözülemeyen eski fotoğraf özgün hâliyle vaka.json'da kalır. */
+async function caseEntries(c){
+ const klasor=klasorAdi(c),fotos=[],girdiler=[];
+ let eksik=0;
+ for(const p of c.fotos||[]){
+  const r=await fotoKaydi(p);
+  if(!r){if(p.src)fotos.push(p);else eksik++;continue}
+  const dosya='foto-'+(girdiler.length+1)+'.'+(FOTO_UZANTI[r.type]||'jpg');
+  const{src,...meta}=p;
+  fotos.push({...meta,dosya});
+  girdiler.push({ad:klasor+'/'+dosya,bytes:new Uint8Array(r.buf)});
+ }
+ const json=new TextEncoder().encode(JSON.stringify({...c,fotos,schema:SCHEMA},null,1));
+ return {girdiler:[{ad:klasor+'/vaka.json',bytes:json},...girdiler],foto:girdiler.length,eksik};
+}
+/* ZIP'teki vaka.json'ları tek tek verir; fotoğraflar src olarak gömülür. Okunamayan veri sanitizeCase'te reddedilir. */
+async function* zipVakalari(m){
+ let adet=0;
+ for(const[ad,b]of m){
+  if(!/(^|\/)vaka\.json$/.test(ad))continue;
+  adet++;
+  let o=null;
+  try{o=JSON.parse(new TextDecoder().decode(b))}catch(e){o=null}
+  if(!o||typeof o!=='object'||Array.isArray(o)){yield o;continue}
+  const dizin=ad.slice(0,ad.length-'vaka.json'.length),fotos=[];
+  for(const p of Array.isArray(o.fotos)?o.fotos:[]){
+   const dosya=p&&typeof p.dosya==='string'&&/^[\w-]+\.\w+$/.test(p.dosya)?p.dosya:null;
+   const veri=dosya&&m.get(dizin+dosya),tur=dosya&&UZANTI_TUR[dosya.split('.').pop().toLowerCase()];
+   if(!veri||!tur){fotos.push(p);continue}
+   const{dosya:_,...meta}=p;
+   fotos.push({...meta,src:await blobToDataURL(new Blob([veri],{type:tur}))});
+  }
+  yield {...o,fotos};
+ }
+ if(!adet)throw new Error('ZIP içinde vaka yok');
+}
+const iosCihaz=()=>/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+/* iOS ana ekran uygulamasında indirme bağlantısı güvenilir değil; paylaşım menüsü kullanılır. */
+async function saveFile(blob,ad){
+ const file=new File([blob],ad,{type:blob.type});
+ if(iosCihaz()&&navigator.canShare&&navigator.canShare({files:[file]})){
+  try{await navigator.share({files:[file]});return}
+  catch(e){if(e.name==='AbortError')return}
+ }
+ const a=document.createElement('a');a.href=URL.createObjectURL(file);a.download=ad;
+ document.body.appendChild(a);a.click();
+ setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},ZIP_URL_SURE);
+}
+let zipMesgul=false;
+async function exportZip(tumu){
+ if(zipMesgul)return;
+ zipMesgul=true;
+ try{
+  /* Kayıt yazılamıyorsa dosyaya kaydetmek tek çıkıştır: yazım sonucu çıkışı engellemez. */
+  await flushSave();
+  if(dirty)await flushSave();
+  let kayitli=[];
+  try{kayitli=await dbAll()}catch(e){kayitli=[]}
+  const acikVar=dirty||kayitli.some(c=>c.id===d.id);
+  const vakalar=tumu?[...kayitli.filter(c=>c.id!==d.id),...(acikVar?[d]:[])]:[d];
+  if(!vakalar.length){toast('Kayıtlı vaka yok');return}
+  toast('ZIP hazırlanıyor…');
+  const z=zipYazici();
+  let foto=0,eksik=0;
+  for(const c of vakalar){
+   const e=await caseEntries(c);
+   e.girdiler.forEach(z.ekle);
+   foto+=e.foto;eksik+=e.eksik;
+  }
+  const blob=z.bitir();
+  const ad=tumu?'atik_tum_vakalar_'+todayISO()+'.zip':'atik_'+klasorAdi(d).replace(/_[^_]*$/,'')+'.zip';
+  /* Paylaşım menüsü taze dokunuş ister; ZIP hazırlanırken geçen süre onu düşürür. */
+  const ok=await ask({title:'ZIP hazır',body:vakalar.length+' vaka, '+foto+' fotoğraf.'+(eksik?'\n'+eksik+' fotoğraf bulunamadı, ZIP\'e girmedi.':''),buttons:[{label:'Kaydet',val:true},{label:'Vazgeç',val:false,cls:'sec2'}]});
+  if(ok)await saveFile(blob,ad);
+ }catch(e){toast('ZIP hazırlanamadı')}
+ finally{zipMesgul=false}
+}
+
+/* ---------- vakalar ---------- */
+/* Bellekteki vakayı değiştirir. Çağıran önce flushSave yapmış olmalı. */
+async function openCase(c){
+ dropPhotoURLs();
+ d=c;d.fotos=d.fotos||[];
+ lastSaved=d.updated||null;dirty=false;
+ try{await loadPhotos(d)}catch(e){toast('Fotoğraflar yüklenemedi')}
+ render();
+ setSave('ok');
+ lsSet('atikCur',d.id);
+ updKanSayac();
+}
+async function showList(){
+ await flushSave();
+ let all=[];
+ const oncelik=c=>({gecikti:0,yakin:1}[kan2Uyari(c)]??2);
+ try{all=(await dbAll()).sort((a,b)=>oncelik(a)-oncelik(b)||(b.updated||0)-(a.updated||0))}catch(e){toast('Vakalar okunamadı')}
+ $('#listBox').innerHTML=all.length?all.map(c=>`<div class="it ${{gecikti:'gec',yakin:'uy'}[kan2Uyari(c)]||''}"><div><b>${esc(shortNo(c.kupe)||'—')}</b> · ${esc(c.mahalle||'')}<br><small>${esc(trDate(c.atikTarih||c.tarih))} · ${(c.fotos||[]).length} foto${c.id===d.id?' · açık':''}</small><div class="rzs">${durumRozetleri(c)}</div></div><button class="btn sm sec2" data-open="${esc(c.id)}">Aç</button><button class="btn sm red" data-rm="${esc(c.id)}">Sil</button></div>`).join(''):'<div class="hint">Kayıt yok.</div>';
+ $('#listBox').querySelectorAll('[data-open]').forEach(b=>b.onclick=async()=>{const c=all.find(x=>x.id===b.dataset.open);if(!c||!await safeToLeave())return;await openCase(c);$('#mList').classList.remove('on');window.scrollTo(0,0)});
+ $('#listBox').querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{
+  if(!await askDelete('Vaka kalıcı olarak silinsin mi?','Vaka ve fotoğrafları geri alınamaz şekilde silinir.'))return;
+  try{await dbDel(b.dataset.rm)}catch(e){reportSaveErr(e);return}
+  if(b.dataset.rm===d.id)await openCase(defaults());
+  showList();
+ });
+ $('#mList').classList.add('on');
+ updKanSayac();
+}
+$('#bList').onclick=showList;
+$('#bNew').onclick=async()=>{
+ const ok=await ask({title:'Yeni vaka açılsın mı?',body:'Mevcut vaka kayıtlı kalır.',buttons:[{label:'Yeni vaka aç',val:true},{label:'Vazgeç',val:false,cls:'sec2'}]});
+ if(!ok||!await safeToLeave())return;
+ await openCase(defaults());
+ save();window.scrollTo(0,0);toast('Yeni vaka');
+};
+$('#bExport').onclick=()=>exportZip(false);
+$('#bExportAll').onclick=()=>exportZip(true);
+
+/* ---------- dosyadan açma ---------- */
+const SAFE_IMG=/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/;
+const SAFE_SIG=/^data:image\/png;base64,[A-Za-z0-9+/=]+$/;
+const SAFE_ID=/^[\w-]{1,64}$/;
+function sanitizeVeri(v){
+ if(!v||typeof v!=='object'||!Object.keys(REF).includes(v.tip))return null;
+ if(!Number.isFinite(v.cm)||v.cm<=0)return null;
+ const noktalar=a=>Array.isArray(a)&&a.length<=MAX_PTS&&a.every(p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y))?a.map(p=>({x:p.x,y:p.y})):null;
+ const ref=noktalar(v.ref),fet=noktalar(v.fet);
+ if(!ref||!fet||ref.length!==2)return null;
+ if(v.en===undefined)return {tip:v.tip,cm:v.cm,ref,fet};
+ const en=noktalar(v.en);
+ if(!en||en.length!==2)return null;
+ return {tip:v.tip,cm:v.cm,ref,fet,en};
+}
+/* Dosyadan gelen veri güvenilmez: HTML'e girecek her değer burada süzülür. Fotoğraf kimlikleri yenilenir. */
+function sanitizeCase(o){
+ if(!o||typeof o!=='object'||Array.isArray(o))throw new Error('Geçersiz vaka dosyası');
+ const c={...o};
+ S.forEach(s=>s.f.forEach(f=>{
+  const v=c[f.k];
+  if(v==null||['photos','age','note','kan2','rehber'].includes(f.t))return;
+  if(f.t==='check')c[f.k]=Array.isArray(v)?v.filter(x=>typeof x==='string'):[];
+  else if(f.t==='sig'){if(!(typeof v==='string'&&SAFE_SIG.test(v)))delete c[f.k]}
+  else if(f.t==='date'){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(v)))delete c[f.k]}
+  else if(f.t==='time'){if(!/^\d{2}:\d{2}$/.test(String(v)))delete c[f.k]}
+  else if(typeof v==='string'||typeof v==='number')c[f.k]=String(v);
+  else delete c[f.k];
+ }));
+ c.morf=Array.isArray(c.morf)?c.morf.filter(x=>MORF.some(m=>m.k===x)):[];
+ const gecerli=(Array.isArray(c.fotos)?c.fotos:[]).filter(p=>p&&typeof p.src==='string'&&SAFE_IMG.test(p.src));
+ const yeni=gecerli.map((_,i)=>uid()+i.toString(36)),ids=new Map();
+ gecerli.forEach((p,i)=>{if(typeof p.id==='string'&&!ids.has(p.id))ids.set(p.id,yeni[i])});
+ c.fotos=gecerli.map((p,i)=>{
+  const m={id:yeni[i],src:p.src,t:Number(p.t)||Date.now()};
+  if(typeof p.olcum==='number'&&isFinite(p.olcum))m.olcum=p.olcum;
+  const kaynak=ids.get(p.olcumKaynak),veri=sanitizeVeri(p.olcumVeri);
+  const hedefOk=ORGAN.includes(p.olcumHedef)&&Number.isFinite(p.olcumEn)&&p.olcumEn>0;
+  if(m.olcum&&hedefOk){m.olcumHedef=p.olcumHedef;m.olcumEn=p.olcumEn}
+  if(m.olcum&&kaynak&&kaynak!==m.id&&veri&&(p.olcumHedef===undefined||hedefOk)){m.olcumKaynak=kaynak;m.olcumVeri=veri}
+  return m;
+ });
+ ['updated','created'].forEach(k=>{if(!Number.isFinite(c[k]))delete c[k]});
+ c.id=SAFE_ID.test(String(c.id))?String(c.id):uid();
+ c.schema=SCHEMA;
+ return c;
+}
+async function* dosyaVakalari(f){
+ const buf=await f.arrayBuffer();
+ const u=new Uint8Array(buf,0,Math.min(2,buf.byteLength));
+ if(/\.zip$/i.test(f.name)||(u[0]===0x50&&u[1]===0x4b))yield* zipVakalari(zipOku(buf));
+ else yield JSON.parse(new TextDecoder().decode(buf));
+}
+async function importOne(o){
+ const c=sanitizeCase(o);
+ const dusen=(Array.isArray(o.fotos)?o.fotos.length:0)-c.fotos.length;
+ const var_=await dbGet(c.id);
+ let purge=false;
+ if(var_){
+  const karar=await ask({title:'Bu vaka zaten kayıtlı',body:(shortNo(var_.kupe)||'Kimliksiz vaka')+(var_.mahalle?' · '+var_.mahalle:'')+(dusen?'\nDosyadaki '+dusen+' fotoğraf okunamadı.':'')+'\nDosyadaki sürümle ne yapılsın?',buttons:[{label:'Kopya olarak aç',val:'kopya'},{label:'Üzerine yaz',val:'yaz',cls:'red'},{label:'Vazgeç',val:null,cls:'sec2'}]});
+  if(!karar)return null;
+  if(karar==='kopya')c.id=uid();else purge=true;
+ }
+ c.updated=c.updated||Date.now();
+ const{rec,recs}=splitCase(c);
+ await dbWriteCase(rec,recs,purge);
+ return {rec,dusen};
+}
+/* Bir vaka okunamazsa dosyanın kalanı açılmaya devam eder; yalnız depolama hatası işlemi durdurur. */
+async function importFile(f,sonuc){
+ for await(const o of dosyaVakalari(f)){
+  try{
+   const r=await importOne(o);
+   if(r){sonuc.son=r.rec;sonuc.acilan++;sonuc.dusen+=r.dusen}
+  }catch(err){
+   if(err&&err.name==='QuotaExceededError')throw err;
+   sonuc.hata++;
+  }
+ }
+}
+$('#fImport').onchange=async e=>{
+ const files=[...e.target.files];e.target.value='';
+ if(!files.length||!await safeToLeave())return;
+ const s={son:null,acilan:0,hata:0,dusen:0};
+ for(const f of files){
+  try{await importFile(f,s)}
+  catch(err){if(err&&err.name==='QuotaExceededError'){reportSaveErr(err);break}s.hata++}
+ }
+ if(s.son){await openCase(s.son);$('#mList').classList.remove('on')}
+ const mesaj=[];
+ if(s.acilan)mesaj.push(s.acilan+' vaka açıldı');
+ if(s.dusen)mesaj.push(s.dusen+' fotoğraf alınamadı');
+ if(s.hata)mesaj.push(s.hata+' kayıt okunamadı');
+ if(mesaj.length)toast(mesaj.join('; '));
+};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>$('#'+b.dataset.close).classList.remove('on'));
+document.querySelectorAll('.modal:not(#mAsk)').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('on')}));
+$('#mAsk').addEventListener('click',e=>{if(e.target===e.currentTarget)closeAsk(null)});
+$('#bSet').onclick=openAyar;
+$('#setSave').onclick=saveAyar;
+$('#saveSt').onclick=()=>{if($('#saveSt').dataset.st==='bad'){saveErrShown=false;reportSaveErr(null)}};
+let lastW=window.innerWidth;
+window.addEventListener('resize',()=>{if(window.innerWidth===lastW)return;lastW=window.innerWidth;S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}))});
+
+/* ---------- internetsiz kurulum ---------- */
+/* Dosyadan açılışta bu öğeler yüklenmez: tarayıcı engeller ve konsol hatası üretir. */
+const WEBDEN=/^https?:$/.test(location.protocol);
+let swKaydi=null;
+function kurulumuBaslat(){
+ if(!WEBDEN)return;
+ const l=document.createElement('link');
+ l.rel='manifest';l.href='manifest.json';
+ document.head.appendChild(l);
+ if('serviceWorker' in navigator)swKaydi=navigator.serviceWorker.register('sw.js').catch(()=>null);
+}
+/* Kayıt olması yetmez: bu adres kapsamda olmalı ve uygulama gerçekten saklanmış olmalı. */
+async function uygulamaSakli(kayit){
+ const adres=location.href.split(/[?#]/)[0];
+ if(adres!==kayit.scope&&adres!==kayit.scope+'index.html')return false;
+ try{return !!await caches.match(kayit.scope)}catch(e){return false}
+}
+async function cevrimdisiDurumu(){
+ if(!WEBDEN)return 'Dosyadan açıldı: internetsiz çalışır. Ana ekrana eklemek için bağlantıdan açın.';
+ const kayit=swKaydi?await swKaydi:null;
+ if(kayit&&kayit.active&&await uygulamaSakli(kayit))return 'Çevrimdışı hazır: bu bağlantı internet yokken de açılır.';
+ if(kayit&&(kayit.installing||kayit.waiting))return 'Çevrimdışı hazırlık sürüyor; internet bağlantısını kesmeden bekleyin.';
+ return 'Çevrimdışı hazırlanamadı: internet kesilince bu bağlantı açılmayabilir. İnternet varken sayfayı yenileyin.';
+}
+kurulumuBaslat();
+
+/* ---------- başlat ---------- */
+(async()=>{
+ await openDB();
+ let mig={bad:0,failed:0},found=null;
+ if(db){
+  try{mig=await migrateCases()}catch(e){mig.failed=1}
+  try{await recoverPending()}catch(e){toast('Son değişiklik geri yüklenemedi')}
+  try{loadAyarKaydi(await dbRead('ayarlar',s=>s.get(AYAR_ID)))}catch(e){toast('Ayarlar okunamadı; varsayılanlar kullanılıyor')}
+  const cur=lsGet('atikCur');
+  if(cur){try{found=await dbGet(cur)}catch(e){toast('Son vaka okunamadı')}}
+ }
+ await openCase(found||defaults());
+ if(!db){reportSaveErr(null);return}
+ askPersist();
+ if(mig.bad||mig.failed)askInfo('Bazı fotoğraflar taşınamadı',(mig.bad?mig.bad+' fotoğraf çözülemedi ve vaka kaydında özgün hâliyle korunuyor. ':'')+(mig.failed?mig.failed+' vaka taşınamadı ve özgün hâliyle duruyor; uygulama sonraki açılışta yeniden dener.':''));
+ else checkQuota();
+})();
+</script>
+</body>
+</html>

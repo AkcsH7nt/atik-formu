@@ -1,0 +1,33 @@
+{
+  "name": "Atık Saha Formu",
+  "short_name": "Atık Formu",
+  "description": "Atık vakası saha tutanağı, ölçüm ve takip formu",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "lang": "tr",
+  "dir": "ltr",
+  "display": "standalone",
+  "background_color": "#14324f",
+  "theme_color": "#14324f",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
