@@ -212,6 +212,8 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 
 <div class="modal" id="mSet" role="dialog" aria-modal="true"><div class="sheet">
   <h3>Ayarlar</h3>
+  <div class="fld"><label class="l" for="setKurum1">Kurum başlığı (tutanağın üstü)</label><input type="text" id="setKurum1" placeholder="örn. DAMAL KAYMAKAMLIĞI"></div>
+  <div class="fld"><label class="l" for="setKurum2">Birim</label><input type="text" id="setKurum2"></div>
   <div class="fld"><label class="l" for="setVet1">Resmî veteriner hekim (1)</label><input type="text" id="setVet1"></div>
   <div class="fld"><label class="l" for="setVet2">Resmî veteriner hekim (2)</label><input type="text" id="setVet2"></div>
   <div class="fld"><label class="l" for="setEnstitu">Gönderildiği enstitü</label><input type="text" id="setEnstitu"></div>
@@ -432,6 +434,7 @@ function checkCase(c){
  const req=(k,msg)=>{if(isBlank(c[k]))eksik.push({k,msg})};
  const reqVal=(k,ad,v)=>{if(v.empty(c[k]))eksik.push({k,msg:ad});else if(!v.ok(c[k]))eksik.push({k,msg:ad+': '+v.msg})};
  const baska=c.hazir==='Başka kişi';
+ req('kurum1','Kurum başlığı (⚙️ Ayarlar)');
  req('vet1','Resmî veteriner hekim (1) adı');
  req('sahipAd','Hayvan sahibinin adı soyadı');
  reqVal('sahipTc','Hayvan sahibinin T.C. kimlik no',VAL.tc);
@@ -503,6 +506,8 @@ const S=[
  {id:'vaka',t:'Vaka ve tespit eden hekimler',open:true,f:[
   {k:'tarih',l:'Tutanak tarihi',t:'date',def:todayISO,half:1},
   {k:'saat',l:'Saat',t:'time',def:nowHM,half:1},
+  {k:'kurum1',l:'Kurum başlığı (tutanağın üstü)',t:'text',def:()=>ayar.kurum1,ph:'örn. DAMAL KAYMAKAMLIĞI'},
+  {k:'kurum2',l:'Birim',t:'text',def:()=>ayar.kurum2},
   {k:'vet1',l:'Resmî veteriner hekim (1)',t:'text',def:()=>ayar.vet1},
   {k:'vet2',l:'Resmî veteriner hekim (2)',t:'text',def:()=>ayar.vet2}]},
  {id:'sahip',t:'1 · Hayvan sahibi ve işletme',f:[
@@ -591,13 +596,16 @@ const S=[
 
 /* ---------- ayarlar ---------- */
 const AYAR_ID='genel';
-const AYAR_ILK={vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75'};
+const AYAR_ILK={kurum1:'',kurum2:'İlçe Tarım ve Orman Müdürlüğü',vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75'};
+/* Kurum başlığından önceki sürümde kaydedilmiş ayarlar Damal'da kullanılıyordu; başlık korunur. */
+const ESKI_KURUM={kurum1:'DAMAL KAYMAKAMLIĞI',kurum2:'İlçe Tarım ve Orman Müdürlüğü'};
 let ayar=AYAR_ILK;
 const ilGecerli=v=>/^\d{2}$/.test(v)&&+v>=1&&+v<=81;
 function loadAyarKaydi(r){
  if(!r)return;
  const yazi=k=>typeof r[k]==='string'?r[k]:AYAR_ILK[k];
- ayar={vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il};
+ const kurum=k=>typeof r[k]==='string'?r[k]:ESKI_KURUM[k];
+ ayar={kurum1:kurum('kurum1'),kurum2:kurum('kurum2'),vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il};
 }
 function showIlHata(hatali){
  const e=$('#err_setIl');
@@ -606,7 +614,7 @@ function showIlHata(hatali){
  $('#setIl').classList.toggle('bad',hatali);
 }
 function openAyar(){
- $('#setVet1').value=ayar.vet1;$('#setVet2').value=ayar.vet2;$('#setEnstitu').value=ayar.enstitu;$('#setIl').value=ayar.il;
+ $('#setKurum1').value=ayar.kurum1;$('#setKurum2').value=ayar.kurum2;$('#setVet1').value=ayar.vet1;$('#setVet2').value=ayar.vet2;$('#setEnstitu').value=ayar.enstitu;$('#setIl').value=ayar.il;
  showIlHata(false);
  cevrimdisiDurumu().then(metin=>{$('#cevDurum').textContent=metin});
  $('#mSet').classList.add('on');
@@ -614,7 +622,7 @@ function openAyar(){
 async function saveAyar(){
  const il=$('#setIl').value.trim();
  if(!ilGecerli(il)){showIlHata(true);return}
- const yeni={vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il};
+ const yeni={kurum1:$('#setKurum1').value.trim(),kurum2:$('#setKurum2').value.trim(),vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il};
  try{await dbWrite('ayarlar',t=>t.objectStore('ayarlar').put({id:AYAR_ID,...yeni}))}
  catch(e){toast('Ayarlar kaydedilemedi');return}
  ayar=yeni;
@@ -1429,7 +1437,7 @@ const tdv=(k,v)=>`<td class="k">${k}</td><td>${v}</td>`;
 function tutanakHTML(){
  const T=trDate(d.tarih);
  const sig=(k,ad,unv)=>`<td>${d[k]?`<img src="${d[k]}">`:''}<div><b>${esc(ad||'')}</b></div><div>${unv}</div></td>`;
- let h=`<div class="hd">T.C.<br>DAMAL KAYMAKAMLIĞI<br>İlçe Tarım ve Orman Müdürlüğü<div class="t">ATIK TESPİT VE NUMUNE ALMA TUTANAĞI</div></div>
+ let h=`<div class="hd">T.C.<br>${esc(d.kurum1)||'……'}<br>${esc(d.kurum2||'')}<div class="t">ATIK TESPİT VE NUMUNE ALMA TUTANAĞI</div></div>
  <div class="meta"><span>Tarih: ${esc(T)||'…/…/20…'}</span><span>Saat: ${esc(d.saat||'')}</span></div>
  <p>Aşağıda bilgileri yazılı işletmede atık yapan hayvana ilişkin olarak işletmeye gidilmiş; atık materyali resmî veteriner ${hekimEki(d)} yerinde bizzat görülerek aşağıdaki tespitler yapılmış ve işbu tutanak düzenlenmiştir.</p>
  <h5>1. HAYVAN SAHİBİ VE İŞLETME BİLGİLERİ</h5>
@@ -1676,6 +1684,8 @@ async function exportZip(tumu){
 async function openCase(c){
  dropPhotoURLs();
  d=c;d.fotos=d.fotos||[];
+ /* Başlık alanından önceki vakalar ayardaki başlıkla açılır. */
+ if(typeof d.kurum1!=='string'){d.kurum1=ayar.kurum1;d.kurum2=ayar.kurum2}
  lastSaved=d.updated||null;dirty=false;
  try{await loadPhotos(d)}catch(e){toast('Fotoğraflar yüklenemedi')}
  render();
