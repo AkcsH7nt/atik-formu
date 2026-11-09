@@ -218,7 +218,7 @@ nav.bar button.pri{background:#1fa855;color:#fff}
   <div class="fld"><label class="l" for="setVet2">Resmî veteriner hekim (2)</label><input type="text" id="setVet2"></div>
   <div class="fld"><label class="l" for="setEnstitu">Gönderildiği enstitü</label><input type="text" id="setEnstitu"></div>
   <div class="fld"><label class="l" for="setIl">İl kodu (küpe ve işletme no başlangıcı)</label><input type="text" id="setIl" inputmode="numeric" maxlength="2"><div class="err" id="err_setIl"></div></div>
-  <div class="hint">Yeni açılan vakalarda kullanılır; kayıtlı vakalar değişmez.</div>
+  <div class="hint">Kurum, birim ve enstitü formda görünmez; açık vakaya ve yeni vakalara buradan gelir. Hekim adları yeni vakalara gelir. Kayıtlı diğer vakalar değişmez.</div>
   <div class="hint" id="cevDurum" role="status"></div>
   <div class="btns">
     <button class="btn ok" id="setSave">Kaydet</button>
@@ -506,8 +506,6 @@ const S=[
  {id:'vaka',t:'Vaka ve tespit eden hekimler',open:true,f:[
   {k:'tarih',l:'Tutanak tarihi',t:'date',def:todayISO,half:1},
   {k:'saat',l:'Saat',t:'time',def:nowHM,half:1},
-  {k:'kurum1',l:'Kurum başlığı (tutanağın üstü)',t:'text',def:()=>ayar.kurum1,ph:'örn. DAMAL KAYMAKAMLIĞI'},
-  {k:'kurum2',l:'Birim',t:'text',def:()=>ayar.kurum2},
   {k:'vet1',l:'Resmî veteriner hekim (1)',t:'text',def:()=>ayar.vet1},
   {k:'vet2',l:'Resmî veteriner hekim (2)',t:'text',def:()=>ayar.vet2}]},
  {id:'sahip',t:'1 · Hayvan sahibi ve işletme',f:[
@@ -556,7 +554,6 @@ const S=[
   {k:'numTarih',l:'Numune alış tarihi',t:'date',def:todayISO,half:1},
   {k:'numSaat',l:'Numune alış saati',t:'time',def:nowHM,half:1},
   {k:'velbis',l:'VELBİS protokol no',t:'text',ph:()=>'EVE/'+new Date().getFullYear()+'/….'},
-  {k:'enstitu',l:'Gönderildiği enstitü',t:'text',def:()=>ayar.enstitu},
   {k:'gonTarih',l:'Gönderim tarihi',t:'date',half:1},
   {k:'gonSekli',l:'Gönderim şekli',t:'radio',o:['Elden','Kargo'],half:1},
   {k:'kargoNo',l:'Kargo takip no / teslim alan',t:'text'}]},
@@ -599,6 +596,9 @@ const AYAR_ID='genel';
 const AYAR_ILK={kurum1:'',kurum2:'İlçe Tarım ve Orman Müdürlüğü',vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75'};
 /* Kurum başlığından önceki sürümde kaydedilmiş ayarlar Damal'da kullanılıyordu; başlık korunur. */
 const ESKI_KURUM={kurum1:'DAMAL KAYMAKAMLIĞI',kurum2:'İlçe Tarım ve Orman Müdürlüğü'};
+/* Kurum bilgileri formda yoktur, yalnız Ayarlar'dan gelir; vakaya kopyalanır ki kayıtlı vaka ayar değişince değişmesin. */
+const PROFIL={kurum1:'#setKurum1',kurum2:'#setKurum2',enstitu:'#setEnstitu'};
+function profilUygula(c,hepsi){Object.keys(PROFIL).forEach(k=>{if(hepsi||!(typeof c[k]==='string'&&c[k].trim()))c[k]=ayar[k]})}
 let ayar=AYAR_ILK;
 const ilGecerli=v=>/^\d{2}$/.test(v)&&+v>=1&&+v<=81;
 function loadAyarKaydi(r){
@@ -626,13 +626,14 @@ async function saveAyar(){
  try{await dbWrite('ayarlar',t=>t.objectStore('ayarlar').put({id:AYAR_ID,...yeni}))}
  catch(e){toast('Ayarlar kaydedilemedi');return}
  ayar=yeni;
+ profilUygula(d,true);save();
  $('#mSet').classList.remove('on');
- toast('Ayarlar kaydedildi; yeni vakalarda geçerli');
+ toast('Ayarlar kaydedildi');
 }
 
 /* ---------- durum ---------- */
 let d={}; let curId=null;
-function defaults(){const o={id:uid(),schema:SCHEMA,created:Date.now(),fotos:[],morf:[]};S.forEach(s=>s.f.forEach(f=>{if(f.def!==undefined)o[f.k]=typeof f.def==='function'?f.def():(Array.isArray(f.def)?f.def.slice():f.def)}));return o}
+function defaults(){const o={id:uid(),schema:SCHEMA,created:Date.now(),fotos:[],morf:[]};S.forEach(s=>s.f.forEach(f=>{if(f.def!==undefined)o[f.k]=typeof f.def==='function'?f.def():(Array.isArray(f.def)?f.def.slice():f.def)}));profilUygula(o,true);return o}
 
 /* ---------- IndexedDB ---------- */
 const DB_NAME='atikSaha',DB_VER=3,SCHEMA=2,QUOTA_WARN=.8,SAVE_DELAY=400;
@@ -1359,6 +1360,7 @@ function initSig(k){
 /* ---------- çıktı öncesi kontrol ---------- */
 function goField(k){
  $('#mCheck').classList.remove('on');
+ if(PROFIL[k]){openAyar();$(PROFIL[k]).focus();return}
  const sec=S.find(s=>s.f.some(f=>f.k===k));
  const det=sec&&$(`details[data-s="${sec.id}"]`);if(det)det.open=true;
  const el=$('#f_'+k)||$('#sig_'+k)||(k==='fotos'?$('#phBox'):null)||$(`input[data-k="${k}"]`);
@@ -1684,8 +1686,8 @@ async function exportZip(tumu){
 async function openCase(c){
  dropPhotoURLs();
  d=c;d.fotos=d.fotos||[];
- /* Başlık alanından önceki vakalar ayardaki başlıkla açılır. */
- if(typeof d.kurum1!=='string'){d.kurum1=ayar.kurum1;d.kurum2=ayar.kurum2}
+ /* Kurum bilgisi boş veya eksik eski vaka ayardakiyle açılır. */
+ profilUygula(d,false);
  lastSaved=d.updated||null;dirty=false;
  try{await loadPhotos(d)}catch(e){toast('Fotoğraflar yüklenemedi')}
  render();
