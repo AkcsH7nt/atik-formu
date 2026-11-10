@@ -128,6 +128,31 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 .rz.yes{background:#dff3e6;color:#12683a}
 .rz.kir{background:#fbe0dd;color:#9c2a1e}
 .rz.sar{background:#fdebcf;color:#8a4b12}
+.rz.as{background:var(--navy);color:#fff}
+.rz.uk{background:var(--red);color:#fff}
+.rz.ut{background:#d9822b;color:#fff}
+#band{display:block;width:100%;border:0;background:var(--red);color:#fff;font-weight:700;font-size:14px;padding:9px 14px;text-align:left;min-height:44px}
+#band[hidden],#lBand[hidden],#bListSay[hidden]{display:none}
+#bListSay{display:inline-block;background:var(--red);color:#fff;border-radius:9px;font-size:11px;padding:0 6px;margin-left:4px}
+.filt{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 8px}
+.filt button{border:1px solid var(--line);background:#fbfcfd;border-radius:16px;padding:6px 11px;font-size:13px;min-height:36px;color:var(--txt)}
+.filt button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+#listAra{margin:0 0 8px}
+.lband{display:block;border-radius:9px;padding:8px 10px;margin:0 0 8px;font-size:13.5px;font-weight:700;background:#fbe0dd;color:#9c2a1e;border:1px solid #f0b4ac;width:100%;text-align:left;min-height:44px}
+.vu{margin:0 0 10px}
+.vu .ln{display:block;width:100%;text-align:left;border-radius:9px;padding:8px 11px;margin:0 0 6px;font-size:13.5px;font-weight:600;min-height:40px}
+.vu .k{background:#fbe0dd;color:#9c2a1e;border:1px solid #f0b4ac}
+.vu .t{background:#fff5e8;color:#7a4510;border:1px solid #efc994}
+.vu .a{background:#eef4fb;color:var(--navy);border:1px solid #c9dbef}
+.vu .kp{background:#e8edf2;color:#33414e;border:1px solid var(--line);display:flex;align-items:center;gap:8px}
+.vu .kp span{flex:1}
+.grpb{font-size:13.5px;font-weight:700;color:var(--navy);margin:14px 0 8px;padding-top:10px;border-top:1px solid var(--line)}
+.body>.grpb:first-child{margin-top:0;padding-top:0;border-top:0}
+#app.kapali .sec .body{opacity:.8}
+#app.kapali canvas.sig{pointer-events:none}
+.gl{font-size:13px;border-bottom:1px solid var(--line);padding:6px 0}
+.gl small{color:var(--mut);display:block}
+#esikBox .fld{margin-bottom:8px}
 .rehber{font-size:14.5px;line-height:1.4}
 .rehber h5{margin:14px 0 6px;padding:6px 9px;border-radius:7px;background:var(--navy);color:#fff;font-size:13.5px}
 .rehber h4{margin:12px 0 4px;font-size:14.5px;color:var(--navy)}
@@ -174,9 +199,10 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 <header class="top">
   <h1>Atık Saha Formu<br><small id="caseLbl">Yeni vaka</small></h1>
   <button id="saveSt" class="ss" aria-live="polite"></button>
-  <button id="bList">Vakalar</button>
+  <button id="bList">Vakalar<span id="bListSay" hidden></span></button>
   <button id="bSet" aria-label="Ayarlar">⚙️</button>
 </header>
+<button id="band" type="button" hidden></button>
 <main id="app"></main>
 
 <nav class="bar">
@@ -200,6 +226,9 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 
 <div class="modal" id="mList"><div class="sheet">
   <h3>Kayıtlı vakalar</h3>
+  <button class="lband" id="lBand" type="button" hidden></button>
+  <div class="filt" id="listFilt"></div>
+  <input type="text" id="listAra" placeholder="Ara: vaka no, sahip, küpe, işletme, köy, bildirim/protokol no" aria-label="Vakalarda ara">
   <div class="list" id="listBox"></div>
   <div class="btns">
     <button class="btn sec2" id="bExport">Bu vakayı ZIP'e kaydet</button>
@@ -218,7 +247,9 @@ nav.bar button.pri{background:#1fa855;color:#fff}
   <div class="fld"><label class="l" for="setVet2">Resmî veteriner hekim (2)</label><input type="text" id="setVet2"></div>
   <div class="fld"><label class="l" for="setEnstitu">Gönderildiği enstitü</label><input type="text" id="setEnstitu"></div>
   <div class="fld"><label class="l" for="setIl">İl kodu (küpe ve işletme no başlangıcı)</label><input type="text" id="setIl" inputmode="numeric" maxlength="2"><div class="err" id="err_setIl"></div></div>
-  <div class="hint">Kurum, birim ve enstitü formda görünmez; açık vakaya ve yeni vakalara buradan gelir. Hekim adları yeni vakalara gelir. Kayıtlı diğer vakalar değişmez.</div>
+  <details class="sec"><summary>Uyarı eşikleri (gün)</summary><div class="body" id="esikBox"></div></details>
+  <div class="err" id="err_esik"></div>
+  <div class="hint">Kurum, birim ve enstitü formda görünmez; açık vakaya ve yeni vakalara buradan gelir. Hekim adları yeni vakalara gelir. Kayıtlı diğer vakalar değişmez. Vaka günlüğüne hekim (1) adı yazılır.</div>
   <div class="hint" id="cevDurum" role="status"></div>
   <div class="btns">
     <button class="btn ok" id="setSave">Kaydet</button>
@@ -371,7 +402,10 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 /* ---------- yardımcılar ---------- */
 const $=s=>document.querySelector(s);
 const pad=n=>String(n).padStart(2,'0');
-const todayISO=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const gunISO=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const todayISO=()=>gunISO(new Date());
+/* ISO zaman damgasının cihaz saatine göre günü. */
+const yerelGun=s=>{const x=new Date(s||NaN);return isNaN(x)?'':gunISO(x)};
 const nowHM=()=>{const d=new Date();return pad(d.getHours())+':'+pad(d.getMinutes())};
 const trDate=s=>{if(!s)return '';const m=String(s).match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?m[3]+'.'+m[2]+'.'+m[1]:s};
 const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -411,6 +445,7 @@ function tcValid(v){
  return n.slice(0,10).reduce((a,b)=>a+b,0)%10===n[10];
 }
 const VAL={
+ vakano:{ok:v=>VAKA_NO.test(String(v).trim()),empty:v=>!String(v||'').trim(),msg:'YYYY/NNN biçiminde olmalı (yıl/sıra no).'},
  trno:{ok:trNoValid,empty:noIsEmpty,msg:'TR + 12 hane olmalı (örn. TR750000123456).'},
  tc:{ok:tcValid,empty:v=>!String(v||'').trim(),msg:'Geçersiz T.C. kimlik no (11 hane ve algoritma kontrolü).'}};
 const isBlank=v=>v==null||(Array.isArray(v)?!v.length:String(v).trim()==='');
@@ -427,6 +462,10 @@ const GEBELIK_AYI_ETIKET='Gebeliğin kaçıncı ayında atık yaptığı';
 const PROTOKOL_OFISTE='Ofiste oluşturulacak';
 const D8_OFISTE_METNI="Numune alındı; VELBİS'te Marazi Madde Gönderme Protokolü ofiste oluşturulacak ve protokol numarası tutanağa işlenecek";
 const yalnizPlasenta=c=>{const m=c.materyal||[];return m.length===1&&m[0]==='Plasenta / zarlar'};
+const IMZALAR=['EK-1 imzalandı','Protokol imzalandı'];
+const TEBLIG=['Elden tebliğ edildi','İmzadan kaçınıldı'];
+const ENGEL=['Bulunmadı','Bulundu'];
+const tumSartlarEvet=c=>[1,2,3,4,5,6,7,8].every(i=>c['d'+i]==='Evet');
 
 /* Çıktı öncesi kontrol: eksik = doldurulması gereken, uyari = alan mantığı uyarısı. Çıktıyı engellemez. */
 function checkCase(c){
@@ -457,6 +496,8 @@ function checkCase(c){
  const ofiste=c.d8===PROTOKOL_OFISTE;
  if(isBlank(c.velbis))uyari.push({k:'velbis',msg:'VELBİS protokol no boş. Destek hakkı protokol oluşturulunca kazanılır; '+(ofiste?'ofiste oluşturunca numarasını yaz, şart 8’i “Evet” yap.':'protokolü oluştur, numarasını yaz.')});
  else if(ofiste)uyari.push({k:'d8',msg:'VELBİS protokol no yazıldı; şart 8’i “Evet” yap.'});
+ if(c.engel==='Bulunmadı'&&!tumSartlarEvet(c))uyari.push({k:'engel',msg:'Engel “bulunmadı” seçili ama 8 destek şartının hepsi “Evet” değil.'});
+ if(c.engel==='Bulundu'&&isBlank(c.engelAc))uyari.push({k:'engelAc',msg:'Destek ödemesine engel bulundu: açıklamasını yaz.'});
  if(yalnizSvap(c))uyari.push({k:'numune',msg:TEXT_SVAP});
  if(!isBlank(c.numune)&&!asgariTamam(c))uyari.push({k:'numune',msg:TEXT_ASGARI});
  uyari.push(...organUyarilari(c));
@@ -504,6 +545,7 @@ const MORF=[
 
 const S=[
  {id:'vaka',t:'Vaka ve tespit eden hekimler',open:true,f:[
+  {k:'vakaNo',l:'Vaka no',t:'text',val:'vakano',ph:()=>new Date().getFullYear()+'/001'},
   {k:'tarih',l:'Tutanak tarihi',t:'date',def:todayISO,half:1},
   {k:'saat',l:'Saat',t:'time',def:nowHM,half:1},
   {k:'vet1',l:'Resmî veteriner hekim (1)',t:'text',def:()=>ayar.vet1},
@@ -528,6 +570,7 @@ const S=[
   {k:'atikSaat',l:'Atık saati (yaklaşık)',t:'time',half:1},
   {k:'materyal',l:'Görülen materyal',t:'check',o:['Fötüs','Plasenta / zarlar'],def:['Fötüs']},
   {k:'turkvet',l:"TÜRKVET'te bu sahip adına ve bu işletmede kayıtlı",t:'radio',o:EH},
+  {k:'turkvetIsletme',l:"Atık tarihinde TÜRKVET'te kayıtlı olduğu işletme no (boşsa işletme no)",t:'text',up:1,val:'trno'},
   {k:'asiBru',l:'Brusella aşısı (S19 / RB51 / Rev-1)',t:'radio',o:EH,half:1},
   {k:'asiBruT',l:'Brusella aşı tarihi',t:'date',half:1},
   {k:'asiSap',l:'Şap aşısı',t:'radio',o:EH,half:1},
@@ -553,7 +596,6 @@ const S=[
   {k:'muhafaza',l:'Muhafaza',t:'radio',o:['Soğuk zincir (+4 °C)','Donuk'],def:'Soğuk zincir (+4 °C)',half:1},
   {k:'numTarih',l:'Numune alış tarihi',t:'date',def:todayISO,half:1},
   {k:'numSaat',l:'Numune alış saati',t:'time',def:nowHM,half:1},
-  {k:'velbis',l:'VELBİS protokol no',t:'text',ph:()=>'EVE/'+new Date().getFullYear()+'/….'},
   {k:'gonTarih',l:'Gönderim tarihi',t:'date',half:1},
   {k:'gonSekli',l:'Gönderim şekli',t:'radio',o:['Elden','Kargo'],half:1},
   {k:'kargoNo',l:'Kargo takip no / teslim alan',t:'text'}]},
@@ -570,6 +612,8 @@ const S=[
   {k:'silaj',l:'Silaj',t:'radio',o:['Kullanılıyor','Kullanılmıyor']}]},
  {id:'destek',t:'6 · Destek şartlarının kontrolü',f:[
   ...DESTEK.map((l,i)=>({k:'d'+(i+1),l:c=>(i+1)+'. '+destekMetni(l,c),t:'radio',o:i===7?[...EH,PROTOKOL_OFISTE]:EH})),
+  {k:'engel',l:'Destek ödemesine engel durum',t:'radio',o:ENGEL},
+  {k:'engelAc',l:'Engel bulunduysa açıklama',t:'textarea'},
   {k:'tarsim',l:'TARSİM sigortası',t:'radio',o:['Yok','Var'],half:1},
   {k:'police',l:'Varsa poliçe no',t:'text',half:1}]},
  {id:'onlem',t:'7 · Alınan önlemler',f:[
@@ -584,16 +628,65 @@ const S=[
   {k:'sigVet1',l:'Resmî veteriner hekim (1)',t:'sig'},
   {k:'sigVet2',l:'Resmî veteriner hekim (2)',t:'sig'}]},
  {id:'takip',t:'9 · Takip (tutanağa girmez)',f:[
-  {k:'sonuc',l:'Laboratuvar sonucu',t:'radio',o:['Pozitif','Negatif'],half:1},
-  {k:'sonucTarih',l:'Sonuç tarihi',t:'date',half:1},
-  {k:'destekTarih',l:'Desteğin işlendiği tarih',t:'date'},
+  {k:'g_sistem',t:'baslik',l:'Sistem kayıtları'},
+  {k:'velbis',l:'VELBİS protokol no',t:'text',ph:()=>'EVE/'+new Date().getFullYear()+'/….'},
+  {k:'protT',l:'Protokol oluşturma tarihi',t:'date'},
+  {k:'kisitT',l:'TÜRKVET kısıt tarihi',t:'date',half:1},
+  {k:'kisitS',l:'Kısıt saati',t:'time',half:1},
+  {k:'bildirimNo',l:'Hastalık bildirim no',t:'text'},
+  {k:'g_gonderim',t:'baslik',l:'Numune gönderimi'},
   {k:'gonKontrol',l:'Göndermeden önce son kontrol',t:'check',o:GON_KONTROL,col:1},
-  {k:'gonKontrolNot',t:'rehber'}]}
+  {k:'gonKontrolNot',t:'rehber'},
+  {k:'g_imza',t:'baslik',l:'İmza ziyareti'},
+  {k:'ziyaretT',l:'Ziyaret tarihi',t:'date'},
+  {k:'imzalar',l:'İmzalananlar',t:'check',o:IMZALAR},
+  {k:'teblig',l:'Geçici tedbir bildirimi tebliği',t:'radio',o:TEBLIG},
+  {k:'kacGerekce',l:'İmzadan kaçınıldıysa gerekçe',t:'text'},
+  {k:'kacTeslim',l:'Evrakı teslim alan',t:'radio',o:['Muhtar','İhtiyar heyeti üyesi','Kolluk']},
+  {k:'kacTeslimAd',l:'Teslim alanın adı soyadı',t:'text'},
+  {k:'kacKomsu',l:'Haberdar edilen komşu',t:'text'},
+  {k:'kacT',l:'Teslim tarihi',t:'date',half:1},
+  {k:'kacS',l:'Teslim saati',t:'time',half:1},
+  {k:'g_sonuc',t:'baslik',l:'Laboratuvar sonucu'},
+  {k:'sonuc',l:'Analiz sonucu',t:'radio',o:['Negatif','Pozitif'],half:1},
+  {k:'sonucTarih',l:'Sonuç tarihi',t:'date',half:1},
+  {k:'raporNo',l:'Rapor no',t:'text'},
+  {k:'g_kisit',t:'baslik',l:'Kısıt kaldırma / HSZ Komisyonu'},
+  {k:'kaldirmaT',l:'Negatifse: kısıt kaldırma tarihi',t:'date'},
+  {k:'kaldirmaYaziT',l:'Kaldırma yazısı tarihi',t:'date',half:1},
+  {k:'kaldirmaYaziSayi',l:'Kaldırma yazısı sayısı',t:'text',half:1},
+  {k:'kaldirmaTebligT',l:'Kaldırmanın tebliğ tarihi',t:'date'},
+  {k:'hszT',l:'Pozitifse: HSZ karar tarihi',t:'date',half:1},
+  {k:'hszNo',l:'HSZ karar no',t:'text',half:1},
+  {k:'hszTebligT',l:'Kararın tebliğ tarihi',t:'date',half:1},
+  {k:'halkSagT',l:'Halk Sağlığına bildirim tarihi',t:'date',half:1},
+  {k:'g_destek',t:'baslik',l:'Destek'},
+  {k:'destekTarih',l:'VETBİS destek kaydı tarihi',t:'date',half:1},
+  {k:'icmal',l:'İcmal dönemi',t:'text',ph:()=>new Date().getFullYear()+'/'+pad(new Date().getMonth()+1),half:1},
+  {k:'g_arsiv',t:'baslik',l:'Arşiv'},
+  {k:'digT',l:'Dijital kayıt tarihi',t:'date',half:1},
+  {k:'digSayi',l:'Dijital kayıt sayısı',t:'text',half:1},
+  {k:'kapat',t:'kapat'}]},
+ {id:'gunluk',t:'Vaka günlüğü (basılmaz)',f:[{k:'gunlukBox',t:'gunluk'}]}
 ];
+/* Veri alanı olmayan, yalnız ekranda çizilen öğeler. */
+const GORUNTU=['photos','age','gps','note','rehber','baslik','kapat','gunluk'];
 
 /* ---------- ayarlar ---------- */
 const AYAR_ID='genel';
-const AYAR_ILK={kurum1:'',kurum2:'İlçe Tarım ve Orman Müdürlüğü',vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75'};
+/* Bekleme uyarılarının gün eşikleri (mimari v3 §3A-4). */
+const ESIK_TANIM=[
+ {k:'sistem',l:'Sistem kayıtları girilmedi',v:1},
+ {k:'imza',l:'İmza ziyareti yapılmadı (turuncu)',v:3},
+ {k:'imzaKir',l:'İmza ziyareti yapılmadı (kırmızı)',v:7},
+ {k:'sonuc',l:'Sonuç gelmedi',v:21},
+ {k:'hsz',l:'Pozitif sonuç, HSZ kararı girilmedi (kırmızı)',v:3},
+ {k:'destek',l:'VETBİS destek kaydı yapılmadı',v:7},
+ {k:'arsiv',l:'Dijital kayıt yapılmadı',v:7}];
+const ESIK_MAKS=365;
+const ESIK_ILK=Object.fromEntries(ESIK_TANIM.map(e=>[e.k,e.v]));
+const esikGecerli=v=>Number.isInteger(v)&&v>=0&&v<=ESIK_MAKS;
+const AYAR_ILK={kurum1:'',kurum2:'İlçe Tarım ve Orman Müdürlüğü',vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75',esik:ESIK_ILK};
 /* Kurum başlığından önceki sürümde kaydedilmiş ayarlar Damal'da kullanılıyordu; başlık korunur. */
 const ESKI_KURUM={kurum1:'DAMAL KAYMAKAMLIĞI',kurum2:'İlçe Tarım ve Orman Müdürlüğü'};
 /* Kurum bilgileri formda yoktur, yalnız Ayarlar'dan gelir; vakaya kopyalanır ki kayıtlı vaka ayar değişince değişmesin. */
@@ -605,7 +698,9 @@ function loadAyarKaydi(r){
  if(!r)return;
  const yazi=k=>typeof r[k]==='string'?r[k]:AYAR_ILK[k];
  const kurum=k=>typeof r[k]==='string'?r[k]:ESKI_KURUM[k];
- ayar={kurum1:kurum('kurum1'),kurum2:kurum('kurum2'),vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il};
+ const es=r.esik&&typeof r.esik==='object'?r.esik:{};
+ const esik=Object.fromEntries(ESIK_TANIM.map(e=>[e.k,esikGecerli(es[e.k])?es[e.k]:e.v]));
+ ayar={kurum1:kurum('kurum1'),kurum2:kurum('kurum2'),vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il,esik};
 }
 function showIlHata(hatali){
  const e=$('#err_setIl');
@@ -616,17 +711,27 @@ function showIlHata(hatali){
 function openAyar(){
  $('#setKurum1').value=ayar.kurum1;$('#setKurum2').value=ayar.kurum2;$('#setVet1').value=ayar.vet1;$('#setVet2').value=ayar.vet2;$('#setEnstitu').value=ayar.enstitu;$('#setIl').value=ayar.il;
  showIlHata(false);
+ $('#esikBox').innerHTML=ESIK_TANIM.map(e=>`<div class="fld"><label class="l" for="setEsik_${e.k}">${esc(e.l)}</label><input type="text" inputmode="numeric" maxlength="3" id="setEsik_${e.k}" value="${ayar.esik[e.k]}"></div>`).join('');
+ $('#err_esik').textContent='';$('#err_esik').classList.remove('on');
  cevrimdisiDurumu().then(metin=>{$('#cevDurum').textContent=metin});
  $('#mSet').classList.add('on');
 }
 async function saveAyar(){
  const il=$('#setIl').value.trim();
  if(!ilGecerli(il)){showIlHata(true);return}
- const yeni={kurum1:$('#setKurum1').value.trim(),kurum2:$('#setKurum2').value.trim(),vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il};
+ const esik={};
+ for(const e of ESIK_TANIM){
+  const s=$('#setEsik_'+e.k).value.trim(),v=/^\d{1,3}$/.test(s)?+s:NaN;
+  if(!esikGecerli(v)){const er=$('#err_esik');er.textContent='Eşikler 0 ile '+ESIK_MAKS+' arasında tam gün olmalı: '+e.l;er.classList.add('on');$('#esikBox').closest('details').open=true;return}
+  esik[e.k]=v;
+ }
+ const yeni={kurum1:$('#setKurum1').value.trim(),kurum2:$('#setKurum2').value.trim(),vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il,esik};
  try{await dbWrite('ayarlar',t=>t.objectStore('ayarlar').put({id:AYAR_ID,...yeni}))}
  catch(e){toast('Ayarlar kaydedilemedi');return}
  ayar=yeni;
- profilUygula(d,true);save();
+ /* Kapalı vaka salt okunurdur; kurum bilgisi de değişmez. */
+ if(!d.kapali){profilUygula(d,true);save()}
+ updVakaUyari();updBand();
  $('#mSet').classList.remove('on');
  toast('Ayarlar kaydedildi');
 }
@@ -636,14 +741,16 @@ let d={}; let curId=null;
 function defaults(){const o={id:uid(),schema:SCHEMA,created:Date.now(),fotos:[],morf:[]};S.forEach(s=>s.f.forEach(f=>{if(f.def!==undefined)o[f.k]=typeof f.def==='function'?f.def():(Array.isArray(f.def)?f.def.slice():f.def)}));profilUygula(o,true);return o}
 
 /* ---------- IndexedDB ---------- */
-const DB_NAME='atikSaha',DB_VER=3,SCHEMA=2,QUOTA_WARN=.8,SAVE_DELAY=400;
+const DB_NAME='atikSaha',DB_VER=4,SCHEMA=3,QUOTA_WARN=.8,SAVE_DELAY=400,GUNLUK='gunluk';
 let db=null;
 function openDB(){return new Promise(res=>{try{
  const r=indexedDB.open(DB_NAME,DB_VER);
  r.onupgradeneeded=()=>{const x=r.result;
   if(!x.objectStoreNames.contains('cases'))x.createObjectStore('cases',{keyPath:'id'});
   if(!x.objectStoreNames.contains('photos'))x.createObjectStore('photos',{keyPath:'id'}).createIndex('caseId','caseId');
-  if(!x.objectStoreNames.contains('ayarlar'))x.createObjectStore('ayarlar',{keyPath:'id'})};
+  if(!x.objectStoreNames.contains('ayarlar'))x.createObjectStore('ayarlar',{keyPath:'id'});
+  /* Günlük yalnız eklenir; silme ve düzeltme kodu yoktur. Vaka silinse de günlüğü kalır. */
+  if(!x.objectStoreNames.contains(GUNLUK))x.createObjectStore(GUNLUK,{keyPath:'id',autoIncrement:true}).createIndex('vakaId','vakaId')};
  let engellendi=false;
  r.onblocked=()=>{engellendi=true;askInfo('Eski sürüm açık','Formun eski sürümü başka bir sekmede ya da pencerede açık. Kayıtlar taşınamıyor; onu kapat, uygulama kendiliğinden açılır.')};
  r.onsuccess=()=>{if(engellendi)closeAsk(null);db=r.result;db.onversionchange=()=>{db.close();db=null;setSave('bad')};res()};
@@ -698,6 +805,40 @@ function splitCase(c){
   const{src,...meta}=p;return meta;
  });
  return {rec:{...c,fotos,schema:SCHEMA},recs};
+}
+/* Vaka no YYYY/NNN; yıl atık tarihinden, yoksa kayıt tarihinden. Elle değiştirilebilir. */
+const VAKA_NO=/^(\d{4})\/(\d+)$/;
+const pad3=n=>String(n).padStart(3,'0');
+function enBuyukNolar(list){
+ const enb={};
+ list.forEach(c=>{const m=VAKA_NO.exec(String(c.vakaNo||'').trim());if(m)enb[m[1]]=Math.max(enb[m[1]]||0,+m[2])});
+ return enb;
+}
+const vakaYili=c=>/^\d{4}-/.test(c.atikTarih||'')?c.atikTarih.slice(0,4):String(new Date(c.created||c.updated||Date.now()).getFullYear());
+async function yeniVakaNo(){
+ let list=[];
+ try{list=await dbAll()}catch(e){toast('Vaka no için kayıtlar okunamadı; numarayı kontrol et')}
+ const yil=String(new Date().getFullYear());
+ return yil+'/'+pad3((enBuyukNolar(list)[yil]||0)+1);
+}
+/* Aynı numara başka vakada varsa bir kez uyarılır; kayıt engellenmez. */
+async function vakaNoYinelendiMi(){
+ const c=d,no=String(c.vakaNo||'').trim();if(!no||!db)return;
+ let all=[];try{all=await dbAll()}catch(e){return}
+ if(c===d&&String(d.vakaNo||'').trim()===no&&all.some(x=>x.id!==c.id&&String(x.vakaNo||'').trim()===no))toast('Bu vaka no başka bir vakada da var: '+no);
+}
+async function yeniVaka(){const o=defaults();o.vakaNo=await yeniVakaNo();return o}
+/* v2 → v3: vaka nosu olmayan kayıtlara sırayla numara verilir; diğer alanlar değişmez. */
+async function vakaNolariVer(){
+ const all=await dbAll();
+ const enb=enBuyukNolar(all);
+ const eksik=all.filter(c=>isBlank(c.vakaNo)).sort((a,b)=>(a.created||a.updated||0)-(b.created||b.updated||0));
+ for(const c of eksik){
+  const y=vakaYili(c);enb[y]=(enb[y]||0)+1;
+  const rec={...c,vakaNo:y+'/'+pad3(enb[y]),schema:SCHEMA};
+  if(!('olusturan' in rec))rec.olusturan=null;
+  await dbPut(rec);
+ }
 }
 async function migrateCases(){
  let bad=0,failed=0;
@@ -797,15 +938,23 @@ function flushSave(){
  if(!dirty)return inflight||Promise.resolve(true);
  dirty=false;
  const c=d;c.updated=Date.now();
+ /* Vakanın ilk kaydı günlükte "Vaka açıldı" olarak yer alır. */
+ const ilkKayit=!('olusturan' in c);
+ if(ilkKayit)c.olusturan=kimAdi();
+ c.guncelleyen=kimAdi();
  lsSet('atikCur',c.id);
  const run=(async()=>{
   try{
    await dbPut(c);
+   if(ilkKayit)gunlukYaz(c.id,'Vaka açıldı',c.vakaNo||'');
    lastSaved=c.updated;saveErrShown=false;
+   updBand();
    if(inflight===run&&!dirty){lsDel(PENDING_KEY);setSave('ok')}
    return true;
   }catch(e){
    if(c===d)dirty=true;
+   /* İlk kayıt yazılamadıysa sonraki denemede "Vaka açıldı" yine yazılsın. */
+   if(ilkKayit)delete c.olusturan;
    reportSaveErr(e);
    return false;
   }finally{
@@ -818,6 +967,8 @@ function flushSave(){
 }
 /* Vakadan ayrılmadan önce: kayıt yazılamadıysa geçiş yapılmaz, değişiklik bellekte korunur. */
 async function safeToLeave(){
+ gunlukNoktasi();
+ await photoQ;
  let ok=await flushSave();
  if(ok&&dirty)ok=await flushSave();
  if(!ok)toast('Vaka kaydedilemedi; önce vakayı dosyaya kaydet ya da yer aç');
@@ -838,7 +989,7 @@ async function recoverPending(){
  lsDel(PENDING_KEY);
 }
 window.addEventListener('pagehide',stashPending);
-document.addEventListener('visibilitychange',()=>{if(document.hidden)stashPending()});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){gunlukNoktasi();stashPending()}});
 
 /* ---------- depolama kotası ---------- */
 let quotaWarned=false;
@@ -854,7 +1005,7 @@ async function checkQuota(){
 }
 function askPersist(){try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist().catch(()=>{})}catch(e){}}
 
-function updLbl(){$('#caseLbl').textContent=(d.kupe&&d.kupe.length>4?kisa(d.kupe):'Yeni vaka')+(d.mahalle?' · '+d.mahalle:'')}
+function updLbl(){$('#caseLbl').textContent=(d.vakaNo?d.vakaNo+' · ':'')+(d.kupe&&d.kupe.length>4?kisa(d.kupe):'Yeni vaka')+(d.mahalle?' · '+d.mahalle:'')}
 
 /* ---------- form çizimi ---------- */
 function render(){
@@ -869,11 +1020,18 @@ function render(){
   });flush();
   h+='</div></details>';
  });
- app.innerHTML=h;
+ app.innerHTML='<div class="vu" id="vakaUyari"></div>'+h;
  bind();
  S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}));
  S.forEach(s=>s.f.forEach(f=>{if(f.val)showValid(f)}));
- drawPhotos();calcAge();updNumWarn();updStatus();updLbl();
+ drawPhotos();calcAge();updNumWarn();updStatus();updLbl();updVakaUyari();drawGunluk();
+ kapaliGorunum();
+}
+/* Kapalı vaka salt okunurdur: tüm girişler kilitlenir, yalnız "Yeniden aç" ve rehber çalışır. */
+function kapaliGorunum(){
+ const app=$('#app');app.classList.toggle('kapali',!!d.kapali);
+ if(!d.kapali)return;
+ app.querySelectorAll('input,textarea,select,button').forEach(e=>{if(e.id!=='bYenidenAc'&&!e.hasAttribute('data-rehber')&&!e.closest('#vakaUyari'))e.disabled=true});
 }
 function showValid(f){
  const el=$('#f_'+f.k),er=$('#err_'+f.k);if(!el||!er)return;
@@ -887,6 +1045,9 @@ function updNumWarn(){
 function field(f){
  const v=d[f.k];const id='f_'+f.k;
  if(f.t==='rehber')return `<div class="hint">Nekropsi numunesi değilse o maddeyi de işaretle.</div>${REHBER_TUS}`;
+ if(f.t==='baslik')return `<div class="grpb">${esc(f.l)}</div>`;
+ if(f.t==='kapat')return `<div class="fld" id="kapatBox"></div>`;
+ if(f.t==='gunluk')return `<div id="gunlukBox"><div class="hint">Yükleniyor…</div></div>`;
  if(f.t==='note')return `<div class="note" id="numNote">Atık desteği için atık materyali resmî veteriner hekimce bizzat görülmelidir; yalnız vajinal svap destek şartını karşılamaz.</div><div class="note w" id="numWarn" hidden></div>${REHBER_TUS}`;
  if(f.t==='photos')return `<div class="fld"><label class="l">Fotoğraflar</label>
   <div class="inl"><label class="btn" style="flex:1">📷 Fotoğraf çek<input type="file" id="fCam" accept="image/*" capture="environment" hidden></label>
@@ -920,13 +1081,24 @@ function afterChange(k){
  if(['morf','fetusCm','tohumlama','atikTarih','tur'].includes(k))calcAge();
  if(k==='numune')updNumWarn();
  if(k==='atikTarih'||k==='vet2')DESTEK.forEach((l,i)=>{const e=$(`label.l[for="f_d${i+1}"]`);if(e)e.textContent=fieldOf('d'+(i+1)).l(d)});
+ if(k==='vakaNo'||k==='kupe'||k==='mahalle')updLbl();
+ if(k==='vakaNo')vakaNoYinelendiMi();
+ updVakaUyari();
+}
+/* "Bulunmadı" yalnız 8 destek şartının hepsi "Evet" iken seçilebilir. */
+function engelReddi(el){
+ if(el.dataset.k!=='engel'||el.value!=='Bulunmadı'||tumSartlarEvet(d))return false;
+ el.checked=false;
+ const once=d.engel&&[...document.querySelectorAll('#app input[data-k="engel"]')].find(i=>i.value===d.engel);if(once)once.checked=true;
+ askInfo('Engel durumu seçilemedi','“Bulunmadı” seçmek için 6. bölümdeki 8 destek şartının hepsi “Evet” olmalı.');
+ return true;
 }
 function bind(){
  document.querySelectorAll('#app [data-k]').forEach(el=>{
   const k=el.dataset.k;
   const h=()=>{
    if(el.type==='checkbox'){const arr=[...document.querySelectorAll(`#app input[data-k="${k}"]:checked`)].map(i=>i.value);d[k]=arr}
-   else if(el.type==='radio'){if(el.checked)d[k]=el.value}
+   else if(el.type==='radio'){if(engelReddi(el))return;if(el.checked)d[k]=el.value}
    else{let val=el.value;if(el.getAttribute('autocapitalize')==='characters'){val=normNo(val);if(el.value!==val)el.value=val}d[k]=val}
    afterChange(k);
    save();
@@ -935,7 +1107,7 @@ function bind(){
  });
  // radio: tekrar dokununca seçimi kaldır
  document.querySelectorAll('#app input[type=radio]').forEach(el=>{
-  el.parentElement.addEventListener('click',e=>{if(el.checked&&d[el.dataset.k]===el.value&&el._was){e.preventDefault();el.checked=false;delete d[el.dataset.k];el._was=false;afterChange(el.dataset.k);save();updStatus()}else{setTimeout(()=>{document.querySelectorAll(`input[name="${el.name}"]`).forEach(i=>i._was=i.checked)},0)}});
+  el.parentElement.addEventListener('click',e=>{if(el.disabled)return;if(el.checked&&d[el.dataset.k]===el.value&&el._was){e.preventDefault();el.checked=false;delete d[el.dataset.k];el._was=false;afterChange(el.dataset.k);save();updStatus()}else{setTimeout(()=>{document.querySelectorAll(`input[name="${el.name}"]`).forEach(i=>i._was=i.checked)},0)}});
   el._was=el.checked;
  });
  $('#fCam').onchange=e=>addFiles(e.target.files);
@@ -955,7 +1127,8 @@ function bind(){
 function updStatus(){
  S.forEach(s=>{
   const el=document.querySelector(`details[data-s="${s.id}"] .st`);if(!el)return;
-  const fs=s.f.filter(f=>!['photos','age','gps','note','rehber'].includes(f.t));
+  const fs=s.f.filter(f=>!GORUNTU.includes(f.t));
+  if(!fs.length){el.textContent='';return}
   const n=fs.filter(f=>{const v=d[f.k];return Array.isArray(v)?v.length:(v!==undefined&&v!==''&&!(f.val==='trno'&&noIsEmpty(v)))}).length;
   let t=n+'/'+fs.length; if(s.id==='tespit')t+=' · '+(d.fotos||[]).length+' foto';
   el.textContent=t;el.classList.toggle('full',n===fs.length);
@@ -966,7 +1139,8 @@ function updStatus(){
 function getGps(){
  if(!navigator.geolocation){toast('Konum desteklenmiyor');return}
  toast('Konum alınıyor…');
- navigator.geolocation.getCurrentPosition(p=>{const v=p.coords.latitude.toFixed(6)+', '+p.coords.longitude.toFixed(6);d.koordinat=v;$('#f_koordinat').value=v;save();toast('Konum alındı (±'+Math.round(p.coords.accuracy)+' m)')},
+ const c=d;
+ navigator.geolocation.getCurrentPosition(p=>{if(c!==d||d.kapali)return;const v=p.coords.latitude.toFixed(6)+', '+p.coords.longitude.toFixed(6);d.koordinat=v;$('#f_koordinat').value=v;save();toast('Konum alındı (±'+Math.round(p.coords.accuracy)+' m)')},
   ()=>toast('Konum alınamadı; izin ver ya da elle yaz'),{enableHighAccuracy:true,timeout:15000});
 }
 
@@ -991,7 +1165,7 @@ async function addFiles(files){
   if(!b){okunamadi++;continue}
   try{await addPhotoBlob(b)}catch(e){reportSaveErr(e);break}
  }
- drawPhotos();updStatus();
+ drawPhotos();updStatus();updVakaUyari();
  document.querySelectorAll('#fCam,#fGal').forEach(i=>i.value='');
  if(okunamadi)toast(okunamadi+' fotoğraf okunamadı');
  checkQuota();
@@ -1008,7 +1182,7 @@ function drawPhotos(){
  b.querySelectorAll('[data-del]').forEach(x=>x.onclick=async()=>{
   if(!await askDelete('Fotoğraf silinsin mi?','Silinen fotoğraf geri alınamaz.'))return;
   try{await removePhoto(x.dataset.del)}catch(e){reportSaveErr(e)}
-  drawPhotos();updStatus();
+  drawPhotos();updStatus();updVakaUyari();
  });
  b.querySelectorAll('[data-meas]').forEach(x=>x.onclick=()=>openMeas(x.dataset.meas));
 }
@@ -1291,7 +1465,7 @@ async function saveMeas(){
   const meta=M.rec?await updatePhotoBlob(M.rec,blob,extra):await addPhotoBlob(blob,extra);
   if(!meta){toast('Ölçüm kaydedilemedi');return}
   if(yaz){d.fetusCm=String(o.L).replace('.',',');const inp=$('#f_fetusCm');if(inp)inp.value=d.fetusCm}
-  leaveMeas();drawPhotos();calcAge();save();updStatus();toast('Ölçü kaydedildi: '+o.txt);
+  leaveMeas();drawPhotos();calcAge();save();updStatus();updVakaUyari();toast('Ölçü kaydedildi: '+o.txt);
   checkQuota();
  }catch(e){reportSaveErr(e)}
  finally{M.saving=false}
@@ -1341,7 +1515,7 @@ function calcAge(){
   out.push(`Önerilen kayıt: <b>yaklaşık ${ageSug} aylık</b> <button class="btn sm" id="bAgeUse">Alana yaz</button>`)}
  else if(!sel.length)out.push('Uzunluğu gir ya da fotoğraftan ölç; bulguları işaretle.');
  box.innerHTML=out.join('<br>');
- const b=$('#bAgeUse');if(b)b.onclick=()=>{d.tahminiAy=ageSug;$('#f_tahminiAy').value=ageSug;save();updStatus();toast('Yazıldı')};
+ const b=$('#bAgeUse');if(b)b.onclick=()=>{if(d.kapali)return;d.tahminiAy=ageSug;$('#f_tahminiAy').value=ageSug;save();updStatus();updVakaUyari();toast('Yazıldı')};
 }
 
 /* ---------- imza ---------- */
@@ -1352,9 +1526,9 @@ function initSig(k){
  if(d[k]){const im=new Image();im.onload=()=>g.drawImage(im,0,0,W,H);im.src=d[k]}
  let drawing=false,last=null;
  const pos=e=>{const b=c.getBoundingClientRect();return{x:(e.clientX-b.left)*(W/b.width),y:(e.clientY-b.top)*(H/b.height)}};
- c.onpointerdown=e=>{drawing=true;last=pos(e);c.setPointerCapture(e.pointerId);e.preventDefault()};
+ c.onpointerdown=e=>{if(d.kapali)return;drawing=true;last=pos(e);c.setPointerCapture(e.pointerId);e.preventDefault()};
  c.onpointermove=e=>{if(!drawing)return;const p=pos(e);g.beginPath();g.moveTo(last.x,last.y);g.lineTo(p.x,p.y);g.stroke();last=p;e.preventDefault()};
- c.onpointerup=c.onpointercancel=()=>{if(!drawing)return;drawing=false;d[k]=c.toDataURL('image/png');save()};
+ c.onpointerup=c.onpointercancel=()=>{if(!drawing)return;drawing=false;if(d.kapali)return;d[k]=c.toDataURL('image/png');save()};
 }
 
 /* ---------- çıktı öncesi kontrol ---------- */
@@ -1363,7 +1537,7 @@ function goField(k){
  if(PROFIL[k]){openAyar();$(PROFIL[k]).focus();return}
  const sec=S.find(s=>s.f.some(f=>f.k===k));
  const det=sec&&$(`details[data-s="${sec.id}"]`);if(det)det.open=true;
- const el=$('#f_'+k)||$('#sig_'+k)||(k==='fotos'?$('#phBox'):null)||$(`input[data-k="${k}"]`);
+ const el=$('#f_'+k)||$('#sig_'+k)||(k==='fotos'?$('#phBox'):null)||(k==='kapat'?$('#kapatBox'):null)||$(`input[data-k="${k}"]`);
  if(!el)return;
  const hedef=el.closest('.fld,.sigw')||el;
  hedef.scrollIntoView({block:'center'});
@@ -1421,7 +1595,7 @@ function waText(){
  return L.join('\n').replace(/\n{3,}/g,'\n\n');
 }
 const cap1=s=>s?s[0].toLocaleUpperCase('tr-TR')+s.slice(1):s;
-$('#bWa').onclick=()=>guarded(()=>{$('#waTxt').value=waText();$('#mWa').classList.add('on')});
+$('#bWa').onclick=()=>guarded(()=>{$('#waTxt').value=waText();$('#mWa').classList.add('on');ciktiKaydi('WhatsApp metni')});
 $('#waRegen').onclick=()=>{$('#waTxt').value=waText()};
 $('#waCopy').onclick=async()=>{const t=$('#waTxt').value;try{await navigator.clipboard.writeText(t);toast('Kopyalandı')}catch(e){$('#waTxt').select();document.execCommand('copy');toast('Kopyalandı')}};
 /* Paylaşım menüsü yoksa metin panoya alınır ve WhatsApp uygulaması açılır; web sunucusuna gidilmez, çevrimdışında sayfadan çıkılmaz. */
@@ -1510,13 +1684,161 @@ function olcekKartiHTML(){
 <p>Cetvel: cm</p></div>`;
 }
 function doPrint(html){const P=$('#print');P.innerHTML=html;const imgs=[...P.querySelectorAll('img')];Promise.all(imgs.map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r}))).then(()=>setTimeout(()=>window.print(),150))}
+/* Çıktı alınması günlüğe yazılır; önce bekleyen alan değişiklikleri kaydedilir. */
+function ciktiKaydi(tur){gunlukNoktasi();gunlukYaz(d.id,'Çıktı',tur)}
 async function printTutanak(){
  let h=tutanakHTML();
- if((d.fotos||[]).length&&await ask({title:'Fotoğraf eki',body:'Fotoğraflar tutanağın sonuna ek olarak eklensin mi?',buttons:[{label:'Evet, ekle',val:true},{label:'Hayır',val:false,cls:'sec2'}]}))h+=`<div class="pg"></div><h5 style="margin-top:0">EK: FOTOĞRAFLAR</h5>`+photosHTML();
+ const ekli=(d.fotos||[]).length&&await ask({title:'Fotoğraf eki',body:'Fotoğraflar tutanağın sonuna ek olarak eklensin mi?',buttons:[{label:'Evet, ekle',val:true},{label:'Hayır',val:false,cls:'sec2'}]});
+ if(ekli===null)return;
+ if(ekli)h+=`<div class="pg"></div><h5 style="margin-top:0">EK: FOTOĞRAFLAR</h5>`+photosHTML();
+ ciktiKaydi('Tutanak'+(ekli?' + fotoğraf eki':'')+(d.nusha?', '+d.nusha+' nüsha':''));
  doPrint(h);
 }
 $('#bPrint').onclick=()=>guarded(printTutanak);
-$('#bPhotos').onclick=()=>{if(!(d.fotos||[]).length){toast('Fotoğraf yok');return}doPrint(photosHTML('phonly'))};
+$('#bPhotos').onclick=()=>{if(!(d.fotos||[]).length){toast('Fotoğraf yok');return}ciktiKaydi('Fotoğraf eki');doPrint(photosHTML('phonly'))};
+
+/* ---------- aşamalar (alanlardan hesaplanır, elle seçilmez) ---------- */
+const alanAdi=k=>{const f=fieldOf(k);if(!f||!f.l)return k;return typeof f.l==='function'?f.l(d):f.l};
+const bosAlanlar=(c,ks)=>ks.filter(k=>isBlank(c[k])).map(k=>({k,msg:alanAdi(k)}));
+const kacinildi=c=>c.teblig==='İmzadan kaçınıldı';
+const ASAMA=[
+ /* Saha: çıktı öncesi zorunlu alanlar; ekran imzası sonraki fazda kalkacağı için sayılmaz. */
+ {ad:'Saha',eksik:c=>checkCase(c).eksik.filter(x=>!/^sig/.test(x.k))},
+ {ad:'Sistem kayıtları',eksik:c=>bosAlanlar(c,['velbis','protT','kisitT','bildirimNo'])},
+ {ad:'İmza ziyareti',eksik:c=>{
+  const e=bosAlanlar(c,['ziyaretT']);
+  if(!IMZALAR.every(x=>(c.imzalar||[]).includes(x)))e.push({k:'imzalar',msg:'EK-1 ve protokol imzası'});
+  if(isBlank(c.teblig))e.push({k:'teblig',msg:alanAdi('teblig')});
+  else if(kacinildi(c))e.push(...bosAlanlar(c,['kacGerekce','kacTeslim','kacTeslimAd']));
+  return e}},
+ {ad:'Sonuç',eksik:c=>bosAlanlar(c,['sonucTarih','sonuc'])},
+ {ad:'Kısıt / HSZ',eksik:c=>c.sonuc==='Pozitif'?bosAlanlar(c,['hszT','hszNo']):bosAlanlar(c,['kaldirmaT'])},
+ {ad:'Destek',eksik:c=>bosAlanlar(c,['destekTarih','icmal'])},
+ {ad:'Arşiv',eksik:c=>bosAlanlar(c,['digT','digSayi'])}];
+const ASAMA_SAYI=ASAMA.length;
+/* no: 1–7 tamamlanmamış ilk aşama; 8 = hepsi tamam. */
+function asamaOf(c){
+ if(c.kapali)return {no:ASAMA_SAYI+1,ad:'Kapandı',eksik:[]};
+ for(let i=0;i<ASAMA_SAYI;i++){const e=ASAMA[i].eksik(c);if(e.length)return {no:i+1,ad:ASAMA[i].ad,eksik:e}}
+ return {no:ASAMA_SAYI+1,ad:'Kapatılabilir',eksik:[]};
+}
+const gunFarki=(iso,bugun)=>{if(!/^\d{4}-\d{2}-\d{2}$/.test(iso||''))return null;const a=Date.parse(iso+'T00:00:00Z'),b=Date.parse(bugun+'T00:00:00Z');return isFinite(a)&&isFinite(b)?Math.round((b-a)/864e5):null};
+const sahaTarihi=c=>c.gorTarih||c.tarih;
+/* Her aşamanın beklemesi bir önceki adımın tarihinden sayılır. */
+function beklemeTabani(c,no){return {1:c.tarih,2:sahaTarihi(c),3:sahaTarihi(c),4:c.gonTarih||c.protT,5:c.sonucTarih,6:c.protT,7:c.destekTarih}[no]||null}
+function beklemeGunu(c,bugun){const a=asamaOf(c);if(a.no>ASAMA_SAYI)return null;const g=gunFarki(beklemeTabani(c,a.no),bugun);return g!=null&&g<0?null:g}
+/* Uyarılar: renk k = kırmızı, t = turuncu; kritik = kısıt kaldırma / HSZ kararı. */
+function uyarilarOf(c,bugun=todayISO()){
+ if(c.kapali)return [];
+ const E=ayar.esik||ESIK_ILK,u=[];
+ const sure=(no,esik,ad,renk)=>{
+  const e=ASAMA[no-1].eksik(c);if(!e.length)return;
+  const g=gunFarki(beklemeTabani(c,no),bugun);
+  if(g!=null&&g>=esik)u.push({k:e[0].k,renk:renk(g),msg:ad+' ('+g+' gün)'});
+ };
+ sure(2,E.sistem,'Sistem kayıtları girilmedi',()=>'t');
+ sure(3,E.imza,'İmza ziyareti yapılmadı',g=>g>=E.imzaKir?'k':'t');
+ sure(4,E.sonuc,'Sonuç gelmedi',()=>'t');
+ if(c.sonuc==='Negatif'&&isBlank(c.kaldirmaT))u.push({k:'kaldirmaT',renk:'k',kritik:1,msg:'Kısıt kaldırılmalı: sonuç negatif'});
+ if(c.sonuc==='Pozitif'&&(isBlank(c.hszT)||isBlank(c.hszNo))){
+  const g=gunFarki(c.sonucTarih,bugun);
+  u.push({k:isBlank(c.hszT)?'hszT':'hszNo',renk:g!=null&&g>=E.hsz?'k':'t',kritik:1,msg:'HSZ Komisyonu kararı bekleniyor'+(g!=null?' ('+g+' gün)':'')});
+ }
+ sure(6,E.destek,'VETBİS destek kaydı yapılmadı',()=>'t');
+ sure(7,E.arsiv,'Dijital kayıt yapılmadı',()=>'t');
+ return u;
+}
+const uyariDuzeyi=u=>u.some(x=>x.renk==='k')?2:u.length?1:0;
+
+/* Açık vakanın üstündeki durum kutusu: aşama, uyarılar, kapalı vaka. */
+function updVakaUyari(){
+ const b=$('#vakaUyari');if(!b)return;
+ const a=asamaOf(d);
+ let h='';
+ if(d.kapali)h=`<div class="ln kp"><span>Vaka kapalı${yerelGun(d.kapT)?' ('+esc(trDate(yerelGun(d.kapT)))+')':''}: salt okunur.</span><button class="btn sm sec2" id="bYenidenAc" type="button">Yeniden aç</button></div>`;
+ else{
+  h=uyarilarOf(d).map(x=>`<button class="ln ${x.renk}" type="button" data-go="${esc(x.k)}">⚠ ${esc(x.msg)}</button>`).join('');
+  h+=a.no<=ASAMA_SAYI
+   ?`<button class="ln a" type="button" data-go="${esc(a.eksik[0].k)}">Aşama ${a.no}/${ASAMA_SAYI}: ${esc(a.ad)} · sıradaki: ${esc(a.eksik[0].msg)}</button>`
+   :`<button class="ln a" type="button" data-go="kapat">Tüm aşamalar tamam: vakayı kapatabilirsin</button>`;
+ }
+ b.innerHTML=h;
+ b.querySelectorAll('[data-go]').forEach(x=>x.onclick=()=>goField(x.dataset.go));
+ const y=$('#bYenidenAc');if(y)y.onclick=yenidenAc;
+ updKapat(a);
+}
+function updKapat(a){
+ const b=$('#kapatBox');if(!b)return;
+ if(d.kapali){b.innerHTML='';return}
+ const hazir=a.no>ASAMA_SAYI;
+ b.innerHTML=`<button class="btn ok" id="bKapat" type="button" ${hazir?'':'disabled'}>Vakayı kapat</button><div class="hint">${hazir?'Kapanan vaka salt okunur olur; gerekirse yeniden açılır.':'Kapatmak için 7 aşama tamamlanmalı. Şu an: '+a.no+'/'+ASAMA_SAYI+' '+esc(a.ad)+'.'}</div>`;
+ const k=$('#bKapat');if(k)k.onclick=vakayiKapat;
+}
+async function vakayiKapat(){
+ if(asamaOf(d).no<=ASAMA_SAYI)return;
+ const ok=await ask({title:'Vaka kapatılsın mı?',body:'Kapanan vaka salt okunur olur. Gerekirse “Yeniden aç” ile düzenlenir.',buttons:[{label:'Kapat',val:true},{label:'Vazgeç',val:false,cls:'sec2'}]});
+ if(!ok)return;
+ gunlukNoktasi();
+ const c=d;
+ c.kapali=true;c.kapT=new Date().toISOString();
+ save();
+ /* Günlüğe ancak kapanış kaydedildikten sonra yazılır; yazılamazsa vaka açık kalır. */
+ if(!await flushSave()){if(c===d){c.kapali=false;delete c.kapT;render()}toast('Vaka kapatılamadı: kayıt yapılamadı');return}
+ gunlukYaz(c.id,'Vaka kapatıldı');
+ if(c===d){izSifirla();render()}
+ toast('Vaka kapatıldı');
+}
+async function yenidenAc(){
+ const ok=await ask({title:'Vaka yeniden açılsın mı?',body:'Vaka düzenlemeye açılır; işlem günlüğe yazılır.',buttons:[{label:'Yeniden aç',val:true},{label:'Vazgeç',val:false,cls:'sec2'}]});
+ if(!ok)return;
+ const c=d,eskiT=c.kapT;
+ c.kapali=false;delete c.kapT;
+ save();
+ if(!await flushSave()){if(c===d){c.kapali=true;c.kapT=eskiT;render()}toast('Vaka açılamadı: kayıt yapılamadı');return}
+ gunlukYaz(c.id,'Vaka yeniden açıldı');
+ if(c===d){izSifirla();render()}
+ toast('Vaka yeniden açıldı');
+}
+
+/* ---------- vaka günlüğü (yalnız eklenir, silinmez) ---------- */
+const kimAdi=()=>ayar.vet1||'Bu cihaz';
+let gunlukHataGosterildi=false;
+function gunlukYaz(vakaId,olay,detay=''){
+ if(!db)return Promise.resolve();
+ const kayit={vakaId,t:new Date().toISOString(),kim:kimAdi(),olay,detay};
+ return dbWrite(GUNLUK,t=>t.objectStore(GUNLUK).add(kayit))
+  .then(()=>{if(vakaId===d.id)drawGunluk()})
+  .catch(()=>{if(!gunlukHataGosterildi){gunlukHataGosterildi=true;toast('Vaka günlüğüne yazılamadı')}});
+}
+const gunlukOku=vakaId=>dbRead(GUNLUK,s=>s.index('vakaId').getAll(vakaId));
+async function drawGunluk(){
+ const b=$('#gunlukBox');if(!b)return;
+ const id=d.id;let l=[];
+ try{l=db?await gunlukOku(id):[]}catch(e){b.innerHTML='<div class="hint">Günlük okunamadı.</div>';return}
+ if(id!==d.id||!$('#gunlukBox'))return;
+ const zaman=s=>{const x=new Date(s);return isNaN(x)?'':pad(x.getDate())+'.'+pad(x.getMonth()+1)+'.'+x.getFullYear()+' '+pad(x.getHours())+':'+pad(x.getMinutes())};
+ b.innerHTML=l.length?l.slice().reverse().map(g=>`<div class="gl"><small>${esc(zaman(g.t))} · ${esc(g.kim)}</small><b>${esc(g.olay)}</b>${g.detay?': '+esc(g.detay):''}</div>`).join(''):'<div class="hint">Henüz kayıt yok.</div>';
+}
+/* Değişiklikler her tuşta değil, vakadan ayrılırken / çıktıda / uygulama arka plana geçerken yazılır;
+   yalnız önceden dolu olan alanın değişmesi kaydedilir (ilk giriş değişiklik sayılmaz). */
+const GUNLUK_ALAN=['vakaNo','vet1','sahipAd','sahipTc','isletmeNo','mahalle','kupe','tur','atikTarih','materyal','fetusCm','tahminiAy','numune','d1','d2','d3','d4','d5','d6','d7','d8','engel','turkvetIsletme','velbis','protT','kisitT','kisitS','bildirimNo','ziyaretT','imzalar','teblig','sonuc','sonucTarih','raporNo','kaldirmaT','hszT','hszNo','destekTarih','icmal','digT','digSayi'];
+const GIZLI_ALAN=['sahipTc'];
+const gosterim=v=>Array.isArray(v)?v.join(', '):String(v==null?'':v);
+let iz=null;
+function anlik(c){const o={};GUNLUK_ALAN.forEach(k=>{o[k]=gosterim(c[k])});const a=asamaOf(c);return {id:c.id,no:a.no,ad:a.ad,o}}
+function izSifirla(){iz=anlik(d)}
+function gunlukNoktasi(){
+ if(!iz||iz.id!==d.id||!('olusturan' in d))return;
+ const yeni=anlik(d);
+ GUNLUK_ALAN.forEach(k=>{
+  const a=iz.o[k],b=yeni.o[k];
+  if(a===b||!a.trim())return;
+  const gizli=GIZLI_ALAN.includes(k);
+  gunlukYaz(d.id,'Alan değişti',alanAdi(k)+': '+(gizli?'(gizli)':a)+' → '+(gizli?'(gizli)':(b.trim()?b:'boş')));
+ });
+ if(iz.no!==yeni.no)gunlukYaz(d.id,'Aşama',iz.ad+' → '+yeni.ad);
+ iz=yeni;
+}
 
 /* ---------- takip ---------- */
 function durumRozetleri(c){
@@ -1527,6 +1849,7 @@ function durumRozetleri(c){
  const kontrol=GON_KONTROL.filter(x=>Array.isArray(c.gonKontrol)&&c.gonKontrol.includes(x)).length;
  if(kontrol||c.gonTarih)r.push(['Gönderim kontrolü '+kontrol+'/'+GON_KONTROL.length,kontrol===GON_KONTROL.length?'yes':c.gonTarih?'sar':'']);
  if(c.destekTarih)r.push(['Destek işlendi','yes']);
+ if(c.sonuc==='Pozitif'&&!isBlank(c.hszT))r.push(['Kısıt devam (bruselloz)','kir']);
  if(c.d8===PROTOKOL_OFISTE)r.push([isBlank(c.velbis)?'Protokol no bekliyor':'Şart 8 güncellenecek','sar']);
  return r.map(([m,s])=>`<span class="rz ${s}">${esc(m)}</span>`).join('');
 }
@@ -1691,28 +2014,112 @@ async function openCase(c){
  lastSaved=d.updated||null;dirty=false;
  try{await loadPhotos(d)}catch(e){toast('Fotoğraflar yüklenemedi')}
  render();
+ izSifirla();
  setSave('ok');
  lsSet('atikCur',d.id);
 }
-async function showList(){
- await flushSave();
- let all=[];
- try{all=(await dbAll()).sort((a,b)=>(b.updated||0)-(a.updated||0))}catch(e){toast('Vakalar okunamadı')}
- $('#listBox').innerHTML=all.length?all.map(c=>`<div class="it"><div><b>${esc(shortNo(c.kupe)||'—')}</b> · ${esc(c.mahalle||'')}<br><small>${esc(trDate(c.atikTarih||c.tarih))} · ${(c.fotos||[]).length} foto${c.id===d.id?' · açık':''}</small><div class="rzs">${durumRozetleri(c)}</div></div><button class="btn sm sec2" data-open="${esc(c.id)}">Aç</button><button class="btn sm red" data-rm="${esc(c.id)}">Sil</button></div>`).join(''):'<div class="hint">Kayıt yok.</div>';
- $('#listBox').querySelectorAll('[data-open]').forEach(b=>b.onclick=async()=>{const c=all.find(x=>x.id===b.dataset.open);if(!c||!await safeToLeave())return;await openCase(c);$('#mList').classList.remove('on');window.scrollTo(0,0)});
- $('#listBox').querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{
-  if(!await askDelete('Vaka kalıcı olarak silinsin mi?','Vaka ve fotoğrafları geri alınamaz şekilde silinir.'))return;
-  try{await dbDel(b.dataset.rm)}catch(e){reportSaveErr(e);return}
-  if(b.dataset.rm===d.id)await openCase(defaults());
-  showList();
+/* Aşama hesabında kayıtlı vakada boş kalmış kurum bilgisi, vaka açılınca olduğu gibi Ayarlar'dan alınır. */
+const profilli=c=>{if(c.kapali)return c;const x={...c};profilUygula(x,false);return x};
+const vakaDurumu=(c,bugun)=>{const p=profilli(c);return {c,a:asamaOf(p),u:uyarilarOf(p,bugun),g:beklemeGunu(p,bugun)}};
+/* Listede açık vakanın bellekteki (henüz yazılmamış olabilecek) hâli kullanılır. */
+async function tumVakalar(){
+ const all=await dbAll();
+ const i=all.findIndex(c=>c.id===d.id);
+ if(i>=0)all[i]=d;
+ return all;
+}
+const FILTRE=[['bekleyen','Bekleyen'],['imza','İmza ziyareti'],['sonuc','Sonuç bekleyen'],['kapanan','Kapanan'],['tumu','Tümü']];
+const filtreUyar=(f,c,a,u)=>({bekleyen:!c.kapali,imza:a.no===3,sonuc:a.no===4,kapanan:!!c.kapali,tumu:true,uyarili:u.length>0})[f];
+const aramaMetni=s=>String(s||'').toLocaleLowerCase('tr-TR').replace(/[\s-]/g,'');
+const ARANAN=['vakaNo','sahipAd','kupe','isletmeNo','mahalle','bildirimNo','velbis'];
+let listeFiltre='bekleyen';
+function listeSatiri(x){
+ const{c,a,u,g}=x;
+ const asama=a.no<=ASAMA_SAYI?a.no+'/'+ASAMA_SAYI+' '+a.ad+(g!=null?' · '+g+' gün':''):a.ad;
+ return `<div class="it"><div><b>${esc(c.vakaNo||'—')}</b> · ${esc(c.sahipAd||'')}<br><small>${esc(shortNo(c.kupe)||'—')} · ${esc(c.mahalle||'')} · ${esc(trDate(c.atikTarih||c.tarih))} · ${(c.fotos||[]).length} foto${c.id===d.id?' · açık':''}</small>`+
+  `<div class="rzs"><span class="rz as">${esc(asama)}</span>${u.map(y=>`<span class="rz ${y.renk==='k'?'uk':'ut'}">${esc(y.msg)}</span>`).join('')}${durumRozetleri(c)}</div>`+
+  `${c.guncelleyen?`<small>Son güncelleyen: ${esc(c.guncelleyen)}</small>`:''}</div>`+
+  `<button class="btn sm sec2" data-open="${esc(c.id)}">Aç</button><button class="btn sm red" data-rm="${esc(c.id)}">Sil</button></div>`;
+}
+/* Sıralama: önce kırmızı, sonra turuncu uyarılı; sonra en uzun bekleyen; sonra son güncellenen. */
+function listeSirala(l){
+ return l.slice().sort((p,q)=>uyariDuzeyi(q.u)-uyariDuzeyi(p.u)||(q.g==null?-1:q.g)-(p.g==null?-1:p.g)||(q.c.updated||0)-(p.c.updated||0));
+}
+let listeVeri=[];
+function drawList(){
+ const ara=aramaMetni($('#listAra').value);
+ const gor=listeSirala(listeVeri.filter(x=>filtreUyar(listeFiltre,x.c,x.a,x.u)&&(!ara||ARANAN.some(k=>aramaMetni(x.c[k]).includes(ara)))));
+ $('#listFilt').innerHTML=FILTRE.map(([k,l])=>`<button type="button" data-f="${k}" class="${listeFiltre===k?'on':''}">${esc(l)} (${listeVeri.filter(x=>filtreUyar(k,x.c,x.a,x.u)).length})</button>`).join('')+(listeFiltre==='uyarili'?`<button type="button" data-f="uyarili" class="on">Uyarılı (${gor.length})</button>`:'');
+ $('#listFilt').querySelectorAll('[data-f]').forEach(b=>b.onclick=()=>{listeFiltre=b.dataset.f;drawList()});
+ const bant=bantMetni(listeVeri);
+ $('#lBand').hidden=!bant;$('#lBand').textContent=bant;
+ $('#listBox').innerHTML=gor.length?gor.map(listeSatiri).join(''):`<div class="hint">${listeVeri.length?'Bu filtrede vaka yok.':'Kayıt yok.'}</div>`;
+ $('#listBox').querySelectorAll('[data-open]').forEach(b=>b.onclick=async()=>{
+  const x=listeVeri.find(y=>y.c.id===b.dataset.open);if(!x)return;
+  if(x.c.id!==d.id){if(!await safeToLeave())return;await openCase(x.c)}
+  $('#mList').classList.remove('on');window.scrollTo(0,0);
+  /* Vaka, sıradaki eksik alanın bölümünde açılır (klavye açılmaz). */
+  const a=asamaOf(d);if(a.eksik.length)bolumeGit(a.eksik[0].k);
  });
+ $('#listBox').querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{
+  if(!await askDelete('Vaka kalıcı olarak silinsin mi?','Vaka ve fotoğrafları geri alınamaz şekilde silinir. Vaka günlüğü korunur.'))return;
+  try{await dbDel(b.dataset.rm)}catch(e){reportSaveErr(e);return}
+  const x=listeVeri.find(y=>y.c.id===b.dataset.rm);
+  gunlukYaz(b.dataset.rm,'Vaka silindi',x&&x.c.vakaNo||'');
+  if(b.dataset.rm===d.id)await openCase(await yeniVaka());
+  updBand();showList();
+ });
+}
+function bolumeGit(k){
+ const sec=S.find(s=>s.f.some(f=>f.k===k));
+ const det=sec&&$(`details[data-s="${sec.id}"]`);if(!det)return;
+ det.open=true;
+ const el=$('#f_'+k)||$(`input[data-k="${k}"]`)||(k==='fotos'?$('#phBox'):null);
+ (el&&el.closest('.fld')||det).scrollIntoView({block:'center'});
+}
+async function showList(filtre){
+ gunlukNoktasi();
+ await flushSave();
+ if(typeof filtre==='string')listeFiltre=filtre;
+ let all=[];
+ try{all=await tumVakalar()}catch(e){toast('Vakalar okunamadı')}
+ const bugun=todayISO();
+ listeVeri=all.map(c=>vakaDurumu(c,bugun));
+ drawList();
  $('#mList').classList.add('on');
 }
-$('#bList').onclick=showList;
+$('#listAra').addEventListener('input',drawList);
+
+/* ---------- ana ekran uyarı bandı ---------- */
+function bantMetni(veri){
+ const kisit=veri.filter(x=>x.u.some(y=>y.k==='kaldirmaT')).length;
+ const diger=veri.filter(x=>x.u.length&&!x.u.some(y=>y.k==='kaldirmaT')).length;
+ const p=[];
+ if(kisit)p.push('Kısıt kaldırılmalı: '+kisit+' vaka');
+ if(diger)p.push('Bekleyen iş uyarısı: '+diger+' vaka');
+ return p.length?'⚠ '+p.join(' · '):'';
+}
+let bantSira=Promise.resolve();
+function updBand(){
+ /* Bir hata sonraki güncellemeleri durdurmasın. */
+ bantSira=bantSira.catch(()=>{}).then(async()=>{
+  if(!db)return;
+  try{
+   const all=await tumVakalar(),bugun=todayISO();
+   const veri=all.map(c=>vakaDurumu(c,bugun));
+   const metin=bantMetni(veri),say=veri.filter(x=>x.u.length).length;
+   $('#band').hidden=!metin;$('#band').textContent=metin;
+   $('#bListSay').hidden=!say;$('#bListSay').textContent=say||'';
+  }catch(e){toast('Uyarı bandı güncellenemedi')}
+ });
+ return bantSira;
+}
+$('#band').onclick=()=>showList('uyarili');
+$('#bList').onclick=()=>showList();
 $('#bNew').onclick=async()=>{
  const ok=await ask({title:'Yeni vaka açılsın mı?',body:'Mevcut vaka kayıtlı kalır.',buttons:[{label:'Yeni vaka aç',val:true},{label:'Vazgeç',val:false,cls:'sec2'}]});
  if(!ok||!await safeToLeave())return;
- await openCase(defaults());
+ await openCase(await yeniVaka());
  save();window.scrollTo(0,0);toast('Yeni vaka');
 };
 $('#bExport').onclick=()=>exportZip(false);
@@ -1739,7 +2146,7 @@ function sanitizeCase(o){
  const c={...o};
  S.forEach(s=>s.f.forEach(f=>{
   const v=c[f.k];
-  if(v==null||['photos','age','note','rehber'].includes(f.t))return;
+  if(v==null||GORUNTU.includes(f.t))return;
   if(f.t==='check')c[f.k]=Array.isArray(v)?v.filter(x=>typeof x==='string'):[];
   else if(f.t==='sig'){if(!(typeof v==='string'&&SAFE_SIG.test(v)))delete c[f.k]}
   else if(f.t==='date'){if(!/^\d{4}-\d{2}-\d{2}$/.test(String(v)))delete c[f.k]}
@@ -1761,6 +2168,9 @@ function sanitizeCase(o){
   return m;
  });
  ['updated','created'].forEach(k=>{if(!Number.isFinite(c[k]))delete c[k]});
+ c.kapali=c.kapali===true;
+ if(!(typeof c.kapT==='string'&&/^\d{4}-\d{2}-\d{2}T/.test(c.kapT)))delete c.kapT;
+ ['olusturan','guncelleyen'].forEach(k=>{if(k in c&&c[k]!==null&&typeof c[k]!=='string')delete c[k]});
  c.id=SAFE_ID.test(String(c.id))?String(c.id):uid();
  c.schema=SCHEMA;
  return c;
@@ -1779,11 +2189,14 @@ async function importOne(o){
  if(var_){
   const karar=await ask({title:'Bu vaka zaten kayıtlı',body:(shortNo(var_.kupe)||'Kimliksiz vaka')+(var_.mahalle?' · '+var_.mahalle:'')+(dusen?'\nDosyadaki '+dusen+' fotoğraf okunamadı.':'')+'\nDosyadaki sürümle ne yapılsın?',buttons:[{label:'Kopya olarak aç',val:'kopya'},{label:'Üzerine yaz',val:'yaz',cls:'red'},{label:'Vazgeç',val:null,cls:'sec2'}]});
   if(!karar)return null;
-  if(karar==='kopya')c.id=uid();else purge=true;
+  if(karar==='kopya'){c.id=uid();c.vakaNo=await yeniVakaNo()}else purge=true;
  }
  c.updated=c.updated||Date.now();
+ if(isBlank(c.vakaNo))c.vakaNo=await yeniVakaNo();
+ if(!('olusturan' in c))c.olusturan=null;
  const{rec,recs}=splitCase(c);
  await dbWriteCase(rec,recs,purge);
+ gunlukYaz(rec.id,'Dosyadan açıldı',rec.vakaNo);
  return {rec,dusen};
 }
 /* Bir vaka okunamazsa dosyanın kalanı açılmaya devam eder; yalnız depolama hatası işlemi durdurur. */
@@ -1807,6 +2220,7 @@ $('#fImport').onchange=async e=>{
   catch(err){if(err&&err.name==='QuotaExceededError'){reportSaveErr(err);break}s.hata++}
  }
  if(s.son){await openCase(s.son);$('#mList').classList.remove('on')}
+ if(s.acilan)updBand();
  const mesaj=[];
  if(s.acilan)mesaj.push(s.acilan+' vaka açıldı');
  if(s.dusen)mesaj.push(s.dusen+' fotoğraf alınamadı');
@@ -1855,12 +2269,14 @@ kurulumuBaslat();
  if(db){
   try{mig=await migrateCases()}catch(e){mig.failed=1}
   try{await recoverPending()}catch(e){toast('Son değişiklik geri yüklenemedi')}
+  try{await vakaNolariVer()}catch(e){toast('Vaka numaraları verilemedi; sonraki açılışta yeniden denenir')}
   try{loadAyarKaydi(await dbRead('ayarlar',s=>s.get(AYAR_ID)))}catch(e){toast('Ayarlar okunamadı; varsayılanlar kullanılıyor')}
   const cur=lsGet('atikCur');
   if(cur){try{found=await dbGet(cur)}catch(e){toast('Son vaka okunamadı')}}
  }
- await openCase(found||defaults());
+ await openCase(found||(db?await yeniVaka():defaults()));
  if(!db){reportSaveErr(null);return}
+ updBand();
  askPersist();
  if(mig.bad||mig.failed)askInfo('Bazı fotoğraflar taşınamadı',(mig.bad?mig.bad+' fotoğraf çözülemedi ve vaka kaydında özgün hâliyle korunuyor. ':'')+(mig.failed?mig.failed+' vaka taşınamadı ve özgün hâliyle duruyor; uygulama sonraki açılışta yeniden dener.':''));
  else checkQuota();
