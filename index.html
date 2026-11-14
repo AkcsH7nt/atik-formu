@@ -51,7 +51,9 @@ input::-webkit-date-and-time-value{text-align:left}
 .inl{display:flex;gap:8px;align-items:center}
 .inl input{flex:1}
 .hint{font-size:12.5px;color:var(--mut);margin-top:4px}
-.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;margin:8px 0}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:8px;margin:8px 0}
+.phw{display:flex;flex-direction:column;gap:3px;min-width:0}
+.phw select,.phw input{font-size:12px;padding:5px 4px;min-width:0;width:100%}
 .ph{position:relative;border-radius:8px;overflow:hidden;background:#dde3ea;aspect-ratio:1}
 .ph img{width:100%;height:100%;object-fit:cover;display:block}
 .ph .cap{position:absolute;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:2px 4px}
@@ -83,7 +85,7 @@ button,input,textarea{font-family:inherit}
 .sigw{margin:0 0 14px}
 .sigw .inl{justify-content:space-between;margin-bottom:4px}
 .sigw .inl b{font-size:14px}
-nav.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:30}
+nav.bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));z-index:30}
 nav.bar button{border:0;background:#eef3f8;border-radius:10px;padding:8px 2px;font-size:12px;font-weight:600;color:var(--navy);display:flex;flex-direction:column;align-items:center;gap:2px;min-height:52px}
 nav.bar button i{font-style:normal;font-size:19px}
 nav.bar button.pri{background:#1fa855;color:#fff}
@@ -162,6 +164,9 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 .rehber .btns{position:sticky;bottom:calc(-14px - env(safe-area-inset-bottom));background:#fff;padding:10px 0 calc(14px + env(safe-area-inset-bottom));margin-bottom:calc(-14px - env(safe-area-inset-bottom))}
 .rehberTus{margin:6px 0 12px}
 #print{display:none}
+.ck{margin:0 0 12px}
+.ck>.btn{width:100%}
+.ck .hint{margin:4px 0 0}
 @media print{
   @page{size:A4;margin:11mm 12mm}
   body{background:#fff}
@@ -189,6 +194,54 @@ nav.bar button.pri{background:#1fa855;color:#fff}
   #print .phg img{width:100%;max-height:118mm;object-fit:contain;border:0.5pt solid #999}
   #print .phg figcaption{font-size:8.5pt;margin-top:1mm}
   #print .phonly img{max-height:125mm}
+  #print .sf{break-after:page;page-break-after:always;padding:0 1px}
+  #print .sf:last-child{break-after:auto;page-break-after:auto}
+  #print .bas{text-align:center;font-weight:bold;font-size:11.5pt;line-height:1.25;margin:0 0 6px}
+  #print .ekno{text-align:right;font-weight:bold}
+  #print .bag{border:0.6pt solid #000;background:#f2f2f2;padding:3px 5px;margin:4px 0 8px;font-size:9pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print .alt{font-size:8pt;margin-top:6px}
+  #print .ek1{font-size:10pt;line-height:1.25}
+  #print .ek1 table{margin-bottom:9px}
+  #print .ek1 td{height:6.5mm;vertical-align:middle}
+  #print .ek1 td.k{width:28%}
+  #print .ek1 th{padding:4px}
+  #print .ek1 .hv th,#print .ek1 .at th{font-size:9pt}
+  #print .ek1 .hv td,#print .ek1 .at td{height:10mm;text-align:center}
+  #print .ek1 p{text-indent:10mm;margin:2px 0}
+  #print .ek1 p.dip{font-size:8pt;font-style:italic;text-indent:0;margin:-8px 0 4px}
+  #print .ek1 p.ek{text-indent:0;margin:2px 0 8px}
+  #print .ek1 .acik td{height:11mm;vertical-align:top}
+  #print .ek1 .yok td{border:0;background:none;height:auto}
+  #print .ek1 .imz td{text-align:center;font-weight:bold;width:33.3%;padding:3px}
+  #print .ek1 .imz .ad td{font-weight:normal;height:6mm}
+  #print .ek1 .imz .bos td{height:14mm}
+  #print .ekb{height:250mm;display:flex;flex-direction:column}
+  #print .ekb .fg{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;border:0.6pt solid #000}
+  #print .ekb figure{margin:0;min-height:0;min-width:0;display:flex;flex-direction:column;border:0.3pt solid #000}
+  #print .ekb figure.tam{grid-column:1/3}
+  #print .ekb .im{flex:1;min-height:0;position:relative}
+  #print .ekb .im img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:contain}
+  #print .ekb figcaption{font-size:9pt;padding:3px 5px;background:#f2f2f2;border-top:0.3pt solid #000;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #print .ekb .alt{text-align:center}
+  #print .ekd{font-size:8.8pt;line-height:1.25}
+  #print .ekd .ust{font-size:8.6pt}
+  #print .ekd .day{text-align:center;font-style:italic;font-size:8.4pt;margin:0}
+  #print .ekd .bas{margin:1px 0}
+  #print .ekd table{margin-top:-0.6pt}
+  #print .ekd .bh{margin-top:9px}
+  #print .ekd .bh th{text-align:left;font-size:10pt;padding:3px 6px;background:#d9d9d9}
+  #print .ekd .bh th.n{width:5.5%;text-align:center}
+  #print .ekd td{vertical-align:middle}
+  #print .ekd .td{break-inside:auto;page-break-inside:auto}
+  #print .ekd .td td,#print .ekd .td th{font-size:8.2pt}
+  #print .ekd .td td.c{text-align:center}
+  #print .ekd .td td.dy{font-size:7.6pt}
+  #print .ekd .td td.j{text-align:justify}
+  #print .ekd .box{margin-top:8px}
+  #print .ekd .box p{margin:1px 0 1px 8px;text-indent:-8px}
+  #print .ekd .teb p{margin:2px 0;text-indent:0}
+  #print .ekd .imz{margin-top:9px}
+  #print .ekd .imz td{height:24mm;text-align:center;vertical-align:top;width:50%}
   #print .kart svg{display:block;margin:6mm auto 0;overflow:visible}
   #print .kart .box{font-size:10.5pt;margin-top:5mm}
   #print .kart p{text-align:center;font-size:10pt;margin-top:3mm}
@@ -207,8 +260,7 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 
 <nav class="bar">
   <button id="bWa" class="pri"><i>💬</i>WhatsApp</button>
-  <button id="bPrint"><i>🖨️</i>Tutanak</button>
-  <button id="bPhotos"><i>🖼️</i>Foto eki</button>
+  <button id="bCikti"><i>🖨️</i>Çıktı</button>
   <button id="bNew"><i>＋</i>Yeni vaka</button>
 </nav>
 
@@ -221,6 +273,16 @@ nav.bar button.pri{background:#1fa855;color:#fff}
     <button class="btn sec2" id="waCopy">Kopyala</button>
     <button class="btn sec2" id="waRegen">Yeniden üret</button>
     <button class="btn red" data-close="mWa">Kapat</button>
+  </div>
+</div></div>
+
+<div class="modal" id="mCikti" role="dialog" aria-modal="true"><div class="sheet">
+  <h3>Çıktı</h3>
+  <div id="ciktiBox"></div>
+  <div class="hint">Kilitli çıktının altındaki satıra dokununca eksik alana gider. Belgeler ofiste basılır, imza ziyaretinde imzalatılır.</div>
+  <div class="btns">
+    <button class="btn sec2" id="bPhotos">Yalnız fotoğraflar (PDF)</button>
+    <button class="btn red" data-close="mCikti">Kapat</button>
   </div>
 </div></div>
 
@@ -241,8 +303,10 @@ nav.bar button.pri{background:#1fa855;color:#fff}
 
 <div class="modal" id="mSet" role="dialog" aria-modal="true"><div class="sheet">
   <h3>Ayarlar</h3>
-  <div class="fld"><label class="l" for="setKurum1">Kurum başlığı (tutanağın üstü)</label><input type="text" id="setKurum1" placeholder="örn. DAMAL KAYMAKAMLIĞI"></div>
+  <div class="fld"><label class="l" for="setKurum1">Kurum başlığı (belgelerin üstü)</label><input type="text" id="setKurum1" placeholder="örn. DAMAL KAYMAKAMLIĞI"></div>
   <div class="fld"><label class="l" for="setKurum2">Birim</label><input type="text" id="setKurum2"></div>
+  <div class="fld"><label class="l" for="setIlce">İlçe adı (geçici tedbir bildirimi)</label><input type="text" id="setIlce" placeholder="örn. Damal"></div>
+  <div class="fld"><label class="l" for="setMahkeme">İdare Mahkemesi (yalnız il adı)</label><input type="text" id="setMahkeme" placeholder="örn. Kars"></div>
   <div class="fld"><label class="l" for="setVet1">Resmî veteriner hekim (1)</label><input type="text" id="setVet1"></div>
   <div class="fld"><label class="l" for="setVet2">Resmî veteriner hekim (2)</label><input type="text" id="setVet2"></div>
   <div class="fld"><label class="l" for="setEnstitu">Gönderildiği enstitü</label><input type="text" id="setEnstitu"></div>
@@ -465,6 +529,18 @@ const yalnizPlasenta=c=>{const m=c.materyal||[];return m.length===1&&m[0]==='Pla
 const IMZALAR=['EK-1 imzalandı','Protokol imzalandı'];
 const TEBLIG=['Elden tebliğ edildi','İmzadan kaçınıldı'];
 const ENGEL=['Bulunmadı','Bulundu'];
+/* Fotoğraf föyüne (Ek-B) giren fotoğraf türleri; ilk ikisi zorunludur. Diğer en çok iki kez seçilir. */
+const FOTO_TUR=['Anne hayvan','Atık (fötüs)','Plasenta / zarlar / fötal organ','Numune kabı / hazırlanması','Diğer'];
+const FOTO_DIGER='Diğer',FOTO_DIGER_MAKS=2;
+const foyFotolari=c=>FOTO_TUR.flatMap(t=>(c.fotos||[]).filter(p=>p.tur===t).slice(0,t===FOTO_DIGER?FOTO_DIGER_MAKS:1));
+/* Yalnız plasenta görüldüyse ikinci zorunlu fotoğraf plasenta fotoğrafıdır. */
+function fotoEksik(c){
+ const var_=t=>(c.fotos||[]).some(p=>p.tur===t),ikinci=yalnizPlasenta(c)?FOTO_TUR[2]:FOTO_TUR[1];
+ return [FOTO_TUR[0],ikinci].filter(t=>!var_(t)).map(t=>({k:'fotos',msg:'Fotoğraf: '+t+' (fotoğrafın altından türünü seç)'}));
+}
+/* Belge seti sürümü: 2 = EK-1 / Ek-B / Ek-D. Önceki sürümde açılmış vakada yeni saha şartları aşamayı geri düşürmez; çıktı kilitleri yine arar. */
+const BELGE_SURUM=2;
+const eskiVaka=c=>c.belge!==BELGE_SURUM;
 const tumSartlarEvet=c=>[1,2,3,4,5,6,7,8].every(i=>c['d'+i]==='Evet');
 
 /* Çıktı öncesi kontrol: eksik = doldurulması gereken, uyari = alan mantığı uyarısı. Çıktıyı engellemez. */
@@ -474,24 +550,27 @@ function checkCase(c){
  const reqVal=(k,ad,v)=>{if(v.empty(c[k]))eksik.push({k,msg:ad});else if(!v.ok(c[k]))eksik.push({k,msg:ad+': '+v.msg})};
  const baska=c.hazir==='Başka kişi';
  req('kurum1','Kurum başlığı (⚙️ Ayarlar)');
+ req('vakaNo','Vaka no');
  req('vet1','Resmî veteriner hekim (1) adı');
  req('sahipAd','Hayvan sahibinin adı soyadı');
  reqVal('sahipTc','Hayvan sahibinin T.C. kimlik no',VAL.tc);
+ req('ilIlce','İli - ilçesi');
  reqVal('isletmeNo','İşletme no',VAL.trno);
  req('mahalle','Köyü / mahallesi');
  if(baska)req('hazirKisi','Yerinde hazır bulunan kişinin bilgileri');
  reqVal('kupe','Küpe no',VAL.trno);
  req('tur','Hayvanın türü');
  req('atikTarih','Atık tarihi');
+ req('gorTarih','Resmî veteriner hekimce görülme tarihi');
  req('materyal','Görülen materyal');
  if(!yalnizPlasenta(c))req('fetusCm','Fötüs uzunluğu');
  req('tahminiAy',GEBELIK_AYI_ETIKET);
- if(!(c.fotos||[]).length)eksik.push({k:'fotos',msg:'En az bir fotoğraf'});
+ if(!eskiVaka(c))eksik.push(...fotoEksik(c));
+ else if(!(c.fotos||[]).length)eksik.push({k:'fotos',msg:'En az bir fotoğraf'});
  req('numune','Alınan numune');
  const bosDestek=[1,2,3,4,5,6,7,8].filter(i=>isBlank(c['d'+i]));
  if(bosDestek.length)eksik.push({k:'d'+bosDestek[0],msg:'İşaretlenmeyen destek şartları: '+bosDestek.join(', ')});
- req('sigSahip',baska?'Hazır bulunan kişinin imzası':'Hayvan sahibinin imzası');
- req('sigVet1','Resmî veteriner hekim (1) imzası');
+ if(!eskiVaka(c))req('tedbirT','Tedbir başlangıç tarihi');
  if(c.d4!=='Evet')uyari.push({k:'d4',msg:'Destek şartı 4 “Evet” değil: atık materyali resmî veteriner hekimce bizzat görülmediyse destek şartı karşılanmaz.'});
  const ofiste=c.d8===PROTOKOL_OFISTE;
  if(isBlank(c.velbis))uyari.push({k:'velbis',msg:'VELBİS protokol no boş. Destek hakkı protokol oluşturulunca kazanılır; '+(ofiste?'ofiste oluşturunca numarasını yaz, şart 8’i “Evet” yap.':'protokolü oluştur, numarasını yaz.')});
@@ -517,7 +596,7 @@ function organUyarilari(c){
  const iki=[...new Set(adlar.filter((a,i)=>adlar.indexOf(a)!==i))];
  const u=[];
  if(isaretsiz.length)u.push({k:'numune',msg:'Ölçülen organ numune listesinde işaretli değil: '+isaretsiz.join(', ')});
- if(iki.length)u.push({k:'numune',msg:'Aynı organ iki kez ölçüldü, ikisi de tutanağa yazılır: '+iki.join(', ')});
+ if(iki.length)u.push({k:'numune',msg:'Aynı organ iki kez ölçüldü: '+iki.join(', ')});
  return u;
 }
 const GON_KONTROL=['Üçlü ambalaj sistemi eksiksiz mi?','Ana kabın contası ve vidalı kapağı doğru kapalı mı?','Tüp / poşet / kutu / enjektörler güvenli kapalı mı?','Numuneler birbirine temas etmiyor mu?',"Buz aküleri -18 °C'de donduruldu mu?",'Numunenin Kategori A/B sınıflandırması kontrol edildi mi?',"Bilgi, kod ve etiketler EK-6'ya göre uygun mu?",'VELBİS protokolü eksiksiz ve doğru oluşturuldu mu?','Nekropsi numunesiyse rapor eklendi mi?','Ambalaj bütünlüğü ve sızdırmazlık son kez kontrol edildi mi?'];
@@ -533,6 +612,7 @@ const DESTEK=[
  'Bu hayvan için {yil} yılında daha önce atık desteği kaydı yok',
  "Bu hayvan için TARSİM atık hasarı teminatı kapsamında ödeme yapılmasına karar verilmedi",
  "Numune alındı; VELBİS'te Marazi Madde Gönderme Protokolü oluşturuldu ve protokol numarası tutanağa yazıldı"];
+const SOZLU='Tedbirler sahada sözlü olarak anlatıldı';
 const ONLEM=['Hayvan sürüden ayrıldı (ayrı bölmeye alındı)','Fötüs ve yavru zarları kontrollü imha edilerek gömüldü','Atık yeri ve çevresi dezenfekte ettirildi','Bruselloz şüphesiyle işletmeye geçici hareket kısıtı konuldu',"VETBİS'e şüpheli vaka kaydı girildi",'Hayvanın sütünün ayrı sağılıp kaynatılarak kullanılması bildirildi','Hayvan sahibi süreç ve yükümlülükleri hakkında bilgilendirildi'];
 const MORF=[
  {k:'tirnak',l:'Tırnak kapsülü şekillenmiş',min:4},
@@ -554,15 +634,19 @@ const S=[
   {k:'sahipAd',l:'Adı soyadı',t:'text'},
   {k:'sahipTc',l:'T.C. kimlik no',t:'tel',half:1,val:'tc'},
   {k:'telefon',l:'Telefon',t:'tel',half:1},
+  {k:'ilIlce',l:'İli - ilçesi',t:'text',def:()=>ilIlceVarsayilan()},
   {k:'isletmeNo',l:'İşletme no',t:'text',def:()=>'TR'+ayar.il,up:1,val:'trno'},
   {k:'mahalle',l:'Köyü / mahallesi',t:'text'},
+  {k:'adres',l:'Adresi (boşsa köy / mahalle basılır)',t:'text'},
   {k:'koordinat',l:'Koordinat',t:'gps'},
   {k:'hazir',l:'Yerinde hazır bulunan',t:'radio',o:['Hayvan sahibinin kendisi','Başka kişi'],def:'Hayvan sahibinin kendisi'},
-  {k:'hazirKisi',l:'Başka kişi ise: adı soyadı / T.C. / yakınlığı',t:'text'}]},
+  {k:'hazirKisi',l:'Başka kişi ise: adı soyadı (yakınlığı)',t:'text'}]},
  {id:'hayvan',t:'2 · Atık yapan hayvan',f:[
   {k:'kupe',l:'Küpe no',t:'text',def:()=>'TR'+ayar.il,up:1,val:'trno'},
   {k:'tur',l:'Türü',t:'radio',o:['Sığır','Manda','Koyun','Keçi'],def:'Sığır'},
   {k:'irk',l:'Irkı',t:'text',list:['Simental','Simental melezi','Holştayn','Montofon (Esmer)','Angus','Şarole','Limuzin','Hereford','Doğu Anadolu Kırmızısı','Yerli Kara','Melez']},
+  {k:'cinsiyet',l:'Cinsiyeti',t:'radio',o:['Dişi','Erkek'],def:'Dişi',half:1},
+  {k:'yas',l:'Yaşı (boşsa doğum tarihinden)',t:'text',half:1},
   {k:'dogum',l:'Doğum tarihi',t:'date',half:1},
   {k:'tohumlama',l:'Tohumlama / aşım tarihi (beyan)',t:'date',half:1},
   {k:'tohumSekli',l:'Tohumlama şekli',t:'radio',o:['Suni','Tabii']},
@@ -578,6 +662,13 @@ const S=[
   {k:'asi30',l:'Son 30 günde başka aşı / ilaç',t:'radio',o:EH},
   {k:'asi30A',l:'Varsa adı / tarihi',t:'text'}]},
  {id:'tespit',t:'3 · Tespit, fotoğraf, ölçüm, bulgular',f:[
+  {k:'g_bildirim',t:'baslik',l:'Bildirim'},
+  {k:'bilT',l:'Bildirim tarihi',t:'date',half:1},
+  {k:'bilS',l:'Bildirim saati',t:'time',half:1},
+  {k:'bildiren',l:'Bildiren',t:'radio',o:['Hayvan sahibi','Diğer'],half:1},
+  {k:'bilYol',l:'Bildirim yolu',t:'radio',o:['Telefon','Şahsen'],half:1},
+  {k:'bildirenAd',l:'Bildiren diğer ise kim',t:'text'},
+  {k:'g_tespit',t:'baslik',l:'Tespit'},
   {k:'gorTarih',l:'Görüldüğü tarih',t:'date',def:todayISO,half:1},
   {k:'gorSaat',l:'Görüldüğü saat',t:'time',def:nowHM,half:1},
   {k:'gorYer',l:'Görüldüğü yer',t:'radio',o:['İşletme','Diğer'],def:'İşletme'},
@@ -616,24 +707,31 @@ const S=[
   {k:'engelAc',l:'Engel bulunduysa açıklama',t:'textarea'},
   {k:'tarsim',l:'TARSİM sigortası',t:'radio',o:['Yok','Var'],half:1},
   {k:'police',l:'Varsa poliçe no',t:'text',half:1}]},
- {id:'onlem',t:'7 · Alınan önlemler',f:[
+ {id:'onlem',t:'7 · Geçici tedbirler ve önlemler',f:[
+  {k:'tedbirT',l:'Tedbir başlangıç tarihi',t:'date',def:todayISO,half:1},
+  {k:'tedbirS',l:'Başlangıç saati',t:'time',def:nowHM,half:1},
+  {k:'ayirmaYer',l:'Atık yapan hayvanın ayrı tutulduğu yer',t:'text'},
+  {k:'imha',l:'Atık materyalinin imhası',t:'radio',o:['Denetimde yapıldı','Talimat verildi']},
+  {k:'hvSigir',l:'Hayvan varlığı: sığır',t:'number',half:1},
+  {k:'hvManda',l:'Manda',t:'number',half:1},
+  {k:'hvKoyun',l:'Koyun',t:'number',half:1},
+  {k:'hvKeci',l:'Keçi',t:'number',half:1},
+  {k:'koySuru',l:'Köy sürüsü',t:'check',o:['Çıkış yasak','Ayrı otlatma']},
+  {k:'ekTalimat',l:'Ek talimat',t:'textarea'},
+  {k:'sozlu',l:'Sözlü bilgilendirme',t:'check',o:[SOZLU]},
+  {k:'sozluT',l:'Sözlü bilgilendirme tarihi',t:'date',half:1},
+  {k:'sozluS',l:'Saati',t:'time',half:1},
+  {k:'g_wa',t:'baslik',l:'WhatsApp metnindeki önlemler'},
   {k:'onlem',l:'İşaretle',t:'check',o:ONLEM,col:1},
   {k:'onlemDiger',l:'Diğer önlemler',t:'textarea'}]},
- {id:'imza',t:'8 · Beyan, şerh ve imzalar',f:[
-  {k:'okuma',l:'Tutanak',t:'radio',o:['Hayvan sahibi kendisi okudu','Yüksek sesle okunarak anlatıldı'],def:'Hayvan sahibi kendisi okudu'},
-  {k:'itiraz',l:'Hayvan sahibinin itiraz / beyan şerhi',t:'radio',o:['Yoktur','Vardır'],def:'Yoktur'},
-  {k:'itirazA',l:'Şerh varsa',t:'textarea'},
-  {k:'nusha',l:'Nüsha sayısı',t:'number',def:'2'},
-  {k:'sigSahip',l:'Hayvan sahibi / hazır bulunan',t:'sig'},
-  {k:'sigVet1',l:'Resmî veteriner hekim (1)',t:'sig'},
-  {k:'sigVet2',l:'Resmî veteriner hekim (2)',t:'sig'}]},
- {id:'takip',t:'9 · Takip (tutanağa girmez)',f:[
+ {id:'takip',t:'8 · Takip (ofis)',f:[
   {k:'g_sistem',t:'baslik',l:'Sistem kayıtları'},
   {k:'velbis',l:'VELBİS protokol no',t:'text',ph:()=>'EVE/'+new Date().getFullYear()+'/….'},
   {k:'protT',l:'Protokol oluşturma tarihi',t:'date'},
   {k:'kisitT',l:'TÜRKVET kısıt tarihi',t:'date',half:1},
   {k:'kisitS',l:'Kısıt saati',t:'time',half:1},
   {k:'bildirimNo',l:'Hastalık bildirim no',t:'text'},
+  {k:'ek1T',l:'EK-1 düzenleme tarihi (ilk basımda bugün yazılır)',t:'date'},
   {k:'g_gonderim',t:'baslik',l:'Numune gönderimi'},
   {k:'gonKontrol',l:'Göndermeden önce son kontrol',t:'check',o:GON_KONTROL,col:1},
   {k:'gonKontrolNot',t:'rehber'},
@@ -686,12 +784,20 @@ const ESIK_TANIM=[
 const ESIK_MAKS=365;
 const ESIK_ILK=Object.fromEntries(ESIK_TANIM.map(e=>[e.k,e.v]));
 const esikGecerli=v=>Number.isInteger(v)&&v>=0&&v<=ESIK_MAKS;
-const AYAR_ILK={kurum1:'',kurum2:'İlçe Tarım ve Orman Müdürlüğü',vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75',esik:ESIK_ILK};
+const AYAR_ILK={kurum1:'',kurum2:'İlçe Tarım ve Orman Müdürlüğü',vet1:'',vet2:'',enstitu:'Erzurum Veteriner Kontrol Enstitüsü Müdürlüğü',il:'75',ilce:'',mahkeme:'',esik:ESIK_ILK};
 /* Kurum başlığından önceki sürümde kaydedilmiş ayarlar Damal'da kullanılıyordu; başlık korunur. */
 const ESKI_KURUM={kurum1:'DAMAL KAYMAKAMLIĞI',kurum2:'İlçe Tarım ve Orman Müdürlüğü'};
 /* Kurum bilgileri formda yoktur, yalnız Ayarlar'dan gelir; vakaya kopyalanır ki kayıtlı vaka ayar değişince değişmesin. */
 const PROFIL={kurum1:'#setKurum1',kurum2:'#setKurum2',enstitu:'#setEnstitu'};
-function profilUygula(c,hepsi){Object.keys(PROFIL).forEach(k=>{if(hepsi||!(typeof c[k]==='string'&&c[k].trim()))c[k]=ayar[k]})}
+/* Vakaya kopyalanmayan, çıktıda doğrudan Ayarlar'dan okunan alanlar. */
+const AYAR_ALAN={ilce:'#setIlce',mahkeme:'#setMahkeme'};
+const IL_AD=['Adana','Adıyaman','Afyonkarahisar','Ağrı','Amasya','Ankara','Antalya','Artvin','Aydın','Balıkesir','Bilecik','Bingöl','Bitlis','Bolu','Burdur','Bursa','Çanakkale','Çankırı','Çorum','Denizli','Diyarbakır','Edirne','Elazığ','Erzincan','Erzurum','Eskişehir','Gaziantep','Giresun','Gümüşhane','Hakkâri','Hatay','Isparta','Mersin','İstanbul','İzmir','Kars','Kastamonu','Kayseri','Kırklareli','Kırşehir','Kocaeli','Konya','Kütahya','Malatya','Manisa','Kahramanmaraş','Mardin','Muğla','Muş','Nevşehir','Niğde','Ordu','Rize','Sakarya','Samsun','Siirt','Sinop','Sivas','Tekirdağ','Tokat','Trabzon','Tunceli','Şanlıurfa','Uşak','Van','Yozgat','Zonguldak','Aksaray','Bayburt','Karaman','Kırıkkale','Batman','Şırnak','Bartın','Ardahan','Iğdır','Yalova','Karabük','Kilis','Osmaniye','Düzce'];
+const ilIlceVarsayilan=()=>ayar.ilce?[IL_AD[+ayar.il-1],ayar.ilce].filter(Boolean).join(' / '):'';
+function profilUygula(c,hepsi){
+ Object.keys(PROFIL).forEach(k=>{if(hepsi||!(typeof c[k]==='string'&&c[k].trim()))c[k]=ayar[k]});
+ /* İl - ilçe boş kalmış vakada Ayarlar'daki il kodu ve ilçe adından doldurulur; yazılmış değer değişmez. */
+ if(!(typeof c.ilIlce==='string'&&c.ilIlce.trim())&&ilIlceVarsayilan())c.ilIlce=ilIlceVarsayilan();
+}
 let ayar=AYAR_ILK;
 const ilGecerli=v=>/^\d{2}$/.test(v)&&+v>=1&&+v<=81;
 function loadAyarKaydi(r){
@@ -700,7 +806,10 @@ function loadAyarKaydi(r){
  const kurum=k=>typeof r[k]==='string'?r[k]:ESKI_KURUM[k];
  const es=r.esik&&typeof r.esik==='object'?r.esik:{};
  const esik=Object.fromEntries(ESIK_TANIM.map(e=>[e.k,esikGecerli(es[e.k])?es[e.k]:e.v]));
- ayar={kurum1:kurum('kurum1'),kurum2:kurum('kurum2'),vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il,esik};
+ /* İlçe ve mahkeme alanından önceki sürümde Damal başlığıyla kaydedilmiş ayarlar Damal / Kars ile açılır. */
+ const damal=/DAMAL/i.test(kurum('kurum1'));
+ const yer=(k,v)=>typeof r[k]==='string'?r[k]:(damal?v:'');
+ ayar={kurum1:kurum('kurum1'),kurum2:kurum('kurum2'),vet1:yazi('vet1'),vet2:yazi('vet2'),enstitu:yazi('enstitu'),il:ilGecerli(r.il)?r.il:AYAR_ILK.il,ilce:yer('ilce','Damal'),mahkeme:yer('mahkeme','Kars'),esik};
 }
 function showIlHata(hatali){
  const e=$('#err_setIl');
@@ -709,7 +818,7 @@ function showIlHata(hatali){
  $('#setIl').classList.toggle('bad',hatali);
 }
 function openAyar(){
- $('#setKurum1').value=ayar.kurum1;$('#setKurum2').value=ayar.kurum2;$('#setVet1').value=ayar.vet1;$('#setVet2').value=ayar.vet2;$('#setEnstitu').value=ayar.enstitu;$('#setIl').value=ayar.il;
+ $('#setKurum1').value=ayar.kurum1;$('#setKurum2').value=ayar.kurum2;$('#setVet1').value=ayar.vet1;$('#setVet2').value=ayar.vet2;$('#setEnstitu').value=ayar.enstitu;$('#setIl').value=ayar.il;$('#setIlce').value=ayar.ilce;$('#setMahkeme').value=ayar.mahkeme;
  showIlHata(false);
  $('#esikBox').innerHTML=ESIK_TANIM.map(e=>`<div class="fld"><label class="l" for="setEsik_${e.k}">${esc(e.l)}</label><input type="text" inputmode="numeric" maxlength="3" id="setEsik_${e.k}" value="${ayar.esik[e.k]}"></div>`).join('');
  $('#err_esik').textContent='';$('#err_esik').classList.remove('on');
@@ -725,7 +834,7 @@ async function saveAyar(){
   if(!esikGecerli(v)){const er=$('#err_esik');er.textContent='Eşikler 0 ile '+ESIK_MAKS+' arasında tam gün olmalı: '+e.l;er.classList.add('on');$('#esikBox').closest('details').open=true;return}
   esik[e.k]=v;
  }
- const yeni={kurum1:$('#setKurum1').value.trim(),kurum2:$('#setKurum2').value.trim(),vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il,esik};
+ const yeni={kurum1:$('#setKurum1').value.trim(),kurum2:$('#setKurum2').value.trim(),vet1:$('#setVet1').value.trim(),vet2:$('#setVet2').value.trim(),enstitu:$('#setEnstitu').value.trim(),il,ilce:$('#setIlce').value.trim(),mahkeme:$('#setMahkeme').value.trim(),esik};
  try{await dbWrite('ayarlar',t=>t.objectStore('ayarlar').put({id:AYAR_ID,...yeni}))}
  catch(e){toast('Ayarlar kaydedilemedi');return}
  ayar=yeni;
@@ -738,7 +847,7 @@ async function saveAyar(){
 
 /* ---------- durum ---------- */
 let d={}; let curId=null;
-function defaults(){const o={id:uid(),schema:SCHEMA,created:Date.now(),fotos:[],morf:[]};S.forEach(s=>s.f.forEach(f=>{if(f.def!==undefined)o[f.k]=typeof f.def==='function'?f.def():(Array.isArray(f.def)?f.def.slice():f.def)}));profilUygula(o,true);return o}
+function defaults(){const o={id:uid(),schema:SCHEMA,belge:BELGE_SURUM,created:Date.now(),fotos:[],morf:[]};S.forEach(s=>s.f.forEach(f=>{if(f.def!==undefined)o[f.k]=typeof f.def==='function'?f.def():(Array.isArray(f.def)?f.def.slice():f.def)}));profilUygula(o,true);return o}
 
 /* ---------- IndexedDB ---------- */
 const DB_NAME='atikSaha',DB_VER=4,SCHEMA=3,QUOTA_WARN=.8,SAVE_DELAY=400,GUNLUK='gunluk';
@@ -1022,7 +1131,6 @@ function render(){
  });
  app.innerHTML='<div class="vu" id="vakaUyari"></div>'+h;
  bind();
- S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}));
  S.forEach(s=>s.f.forEach(f=>{if(f.val)showValid(f)}));
  drawPhotos();calcAge();updNumWarn();updStatus();updLbl();updVakaUyari();drawGunluk();
  kapaliGorunum();
@@ -1058,7 +1166,6 @@ function field(f){
  if(f.t==='age'){
   return `<div class="agebox"><h4>Yaş tahmini yardımcısı</h4><div class="opts">${MORF.map(m=>`<label><input type="checkbox" data-k="morf" value="${m.k}" ${(d.morf||[]).includes(m.k)?'checked':''}><span>${esc(m.l)}</span></label>`).join('')}</div><div class="res" id="ageRes"></div></div>`;
  }
- if(f.t==='sig')return `<div class="sigw"><div class="inl"><b>${esc(f.l)}</b><button class="btn red sm" data-sigclr="${f.k}">Sil</button></div><canvas class="sig" id="sig_${f.k}"></canvas></div>`;
  let inner='';
  if(f.t==='radio'||f.t==='check'){
   const ty=f.t==='radio'?'radio':'checkbox';
@@ -1116,13 +1223,6 @@ function bind(){
  $('#bCard').onclick=()=>doPrint(olcekKartiHTML());
  document.querySelectorAll('[data-rehber]').forEach(b=>b.onclick=()=>$('#mRehber').classList.add('on'));
  $('#bMeasPick').onclick=()=>{if(!d.fotos.length){toast('Önce fotoğraf ekle');return}const last=[...d.fotos].reverse().find(p=>!p.olcum)||d.fotos[d.fotos.length-1];openMeas(last.id)};
- document.querySelectorAll('[data-sigclr]').forEach(b=>b.onclick=async()=>{
-  const k=b.dataset.sigclr;
-  if(!d[k])return;
-  if(!await askDelete('İmza silinsin mi?','Silinen imza geri alınamaz.'))return;
-  delete d[k];initSig(k);save();
- });
- $('details[data-s="imza"]').addEventListener('toggle',e=>{if(e.target.open)S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}))});
 }
 function updStatus(){
  S.forEach(s=>{
@@ -1176,9 +1276,25 @@ function measBtn(p){
  const duzeltilir=p.olcumVeri&&d.fotos.some(x=>x.id===p.olcumKaynak);
  return duzeltilir?`<button data-meas="${esc(p.id)}" aria-label="Ölçümü düzelt">✏️</button>`:'';
 }
+/* Bir tür tek fotoğrafa verilir (Diğer en çok ikiye); fazlası en eski seçimden kalkar. */
+function setFotoTur(id,tur){
+ const c=d;
+ return inPhotoQueue(async()=>{
+ if(c!==d||d.kapali||!d.fotos.some(p=>p.id===id))return;
+ const izin=tur===FOTO_DIGER?FOTO_DIGER_MAKS:1;
+ const ayni=tur?d.fotos.filter(p=>p.id!==id&&p.tur===tur):[];
+ const birak=ayni.slice(0,Math.max(0,ayni.length-(izin-1))).map(p=>p.id);
+ const turuz=p=>{const{tur:t,ac,...r}=p;return r};
+ d.fotos=d.fotos.map(p=>p.id===id?(tur?{...turuz(p),tur,...(tur===FOTO_DIGER&&p.ac?{ac:p.ac}:{})}:turuz(p)):birak.includes(p.id)?turuz(p):p);
+ save();drawPhotos();updStatus();updVakaUyari();
+ if(birak.length)toast('“'+tur+'” önceki fotoğraftan kaldırıldı');
+ });
+}
 function drawPhotos(){
  const b=$('#phBox');if(!b)return;
- b.innerHTML=(d.fotos||[]).map((p,i)=>`<div class="ph"><img src="${esc(photoSrc(p))}" alt=""><div class="acts">${measBtn(p)}<button data-del="${esc(p.id)}">✕</button></div><div class="cap">${i+1}${p.olcum?' · '+(p.olcumHedef?esc(p.olcumHedef)+' '+boyEn(p):'ölçüm '+fmt(p.olcum)+' cm'):''}</div></div>`).join('');
+ b.innerHTML=(d.fotos||[]).map((p,i)=>`<div class="phw"><div class="ph"><img src="${esc(photoSrc(p))}" alt=""><div class="acts">${measBtn(p)}<button data-del="${esc(p.id)}">✕</button></div><div class="cap">${i+1}${p.olcum?' · '+(p.olcumHedef?esc(p.olcumHedef)+' '+boyEn(p):'ölçüm '+fmt(p.olcum)+' cm'):''}</div></div><select data-tur="${esc(p.id)}" aria-label="Fotoğraf ${i+1} türü"><option value="">Föye girmez</option>${FOTO_TUR.map(t=>`<option${p.tur===t?' selected':''}>${esc(t)}</option>`).join('')}</select>${p.tur===FOTO_DIGER?`<input type="text" data-ac="${esc(p.id)}" maxlength="40" placeholder="Açıklama" aria-label="Fotoğraf ${i+1} açıklaması" value="${esc(p.ac||'')}">`:''}</div>`).join('');
+ b.querySelectorAll('[data-tur]').forEach(x=>x.onchange=()=>setFotoTur(x.dataset.tur,x.value));
+ b.querySelectorAll('[data-ac]').forEach(x=>x.oninput=()=>{const c=d,ac=x.value;inPhotoQueue(async()=>{if(c!==d||d.kapali)return;d.fotos=d.fotos.map(p=>p.id===x.dataset.ac?{...p,ac}:p);save()})});
  b.querySelectorAll('[data-del]').forEach(x=>x.onclick=async()=>{
   if(!await askDelete('Fotoğraf silinsin mi?','Silinen fotoğraf geri alınamaz.'))return;
   try{await removePhoto(x.dataset.del)}catch(e){reportSaveErr(e)}
@@ -1519,25 +1635,15 @@ function calcAge(){
 }
 
 /* ---------- imza ---------- */
-function initSig(k){
- const c=$('#sig_'+k);if(!c)return;const dpr=window.devicePixelRatio||1;const r=c.getBoundingClientRect();
- const W=Math.max(300,r.width||600),H=150;c.width=W*dpr;c.height=H*dpr;const g=c.getContext('2d');g.setTransform(dpr,0,0,dpr,0,0);g.clearRect(0,0,W,H);
- g.lineWidth=2.2;g.lineCap='round';g.lineJoin='round';g.strokeStyle='#0b1f3a';
- if(d[k]){const im=new Image();im.onload=()=>g.drawImage(im,0,0,W,H);im.src=d[k]}
- let drawing=false,last=null;
- const pos=e=>{const b=c.getBoundingClientRect();return{x:(e.clientX-b.left)*(W/b.width),y:(e.clientY-b.top)*(H/b.height)}};
- c.onpointerdown=e=>{if(d.kapali)return;drawing=true;last=pos(e);c.setPointerCapture(e.pointerId);e.preventDefault()};
- c.onpointermove=e=>{if(!drawing)return;const p=pos(e);g.beginPath();g.moveTo(last.x,last.y);g.lineTo(p.x,p.y);g.stroke();last=p;e.preventDefault()};
- c.onpointerup=c.onpointercancel=()=>{if(!drawing)return;drawing=false;if(d.kapali)return;d[k]=c.toDataURL('image/png');save()};
-}
-
 /* ---------- çıktı öncesi kontrol ---------- */
 function goField(k){
  $('#mCheck').classList.remove('on');
- if(PROFIL[k]){openAyar();$(PROFIL[k]).focus();return}
+ $('#mCikti').classList.remove('on');
+ const ayarAlani=PROFIL[k]||AYAR_ALAN[k];
+ if(ayarAlani){openAyar();$(ayarAlani).focus();return}
  const sec=S.find(s=>s.f.some(f=>f.k===k));
  const det=sec&&$(`details[data-s="${sec.id}"]`);if(det)det.open=true;
- const el=$('#f_'+k)||$('#sig_'+k)||(k==='fotos'?$('#phBox'):null)||(k==='kapat'?$('#kapatBox'):null)||$(`input[data-k="${k}"]`);
+ const el=$('#f_'+k)||(k==='fotos'?$('#phBox'):null)||(k==='kapat'?$('#kapatBox'):null)||$(`input[data-k="${k}"]`);
  if(!el)return;
  const hedef=el.closest('.fld,.sigw')||el;
  hedef.scrollIntoView({block:'center'});
@@ -1610,62 +1716,162 @@ $('#waShare').onclick=async()=>{
 const CB=(sel,opts)=>opts.map(o=>((Array.isArray(sel)?sel.includes(o):sel===o)?'☒ ':'☐ ')+esc(o)).join('&nbsp;&nbsp; ');
 const V=(x,ph='')=>x?esc(x):'<span style="color:#fff">'+ph+'</span>';
 const tdv=(k,v)=>`<td class="k">${k}</td><td>${v}</td>`;
-function tutanakHTML(){
- const T=trDate(d.tarih);
- const sig=(k,ad,unv)=>`<td>${d[k]?`<img src="${d[k]}">`:''}<div><b>${esc(ad||'')}</b></div><div>${unv}</div></td>`;
- let h=`<div class="hd">T.C.<br>${esc(d.kurum1)||'……'}<br>${esc(d.kurum2||'')}<div class="t">ATIK TESPİT VE NUMUNE ALMA TUTANAĞI</div></div>
- <div class="meta"><span>Tarih: ${esc(T)||'…/…/20…'}</span><span>Saat: ${esc(d.saat||'')}</span></div>
- <p>Aşağıda bilgileri yazılı işletmede atık yapan hayvana ilişkin olarak işletmeye gidilmiş; atık materyali resmî veteriner ${hekimEki(d)} yerinde bizzat görülerek aşağıdaki tespitler yapılmış ve işbu tutanak düzenlenmiştir.</p>
- <h5>1. HAYVAN SAHİBİ VE İŞLETME BİLGİLERİ</h5>
- <table><tr>${tdv('Adı soyadı',V(d.sahipAd))}${tdv('T.C. kimlik no',V(d.sahipTc))}</tr>
- <tr>${tdv('İşletme no',V(noIsEmpty(d.isletmeNo)?'':d.isletmeNo))}${tdv('Telefon',V(d.telefon))}</tr>
- <tr>${tdv('Köyü / mahallesi',V(d.mahalle))}${tdv('Koordinat',V(d.koordinat))}</tr>
- <tr><td class="k">Yerinde hazır bulunan</td><td colspan="3">${CB(d.hazir,['Hayvan sahibinin kendisi','Başka kişi'])}${d.hazirKisi?' — '+esc(d.hazirKisi):''}</td></tr></table>
- <h5>2. ATIK YAPAN HAYVANA AİT BİLGİLER</h5>
- <table><tr>${tdv('Küpe no',V(noIsEmpty(d.kupe)?'':d.kupe))}${tdv('Türü',CB(d.tur,['Sığır','Manda','Koyun','Keçi']))}</tr>
- <tr>${tdv('Irkı',V(d.irk))}${tdv('Doğum tarihi',V(trDate(d.dogum)))}</tr>
- <tr>${tdv('Tohumlama / aşım',V(trDate(d.tohumlama))+' &nbsp; '+CB(d.tohumSekli,['Suni','Tabii']))}${tdv('Atık tarihi / saati',V(trDate(d.atikTarih))+' '+esc(d.atikSaat||''))}</tr>
- <tr>${tdv('Görülen materyal',CB(d.materyal,['Fötüs','Plasenta / zarlar']))}${tdv('TÜRKVET kaydı',"Bu sahip adına ve bu işletmede kayıtlı: "+CB(d.turkvet,EH))}</tr></table>
- <table style="margin-top:-0.6pt"><tr><th style="width:30%">Aşı / uygulama</th><th style="width:22%">Yapıldı mı</th><th>Son uygulama tarihi / açıklama</th></tr>
- <tr><td>Brusella (S19 / RB51 / Rev-1)</td><td>${CB(d.asiBru,EH)}</td><td>${V(trDate(d.asiBruT))}</td></tr>
- <tr><td>Şap</td><td>${CB(d.asiSap,EH)}</td><td>${V(trDate(d.asiSapT))}</td></tr>
- <tr><td>Son 30 günde başka aşı / ilaç</td><td>${CB(d.asi30,EH)}</td><td>${V(d.asi30A)}</td></tr></table>
- <h5>3. ATIĞIN RESMÎ VETERİNER HEKİMCE TESPİTİ VE BULGULAR</h5>
- <table><tr>${tdv('Görüldüğü tarih / saat',V(trDate(d.gorTarih))+' '+esc(d.gorSaat||''))}${tdv('Görüldüğü yer',CB(d.gorYer,['İşletme','Diğer']))}</tr>
- <tr><td class="k">${GEBELIK_AYI_ETIKET}</td><td colspan="3">${d.tahminiAy?'Yaklaşık '+esc(d.tahminiAy):'……'} aylık gebelikte</td></tr>
- <tr>${tdv('Fötüs uzunluğu',d.fetusCm?'Yaklaşık '+esc(d.fetusCm)+' cm':(yalnizPlasenta(d)?'Fötüs görülmedi':'Yaklaşık …… cm'))}${tdv('Plasenta / zarlar',CB(d.plasenta,['Var','Yok','Atılmamış']))}</tr>
- ${kucukBas(d)?'':`<tr><td class="k">Fötüs morfolojisi</td><td colspan="3">${CB(morfOf(d).map(k=>(MORF.find(m=>m.k===k)||{}).l),MORF.map(m=>m.l))}</td></tr>`}
- <tr><td class="k">Annenin durumu</td><td colspan="3">${CB(d.anne,['Normal','Ateş','Yavru zarı atılmamış (retensiyo)','Vajinal akıntı'])}${d.anneAtes?' — '+esc(d.anneAtes)+' °C':''}</td></tr>
- <tr><td class="k">Fotoğraf</td><td colspan="3">${(d.fotos||[]).length} adet (ekte)</td></tr>
- ${d.bulguNot?`<tr><td class="k">Diğer bulgular</td><td colspan="3">${esc(d.bulguNot)}</td></tr>`:''}</table>
- <h5>4. NUMUNE VE LABORATUVAR BİLGİLERİ</h5>
- <table><tr><td class="k">Alınan numune</td><td colspan="3">${CB(d.numune,NUMUNE)}</td></tr>
- <tr>${tdv('Numune kabı sayısı',V(d.kapSayi))}${tdv('Muhafaza',CB(d.muhafaza,['Soğuk zincir (+4 °C)','Donuk']))}</tr>
- <tr>${tdv('Numune alış tarihi / saati',V(trDate(d.numTarih))+' '+esc(d.numSaat||''))}${tdv('VELBİS protokol no',V(d.velbis))}</tr>
- <tr>${tdv('Gönderildiği enstitü',V(d.enstitu))}${tdv('Gönderim tarihi / şekli',V(trDate(d.gonTarih))+' &nbsp; '+CB(d.gonSekli,['Elden','Kargo']))}</tr>
- ${d.kargoNo?`<tr><td class="k">Kargo / teslim alan</td><td colspan="3">${esc(d.kargoNo)}</td></tr>`:''}
- ${organOlculer(d).length?`<tr><td class="k">Numune ölçüleri</td><td colspan="3">Yaklaşık: ${organOlculer(d).map(p=>esc(p.olcumHedef)+' '+boyEn(p)).join('; ')}</td></tr>`:''}</table>
- <h5>5. EPİDEMİYOLOJİK BİLGİLER (HAYVAN SAHİBİNİN BEYANI)</h5>
- <table><tr>${tdv('İşletmedeki gebe hayvan',(d.gebeSayi?esc(d.gebeSayi):'……')+' baş')}${tdv('Son 12 ayda atık',CB(d.atik12,['Yok','Var'])+(d.atik12A?' — '+esc(d.atik12A)+' adet':''))}</tr>
- <tr><td class="k">Son 12 ayda hayvan girişi</td><td colspan="3">${CB(d.giris,['Yok','Var'])}${d.girisA?' — '+esc(d.girisA):''}</td></tr>
- <tr>${tdv('Ortak mera / yayla',CB(d.mera,['Hayır','Evet']))}${tdv('Ortak / kiralık boğa',CB(d.boga,['Hayır','Evet']))}</tr>
- ${d.meraA?`<tr><td class="k">Açıklama</td><td colspan="3">${esc(d.meraA)}</td></tr>`:''}
- <tr>${tdv('Barınma / besleme',CB(d.barinma,['Ahır','Mera','Karışık']))}${tdv('Silaj',CB(d.silaj,['Kullanılıyor','Kullanılmıyor']))}</tr></table>
- <h5>6. DESTEK ŞARTLARININ KONTROLÜ</h5>
- <table><tr><th style="width:6%">No</th><th>Kontrol edilen destek şartı</th><th style="width:9%">Evet</th><th style="width:9%">Hayır</th></tr>
- ${DESTEK.map((l,i)=>{const v=d['d'+(i+1)];return `<tr><td style="text-align:center">${i+1}</td><td>${esc(i===7&&v===PROTOKOL_OFISTE?D8_OFISTE_METNI:destekMetni(l,d))}${i===6?` (Sigorta: ${CB(d.tarsim,['Yok','Var'])}${d.police?', poliçe no: '+esc(d.police):''})`:''}</td><td style="text-align:center">${v==='Evet'?'☒':'☐'}</td><td style="text-align:center">${v==='Hayır'?'☒':'☐'}</td></tr>`}).join('')}</table>
- <p class="small"><i>Herhangi bir maddede “Hayır” işaretlenmesi hâlinde destek şartları sağlanmamış sayılır. Atık desteğinin ödenmesi yürürlükteki mevzuat ve Bakanlık talimatına göre değerlendirilir. Bu tutanak ödeme taahhüdü değildir.</i></p>
- <h5>7. ALINAN ÖNLEMLER</h5>
- <div class="box">${ONLEM.map(o=>((d.onlem||[]).includes(o)?'☒ ':'☐ ')+esc(o)).join('<br>')}${d.onlemDiger?'<br>☒ '+esc(d.onlemDiger).replace(/\n/g,'<br>☒ '):''}</div>
- <h5>8. HAYVAN SAHİBİNİN BEYANI VE BİLGİLENDİRME</h5>
- <div class="box"><p>Tutanaktaki bilgilerin ve 5 inci bölümdeki beyanlarımın doğru olduğunu; hayvanın TÜRKVET'te kayıtlı sahibi olduğumu (veya kayıtlı sahibin bilgisi ve adına hareket ettiğimi); bu hayvan için ${atikYil(d)} yılında başka atık desteği almadığımı; bu atık için TARSİM'den hasar ödemesi almadığımı, alırsam derhâl İlçe Müdürlüğüne bildireceğimi beyan ederim. Alınan önlemler, uymam gereken yükümlülükler ile itiraz ve başvuru yolları bana anlatıldı; tutanağın bir nüshasını teslim aldım.</p>
- <p>${CB(d.okuma,['Hayvan sahibi kendisi okudu','Yüksek sesle okunarak anlatıldı'])}</p>
- <p>İtiraz / beyan şerhi: ${CB(d.itiraz,['Yoktur','Vardır'])}${d.itirazA?' — '+esc(d.itirazA):''}</p>
- <p class="small">Kişisel verileriniz (ad-soyad, T.C. kimlik no, telefon, adres, işletme ve hayvan kayıtları, imza, fotoğraflar) atık tespiti, hayvan sağlığı tedbirlerinin uygulanması ve atık desteği işlemlerinin yürütülmesi amacıyla 6698 sayılı Kanun md. 5/2 kapsamında işlenir; yalnızca mevzuatın gerektirdiği ölçüde ilgili kamu kurumlarına aktarılır. Kanunun 11 inci maddesindeki haklarınızı İlçe Müdürlüğüne yazılı başvuru ile kullanabilirsiniz.</p></div>
- <p class="kapanis" style="margin-top:6px">İşbu tutanak ${esc(d.nusha||'2')} nüsha olarak düzenlenmiş, okunarak taraflarca imza altına alınmıştır. ${esc(T)}</p>
- <table class="sigt"><tr>${sig('sigSahip',d.hazir==='Başka kişi'&&d.hazirKisi?d.hazirKisi.split('/')[0].trim():d.sahipAd,d.hazir==='Başka kişi'?'Hazır bulunan':'Hayvan sahibi')}${sig('sigVet1',d.vet1,'Resmî Veteriner Hekim')}${sig('sigVet2',d.vet2,'Resmî Veteriner Hekim')}</tr></table>`;
- return h;
+/* ---------- belgeler: EK-1, Ek-B, Ek-D (mimari v3 §4; şablon Rev08) ---------- */
+const BOS_T='…/…/20…',BOS_S='…:…';
+const kutu=(isaretli,ad)=>(isaretli?'☒ ':'☐ ')+ad;
+const tarihYa=t=>t?esc(trDate(t)):BOS_T;
+const saatHM=t=>{const x=new Date(t||NaN);return isNaN(x)?BOS_S:pad(x.getHours())+':'+pad(x.getMinutes())};
+const ek1Tarihi=c=>c.ek1T||todayISO();
+const baglanti=(ek,c)=>`<div class="bag"><b>${ek}</b> · Vaka No: ${esc(c.vakaNo||'')} · ${esc(trDate(ek1Tarihi(c)))} tarihli Atık Tespit Tutanağının (EK-1) ekidir.</div>`;
+/* Yaş yazılmadıysa doğum tarihinden atık tarihine göre hesaplanır. */
+function yasMetni(c){
+ if(!isBlank(c.yas))return String(c.yas);
+ const ymd=s=>/^(\d{4})-(\d{2})-(\d{2})$/.exec(s||'');
+ const m=ymd(c.dogum),a=ymd(c.atikTarih||c.tarih);
+ if(!m||!a)return '';
+ const ay=(a[1]-m[1])*12+(a[2]-m[2])-(+a[3]<+m[3]?1:0);
+ if(ay<0)return '';
+ return ay>=24?Math.floor(ay/12)+' yaş':ay+' ay';
 }
+/* c boşsa (null) Bakanlık metni boş hâliyle basılır. Metin değiştirilmez. */
+function ek1HTML(c){
+ const x=c||{};
+ const v=s=>esc(s==null?'':s);
+ const no=s=>noIsEmpty(s)?'':s;
+ const engel=x.engel==='Bulunmadı'?'bulunmadığı/<s>bulunduğu</s>':x.engel==='Bulundu'?'<s>bulunmadığı</s>/bulunduğu':'bulunmadığı/bulunduğu';
+ const gebelik=x.tahminiAy?esc(x.tahminiAy)+' ay':'';
+ return `<div class="sf ek1"><div class="ekno">EK-1</div>
+<div class="bas">ATIK DESTEĞİNE ESAS GEBE HAYVANLARDA (SIĞIR, MANDA, KOYUN VE KEÇİ) ATIK MEYDANA GELDİĞİNE DAİR TESPİT TUTANAĞI</div>
+<table><tr><th colspan="2">HAYVAN SAHİBİNİN BİLGİLERİ</th></tr>
+<tr><td class="k">Adı Soyadı:</td><td>${v(x.sahipAd)}</td></tr>
+<tr><td class="k">T.C/Vergi Numarası:</td><td>${v(x.sahipTc)}</td></tr>
+<tr><td class="k">Telefon Numarası:</td><td>${v(x.telefon)}</td></tr>
+<tr><td class="k">İli-İlçesi</td><td>${v(x.ilIlce)}</td></tr>
+<tr><td class="k">İşletme Numarası:</td><td>${v(no(x.isletmeNo))}</td></tr>
+<tr><td class="k">Adresi:</td><td>${v(x.adres||x.mahalle)}</td></tr></table>
+<table class="hv"><tr><th style="width:17%">Tanımlama Numarası</th><th>Tür</th><th>Irk</th><th>Cinsiyet</th><th>Yaş</th><th style="width:14%">Atık Oluştuğundaki Gebelik Yaşı</th><th style="width:30%">Atığın Meydana Geldiği Tarihte TÜRKVET’te Kayıtlı Olduğu İşletme Numarası</th></tr>
+<tr><td>${v(no(x.kupe))}</td><td>${v(c?x.tur:'')}</td><td>${v(x.irk)}</td><td>${v(c?x.cinsiyet:'')}</td><td>${v(c?yasMetni(x):'')}</td><td>${gebelik}</td><td>${v(no(x.turkvetIsletme)||no(x.isletmeNo))}</td></tr></table>
+<table class="at"><tr><th colspan="4">ATIĞA İLİŞKİN BİLGİLER</th></tr>
+<tr><th>Atığın Meydana Geldiği Tarih</th><th>Atığın Resmi Veteriner Hekim Tarafından Görülme Tarihi</th><th>Numune Tipi</th><th>Marazi Madde Gönderme Protokolü Oluşturma Tarihi*</th></tr>
+<tr><td>${v(trDate(x.atikTarih))}</td><td>${v(trDate(x.gorTarih))}</td><td>${v((x.numune||[]).join(', '))}</td><td>${v(trDate(x.protT))}</td></tr></table>
+<p class="dip">*: Destekleme ödemesine engel teşkil eden bir durum bulunmaması hâlinde, ilgili tarih atık desteğine hak ediş tarihi olarak kabul edilir.</p>
+<p>Yukarıda bilgileri yazılı olan hayvan/hayvanların, hayvan sahibi tarafından şahsına ait olduğu kabul ve taahhüt edilmiş olup söz konusu hayvan/hayvanların ${x.atikTarih?esc(trDate(x.atikTarih)):BOS_T} tarihinde hayvan sahibinin işletmesinde atık yaptığı tarafımızca yerinde yapılan inceleme sonucunda görülmüştür.</p>
+<p>Bölge Veteriner Kontrol Enstitüsü Müdürlüğüne gönderilmek üzere atığa ilişkin numune/numuneler alınmıştır. İşbu tespit tutanağı ile ekte yer alan Veteriner Laboratuvar Bilgi Sisteminden (VELBİS) oluşturulan protokol, atık desteği başvurusu olarak kabul edilmiştir.</p>
+<p>${c?esc(atikYil(x)):'……..'} yılı Hayvancılık Desteklemelerine İlişkin Cumhurbaşkanı Kararı ve Uygulama Esasları Tebliği ile hayvanların kimliklendirilmesi ve kaydına ilişkin mevzuat doğrultusunda, atık desteğinden yararlanma şartları ile destekleme ödemesine engel teşkil eden tüm hususlar <i>(Tarım cezası, kamu kurum ve kuruluşlarına ait hayvan, TARSİM, atığın gerçekleştiği yıl içerisinde aynı hayvan için başka atık desteği ödemesi, atığın meydana geldiği tarihte atık yapan hayvanın TÜRKVET’te kayıtlı olduğu işletme ile hayvan sahibinin işletmesi uyumu gibi durumlar</i>) kontrol edilmiştir. Yapılan kontroller sonucunda, söz konusu hayvan/hayvanlar için atık desteği ödenmesine engel bir durum ${engel} tespit edilmiştir.</p>
+<table class="acik" style="margin-top:6px"><tr><td class="k" style="width:auto;height:auto">Engel teşkil eden durum var ise açıklama:</td></tr><tr><td>${v(x.engel==='Bulundu'?x.engelAc:'')}</td></tr></table>
+<table class="yok"><tr><td>İşbu tutanak tarafımızca düzenlenerek imza altına alınmıştır.</td><td style="text-align:right;width:32%"><b>Tarih:</b> ${c?esc(trDate(ek1Tarihi(x))):BOS_T}</td></tr></table>
+<p class="ek"><b>Ek:</b> Marazi Madde Gönderme Protokolü</p>
+<table class="yok imz"><tr><td>Resmi Veteriner Hekim</td><td>Resmi Veteriner Hekim</td><td>Hayvan Sahibi</td></tr>
+<tr><td>Adı Soyadı</td><td>Adı Soyadı</td><td>Adı Soyadı</td></tr>
+<tr class="ad"><td>${v(x.vet1)}</td><td>${v(x.vet2)}</td><td>${v(x.sahipAd)}</td></tr>
+<tr><td>İmza</td><td>İmza</td><td>İmza</td></tr><tr class="bos"><td></td><td></td><td></td></tr></table></div>`;
+}
+/* Föy tek sayfadır: 2 fotoğraf alt alta; 3 ve üstü ikili, tek kalan tam genişlik. İmza ve paraf yoktur. */
+function ekbHTML(c){
+ const f=foyFotolari(c),n=f.length,satir=n<=2?Math.max(n,1):Math.ceil(n/2);
+ const ad=p=>p.tur===FOTO_DIGER?(p.ac||FOTO_DIGER):p.tur;
+ return `<div class="sf ekb"><div class="bas">FOTOĞRAF FÖYÜ</div>${baglanti('Ek-B',c)}
+<div class="fg" style="grid-template-rows:repeat(${satir},1fr)">${f.map((p,i)=>`<figure class="${n<=2||(n%2===1&&i===n-1)?'tam':''}"><div class="im"><img src="${esc(photoSrc(p))}" alt=""></div><figcaption><b>F${i+1}</b> ${esc(ad(p))} · Saat: ${esc(saatHM(p.t))}</figcaption></figure>`).join('')}</div>
+<div class="alt">Ek-B Fotoğraf Föyü · Sayfa 1</div></div>`;
+}
+const EKD_SAYFA=2,EKD_NUSHA=3;
+const EKD_TEDBIR=c=>[
+ ['Resmî gözetim','Sürü İlçe Müdürlüğünün gözetimindedir; kontrol, sayım ve numune almaya izin verilir.','Yön. md. 9/1'],
+ ['Giriş yasağı','İşletmeye hiçbir yolla hayvan alınmaz. İstisnalar yalnızca İlçe Müdürlüğünün yazılı izniyle uygulanır.','Yön. md. 9/1'],
+ ['Çıkış yasağı','Hayvan satılmaz; başka işletmeye, pazara, kurban satış yerine veya yaylaya götürülmez.','Yön. md. 9/1'],
+ ['Kesim istisnası','Yalnızca İlçe Müdürlüğünün izni ve veteriner sağlık raporuyla, gecikmeksizin onaylı kesimhaneye sevk edilebilir.','Yön. md. 9/1'],
+ ['Ayırma','Atık yapan hayvan ayrı bölmede tutulur. Yer: '+(c.ayirmaYer?esc(c.ayirmaYer):'……………………'),'Yön. md. 9/1'],
+ ['Atık materyali','Atık yavru, zarlar ve altlık eldivenle toplanır; denetimde, su kaynağı, yol ve meskenden uzakta gömülür (kireçlenir) veya yakılır; yer dezenfekte edilir. '+kutu(c.imha==='Denetimde yapıldı','Denetimde yapıldı')+' '+kutu(c.imha==='Talimat verildi','Talimat verildi'),'5996 md. 4/1-b; Yan Ürünler Yön. md. 14'],
+ ['Tedavi yasağı','Bruselloz tedavi edilmez. İlaç uygulamadan önce İlçe Müdürlüğüne danışınız; ilaç sonucu bozabilir.','Yön. md. 5/2'],
+ ['Bildirim','Yeni atık, hasta veya ölü hayvanı derhal bildiriniz; bildirmeden ortadan kaldırmayınız.','5996 md. 4/6'],
+ ['Çiğ süt','Ari olmayan işletmenin sütü çiğ olarak satılamaz (genel kural, yeni yasak değildir).','Tebliğ 2017/20 md. 5']];
+const EKD_HAK=()=>[
+ ['Bilgi ve dilekçe','İlçe Müdürlüğünden bilgi isteyebilir (15 iş günü), İlçe Müdürlüğüne veya Kaymakamlığa dilekçe verebilirsiniz (30 gün).','4982 md. 11; 3071 md. 4, 7'],
+ ['İtiraz şerhi','İtirazınızı bu bildirime yazdırabilirsiniz. İmzalamamanız tedbirleri durdurmaz; tebliğ 7201 sayılı Kanun md. 21’e göre yapılır.','7201 md. 21'],
+ ['İdari başvuru','Tebliğden itibaren 60 gün içinde '+esc(ayar.ilce)+' Kaymakamlığına başvurabilirsiniz; başvuru dava süresini durdurur, 30 gün cevapsız kalırsa ret sayılır.','İYUK md. 11'],
+ ['Dava','Tebliğden itibaren 60 gün içinde '+esc(ayar.mahkeme)+' İdare Mahkemesinde iptal davası açabilirsiniz. Dava tedbirleri kendiliğinden durdurmaz.','İYUK md. 7, 27'],
+ ['Tazminat','Hastalık kesinleşir, hayvanlar kesime sevk veya itlaf edilirse tazminat başlatılır. Bildirmeme, izinsiz hareket, test/aşı yaptırmama veya TARSİM ödemesi tazminatı engeller.','5996 md. 5; Tazminat Yön. md. 9'],
+ ['Kişisel veriler','Kimlik, iletişim, işletme/hayvan kaydı, imza ve fotoğraf verileriniz; yerinde beyan ve kayıt sorgusuyla toplanır, atık tespiti, hayvan sağlığı tedbirleri ve atık desteği amacıyla kanuni yükümlülük kapsamında işlenir; Bakanlık birimleri, Veteriner Kontrol Enstitüsü, ödeme bankası, HSZ Komisyonu ve yetkili mercilerle paylaşılır, yurt dışına aktarılmaz. Veri sorumlusu Tarım ve Orman Bakanlığıdır; 11 inci maddedeki haklarınızı İlçe Müdürlüğüne yazılı başvuruyla kullanabilirsiniz.','6698 md. 5/2-a,ç; 10; 11']];
+const ekdBaslik=(no,ad)=>`<table class="bh"><tr><th class="n">${no}</th><th>${ad}</th></tr></table>`;
+const ekdTablo=(bas,satirlar)=>`<table class="td"><tr><th style="width:4.5%">No</th><th style="width:19%">${bas[0]}</th><th>${bas[1]}</th><th style="width:16.5%">${bas[2]}</th></tr>${satirlar.map((r,i)=>`<tr><td class="c">${i+1}</td><td><b>${r[0]}</b></td><td class="j">${r[1]}</td><td class="dy">${r[2]}</td></tr>`).join('')}</table>`;
+function ekdHTML(c){
+ const v=(s,bos)=>isBlank(s)?bos:esc(s);
+ const sec=(deger,ad)=>kutu(deger===ad,ad);
+ const anne=c.anne||[],anneDiger=anne.filter(x=>x!=='Normal'&&x!=='Ateş').map(x=>x.replace(/^Yavru zarı atılmamış \(retensiyo\)$/,'retensiyo').toLocaleLowerCase('tr-TR'));
+ const retensiyo=c.plasenta==='Atılmamış'||anne.includes('Yavru zarı atılmamış (retensiyo)');
+ const asi=(deger,tarih)=>kutu(deger==='Evet','Var')+' '+tarihYa(tarih)+' &nbsp;'+kutu(deger==='Hayır','Yok');
+ const temasYok=c.mera==='Hayır'&&c.boga==='Hayır';
+ const sozlu=(c.sozlu||[]).length&&c.sozluT?esc(trDate(c.sozluT)):BOS_T;
+ const kisit=c.kisitT?esc(trDate(c.kisitT))+' '+esc(c.kisitS||''):BOS_T+' '+BOS_S;
+ const ust=`<div class="ust"><b>T.C. ${esc(c.kurum1||'')}</b> · ${esc(c.kurum2||'')}</div>`;
+ const s1=`<div class="sf ekd">${ust}
+<div class="bas">GEÇİCİ TEDBİR BİLDİRİMİ VE TEBLİĞ TUTANAĞI</div>
+<p class="day">Bruselloz şüphesi — 5996 sayılı Kanun md. 4, 25; Bruselloz ile Mücadele Yönetmeliği md. 5, 9, 16</p>
+${baglanti('Ek-D',c)}
+${ekdBaslik(1,'BİLDİRİM VE BULGULAR')}
+<table><tr><td class="k">Bildirim</td><td colspan="3">${tarihYa(c.bilT)} ${v(c.bilS,BOS_S)} · ${sec(c.bildiren,'Hayvan sahibi')} ${kutu(c.bildiren==='Diğer','Diğer:')} ${v(c.bildiren==='Diğer'?c.bildirenAd:'','………………')} · ${sec(c.bilYol,'Telefon')} ${sec(c.bilYol,'Şahsen')}</td></tr>
+<tr><td class="k">Yerinde hazır bulunan</td><td colspan="3">${kutu(c.hazir==='Hayvan sahibinin kendisi','Hayvan sahibi')} &nbsp;${kutu(c.hazir==='Başka kişi','Başka kişi:')} ${v(c.hazir==='Başka kişi'?c.hazirKisi:'','……………………… (yakınlığı: ………)')}</td></tr>
+<tr><td class="k">Tohumlama / aşım</td><td style="width:29%">${c.tohumlama?esc(trDate(c.tohumlama)):'…… / …… / ……'} &nbsp;${sec(c.tohumSekli,'Suni')} ${sec(c.tohumSekli,'Tabii')}</td><td class="k">Fötüs</td><td>${yalnizPlasenta(c)?'görülmedi':v(c.fetusCm,'……')+' cm'}, tahmini ${v(c.tahminiAy,'……')} aylık</td></tr>
+<tr><td class="k">Plasenta</td><td>${kutu(c.plasenta==='Var'&&!retensiyo,'Atıldı')} ${kutu(retensiyo,'Atılmadı (retensiyo)')}</td><td class="k">Anne</td><td>${kutu(anne.includes('Normal'),'Normal')} ${kutu(anne.includes('Ateş'),'Ateş')} ${v(c.anneAtes,'……')} °C ${kutu(anneDiger.length>0,'Diğer:')} ${anneDiger.length?esc(anneDiger.join(', ')):'……'}</td></tr>
+<tr><td class="k">Aşı / ilaç</td><td colspan="3">Brusella: ${asi(c.asiBru,c.asiBruT)} &nbsp; Şap: ${asi(c.asiSap,c.asiSapT)} &nbsp; Son 30 günde aşı/ilaç: ${kutu(c.asi30==='Hayır','Yok')} ${kutu(c.asi30==='Evet','Var:')} ${v(c.asi30==='Evet'?c.asi30A:'','………')}</td></tr>
+<tr><td class="k">Gebe hayvan</td><td>${v(c.gebeSayi,'……')} baş</td><td class="k">Son 12 ayda atık</td><td>${sec(c.atik12,'Yok')} ${kutu(c.atik12==='Var','Var:')} ${v(c.atik12==='Var'?c.atik12A:'','……')} adet</td></tr>
+<tr><td class="k">Son 12 ayda giriş</td><td colspan="3">${sec(c.giris,'Yok')} &nbsp;${kutu(c.giris==='Var','Var —')} ${v(c.giris==='Var'?c.girisA:'','…/…/…, geldiği yer: ………………')}</td></tr>
+<tr><td class="k">Temas</td><td>${kutu(c.mera==='Evet','Ortak mera / yayla')} &nbsp;${kutu(c.boga==='Evet','Ortak / kiralık boğa')} &nbsp;${kutu(temasYok,'Yok')}</td><td class="k">Barınma</td><td>${sec(c.barinma,'Ahır')} ${sec(c.barinma,'Mera')} ${sec(c.barinma,'Karışık')}</td></tr></table>
+${ekdBaslik(2,'GEÇİCİ TEDBİRLER (İDARİ İŞLEM)')}
+<table><tr><td style="text-align:justify">Atık bruselloz belirtisidir (Yönetmelik md. 4). Laboratuvar sonucu gelinceye kadar sürünüz <b>şüpheli</b> kabul edilir ve aşağıdaki tedbirler 5996 sayılı Kanun md. 4/1-(a),(b) ile Yönetmelik md. 9 (koyun ve keçide md. 16/1-(g),(ğ)) uyarınca <b>${esc(ayar.ilce)} İlçe Tarım ve Orman Müdürlüğü adına</b> uygulanır. <b>Bu tedbirler ceza değildir;</b> hastalığın hayvanlara ve insanlara bulaşmasını önleyen geçici koruma tedbirleridir.</td></tr></table>
+${ekdTablo(['Tedbir','Hayvan sahibinden beklenen','Dayanak'],EKD_TEDBIR(c))}
+<table><tr><td class="k">Başlangıç</td><td style="width:29%">${tarihYa(c.tedbirT)} ${v(c.tedbirS,BOS_S)}</td><td class="k">Hayvan varlığı</td><td>Sığır ${v(c.hvSigir,'……')} Manda ${v(c.hvManda,'……')} Koyun ${v(c.hvKoyun,'……')} Keçi ${v(c.hvKeci,'……')}</td></tr>
+<tr><td class="k">Veri tabanı kısıtı</td><td>${kutu(!!c.kisitT,'Şüphe kaydı ve kısıt eklendi —')} ${kisit}<br>Hastalık bildirim no: ${v(c.bildirimNo,'………………')}</td><td class="k">Köy sürüsü</td><td>${kutu((c.koySuru||[]).includes('Çıkış yasak'),'Çıkış yasak')} ${kutu((c.koySuru||[]).includes('Ayrı otlatma'),'Ayrı otlatma')}</td></tr>
+<tr><td class="k">Ek talimat</td><td colspan="3">${esc(c.ekTalimat||'').replace(/\n/g,'<br>')||'&nbsp;'}</td></tr></table>
+<div class="box"><p>• <b>Süre:</b> Tedbirler, brusellozun olmadığı veya şüphenin kalktığı resmen açıklanıncaya kadar sürer (Yön. md. 9/2). Sonuç negatifse kaldırma size yazılı bildirilir; pozitifse HSZ Komisyonu kararı ayrıca tebliğ edilir.</p>
+<p>• <b>Uyma zorunluluğu:</b> Tedbirlere uymak zorunludur (5996 md. 25); aykırı hayvan hareketi idari para cezasına neden olur (5996 md. 36).</p>
+<p>• <b>Sağlığınız için:</b> Sütü kaynatmadan tüketmeyin; atık materyaline çıplak elle dokunmayın, gebe kadın ve çocukları uzak tutun. Uzun süren ateş, terleme, eklem/bel ağrısında sağlık kuruluşuna başvurup hayvanınızın atık yaptığını söyleyin.</p></div>
+<div class="alt">Ek-D Geçici Tedbir Bildirimi · Sayfa 1</div></div>`;
+ const s2=`<div class="sf ekd">${ekdBaslik(3,'HAKLARINIZ, BAŞVURU YOLLARI VE SÜRELER').replace('class="bh"','class="bh" style="margin-top:0"')}
+${ekdTablo(['Hakkınız','Nasıl kullanılır','Dayanak'],EKD_HAK())}
+${ekdBaslik(4,'TEBLİĞ VE İMZA')}
+<table class="teb"><tr><td><p>Tedbirler ${sozlu} tarihinde sahada sözlü olarak anlatılmış, bu bildirim ${tarihYa(c.ziyaretT)} tarihinde tebliğ edilmiştir.</p>
+<p>2 ve 3 üncü bölümler ☐ okunarak anlatılmış ☐ hayvan sahibince okunmuştur. Bildirim ${EKD_SAYFA} sayfa, ${EKD_NUSHA} nüsha düzenlenmiş; bir nüsha hayvan sahibine verilmiş, birer nüsha vaka ve destek dosyasına konulmuştur. İmzalanmaması atık desteği başvurusunu etkilemez.</p>
+<p>İtiraz / beyan şerhi: ☐ Yok ☐ Var: ……………………………………………………………………………………</p>
+<p>☐ Elden tebliğ edildi. &nbsp;☐ İmzadan kaçınıldı, gerekçe: ……………… → evrak ${BOS_T} ${BOS_S}’da ☐ muhtar ☐ ihtiyar heyeti üyesi ☐ kolluk ……………’a teslim edildi, ihbarname konut kapısına yapıştırıldı, komşu ……………… haberdar edildi (7201 md. 21; Tebligat Yön. md. 31, 35). Tebligat, gecikmesinde zarar umulan hâl nedeniyle memur eliyle yapılmıştır.</p></td></tr></table>
+<table class="imz"><tr><td><b>Tebliğ Eden<br>Resmî Veteriner Hekim</b><br>${esc(c.vet1||'')}<br>Adı soyadı / İmza</td><td><b>Tebellüğ Eden</b><br>Adı soyadı / İmza</td></tr></table>
+<div class="alt">Ek-D Geçici Tedbir Bildirimi · Sayfa 2</div></div>`;
+ return s1+s2;
+}
+/* Çıktı şartları (mimari v3 S6). Kilitli çıktının eksikleri altında listelenir. */
+const tekil=l=>l.filter((x,i)=>l.findIndex(y=>y.k===x.k&&y.msg===x.msg)===i);
+const ayarEksik=()=>[['ilce','İlçe adı (⚙️ Ayarlar)'],['mahkeme','İdare Mahkemesi (⚙️ Ayarlar)']].filter(([k])=>isBlank(ayar[k])).map(([k,msg])=>({k,msg}));
+const ek1Eksik=c=>[...checkCase(c).eksik.filter(x=>x.k!=='fotos'&&x.k!=='tedbirT'),...bosAlanlar(c,['protT','engel'])];
+const ekbEksik=c=>[...bosAlanlar(c,['vakaNo']),...fotoEksik(c)];
+const ekdEksik=c=>tekil([...checkCase(c).eksik.filter(x=>x.k!=='fotos'),...bosAlanlar(c,['tedbirT']).map(x=>({k:x.k,msg:'Tedbir başlangıç tarihi'})),...ayarEksik()]);
+const cogalt=(h,n)=>Array(n).fill(h).join('');
+const CIKTI=[
+ {k:'paket',ad:'İmza ziyareti paketi',aciklama:'EK-1 ×2, Ek-B ×1, Ek-D ×3',eksik:c=>tekil([...ek1Eksik(c),...ekbEksik(c),...ekdEksik(c)]),html:c=>cogalt(ek1HTML(c),2)+ekbHTML(c)+cogalt(ekdHTML(c),EKD_NUSHA)},
+ {k:'ek1',ad:'EK-1 Atık Tespit Tutanağı (dolu)',aciklama:'2 nüsha',eksik:ek1Eksik,html:c=>cogalt(ek1HTML(c),2)},
+ {k:'ekb',ad:'Ek-B Fotoğraf föyü',aciklama:'1 nüsha',eksik:ekbEksik,html:c=>ekbHTML(c)},
+ {k:'ekd',ad:'Ek-D Geçici tedbir bildirimi',aciklama:EKD_NUSHA+' nüsha',eksik:ekdEksik,html:c=>cogalt(ekdHTML(c),EKD_NUSHA)},
+ {k:'ek1bos',ad:'Boş EK-1',aciklama:'yedek, 1 nüsha',eksik:()=>[],html:()=>ek1HTML(null)}];
+function drawCikti(){
+ const kisitBos=isBlank(d.kisitT)||isBlank(d.bildirimNo);
+ $('#ciktiBox').innerHTML=CIKTI.map(x=>{
+  const e=x.eksik(d);
+  return `<div class="ck"><button class="btn${e.length?' sec2':''}" type="button" data-cikti="${x.k}"${e.length?' disabled':''}>${e.length?'🔒 ':''}${esc(x.ad)} · ${esc(x.aciklama)}</button>`+
+   (e.length?`<div class="chkh">Eksik (${e.length})</div>`+e.map(y=>`<button class="chkit" type="button" data-go="${esc(y.k)}">${esc(y.msg)}</button>`).join(''):'')+
+   (!e.length&&kisitBos&&(x.k==='ekd'||x.k==='paket')?'<div class="hint">Kısıt tarihi veya hastalık bildirim no girilmedi; Ek-D’de boş basılır.</div>':'')+'</div>';
+ }).join('');
+ $('#ciktiBox').querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>goField(b.dataset.go));
+ $('#ciktiBox').querySelectorAll('[data-cikti]').forEach(b=>b.onclick=()=>belgeYazdir(b.dataset.cikti));
+}
+function belgeYazdir(k){
+ const x=CIKTI.find(y=>y.k===k);
+ if(!x||x.eksik(d).length){drawCikti();return}
+ /* Eklerdeki bağlantı satırı EK-1 ile aynı tarihi taşısın diye tarih ilk basımda vakaya yazılır. */
+ if(k!=='ek1bos'&&!d.kapali&&isBlank(d.ek1T)){d.ek1T=todayISO();const i=$('#f_ek1T');if(i)i.value=d.ek1T;save()}
+ ciktiKaydi(x.ad+' ('+x.aciklama+')');
+ $('#mCikti').classList.remove('on');
+ doPrint(x.html(d));
+}
+$('#bCikti').onclick=()=>{drawCikti();$('#mCikti').classList.add('on')};
 function photosHTML(cls){
  const f=d.fotos||[];if(!f.length)return '';
  return `<div class="phg ${cls||''}">${f.map((p,i)=>`<figure><img src="${esc(photoSrc(p))}"><figcaption>Fotoğraf ${i+1}</figcaption></figure>`).join('')}</div>`;
@@ -1686,15 +1892,6 @@ function olcekKartiHTML(){
 function doPrint(html){const P=$('#print');P.innerHTML=html;const imgs=[...P.querySelectorAll('img')];Promise.all(imgs.map(i=>i.complete?1:new Promise(r=>{i.onload=i.onerror=r}))).then(()=>setTimeout(()=>window.print(),150))}
 /* Çıktı alınması günlüğe yazılır; önce bekleyen alan değişiklikleri kaydedilir. */
 function ciktiKaydi(tur){gunlukNoktasi();gunlukYaz(d.id,'Çıktı',tur)}
-async function printTutanak(){
- let h=tutanakHTML();
- const ekli=(d.fotos||[]).length&&await ask({title:'Fotoğraf eki',body:'Fotoğraflar tutanağın sonuna ek olarak eklensin mi?',buttons:[{label:'Evet, ekle',val:true},{label:'Hayır',val:false,cls:'sec2'}]});
- if(ekli===null)return;
- if(ekli)h+=`<div class="pg"></div><h5 style="margin-top:0">EK: FOTOĞRAFLAR</h5>`+photosHTML();
- ciktiKaydi('Tutanak'+(ekli?' + fotoğraf eki':'')+(d.nusha?', '+d.nusha+' nüsha':''));
- doPrint(h);
-}
-$('#bPrint').onclick=()=>guarded(printTutanak);
 $('#bPhotos').onclick=()=>{if(!(d.fotos||[]).length){toast('Fotoğraf yok');return}ciktiKaydi('Fotoğraf eki');doPrint(photosHTML('phonly'))};
 
 /* ---------- aşamalar (alanlardan hesaplanır, elle seçilmez) ---------- */
@@ -1702,8 +1899,8 @@ const alanAdi=k=>{const f=fieldOf(k);if(!f||!f.l)return k;return typeof f.l==='f
 const bosAlanlar=(c,ks)=>ks.filter(k=>isBlank(c[k])).map(k=>({k,msg:alanAdi(k)}));
 const kacinildi=c=>c.teblig==='İmzadan kaçınıldı';
 const ASAMA=[
- /* Saha: çıktı öncesi zorunlu alanlar; ekran imzası sonraki fazda kalkacağı için sayılmaz. */
- {ad:'Saha',eksik:c=>checkCase(c).eksik.filter(x=>!/^sig/.test(x.k))},
+ /* Saha: EK-1 bilgileri, tedbir başlangıcı ve iki zorunlu fotoğraf. */
+ {ad:'Saha',eksik:c=>checkCase(c).eksik},
  {ad:'Sistem kayıtları',eksik:c=>bosAlanlar(c,['velbis','protT','kisitT','bildirimNo'])},
  {ad:'İmza ziyareti',eksik:c=>{
   const e=bosAlanlar(c,['ziyaretT']);
@@ -2010,7 +2207,7 @@ async function openCase(c){
  dropPhotoURLs();
  d=c;d.fotos=d.fotos||[];
  /* Kurum bilgisi boş veya eksik eski vaka ayardakiyle açılır. */
- profilUygula(d,false);
+ if(!d.kapali)profilUygula(d,false);
  lastSaved=d.updated||null;dirty=false;
  try{await loadPhotos(d)}catch(e){toast('Fotoğraflar yüklenemedi')}
  render();
@@ -2160,6 +2357,7 @@ function sanitizeCase(o){
  gecerli.forEach((p,i)=>{if(typeof p.id==='string'&&!ids.has(p.id))ids.set(p.id,yeni[i])});
  c.fotos=gecerli.map((p,i)=>{
   const m={id:yeni[i],src:p.src,t:Number(p.t)||Date.now()};
+  if(FOTO_TUR.includes(p.tur)){m.tur=p.tur;if(p.tur===FOTO_DIGER&&typeof p.ac==='string')m.ac=p.ac.slice(0,40)}
   if(typeof p.olcum==='number'&&isFinite(p.olcum))m.olcum=p.olcum;
   const kaynak=ids.get(p.olcumKaynak),veri=sanitizeVeri(p.olcumVeri);
   const hedefOk=ORGAN.includes(p.olcumHedef)&&Number.isFinite(p.olcumEn)&&p.olcumEn>0;
@@ -2169,6 +2367,8 @@ function sanitizeCase(o){
  });
  ['updated','created'].forEach(k=>{if(!Number.isFinite(c[k]))delete c[k]});
  c.kapali=c.kapali===true;
+ if(c.belge!==BELGE_SURUM)delete c.belge;
+ ['sigSahip','sigVet1','sigVet2'].forEach(k=>{if(k in c&&!(typeof c[k]==='string'&&SAFE_SIG.test(c[k])))delete c[k]});
  if(!(typeof c.kapT==='string'&&/^\d{4}-\d{2}-\d{2}T/.test(c.kapT)))delete c.kapT;
  ['olusturan','guncelleyen'].forEach(k=>{if(k in c&&c[k]!==null&&typeof c[k]!=='string')delete c[k]});
  c.id=SAFE_ID.test(String(c.id))?String(c.id):uid();
@@ -2234,7 +2434,7 @@ $('#bSet').onclick=openAyar;
 $('#setSave').onclick=saveAyar;
 $('#saveSt').onclick=()=>{if($('#saveSt').dataset.st==='bad'){saveErrShown=false;reportSaveErr(null)}};
 let lastW=window.innerWidth;
-window.addEventListener('resize',()=>{if(window.innerWidth===lastW)return;lastW=window.innerWidth;S.forEach(s=>s.f.forEach(f=>{if(f.t==='sig')initSig(f.k)}))});
+
 
 /* ---------- internetsiz kurulum ---------- */
 /* Dosyadan açılışta bu öğeler yüklenmez: tarayıcı engeller ve konsol hatası üretir. */
