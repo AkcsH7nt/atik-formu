@@ -200,21 +200,31 @@ nav.bar button.pri{background:#1fa855;color:#fff}
   #print .ekno{text-align:right;font-weight:bold}
   #print .bag{border:0.6pt solid #000;background:#f2f2f2;padding:3px 5px;margin:4px 0 8px;font-size:9pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
   #print .alt{font-size:8pt;margin-top:6px}
-  #print .ek1{font-size:10pt;line-height:1.25}
-  #print .ek1 table{margin-bottom:9px}
-  #print .ek1 td{height:6.5mm;vertical-align:middle}
-  #print .ek1 td.k{width:28%}
-  #print .ek1 th{padding:4px}
-  #print .ek1 .hv th,#print .ek1 .at th{font-size:9pt}
-  #print .ek1 .hv td,#print .ek1 .at td{height:10mm;text-align:center}
-  #print .ek1 p{text-indent:10mm;margin:2px 0}
-  #print .ek1 p.dip{font-size:8pt;font-style:italic;text-indent:0;margin:-8px 0 4px}
-  #print .ek1 p.ek{text-indent:0;margin:2px 0 8px}
-  #print .ek1 .acik td{height:11mm;vertical-align:top}
-  #print .ek1 .yok td{border:0;background:none;height:auto}
-  #print .ek1 .imz td{text-align:center;font-weight:bold;width:33.3%;padding:3px}
-  #print .ek1 .imz .ad td{font-weight:normal;height:6mm}
-  #print .ek1 .imz .bos td{height:14mm}
+  /* EK-1: Bakanlık ekinin ölçüleri (2,5 cm kenar; tablo metin alanından 1 cm sola taşar, 17,8 cm). */
+  #print .ek1{font-size:12pt;line-height:1.12;padding:14mm 13mm 0}
+  #print .ek1.sik{font-size:10.5pt;padding-top:0}
+  #print .ek1.sik table.yok{font-size:10.5pt}
+  #print .ek1.sik p.acik,#print .ek1.sik p.ek{margin:2mm 0}
+  #print .ek1 .ekno{font-size:11pt;margin-bottom:5mm}
+  #print .ek1 .bas{font-size:11pt;line-height:1.1;margin:0}
+  #print .ek1 table{font-size:10pt;line-height:1.1;width:177.8mm;margin:-0.6pt 0 0 -10.1mm;table-layout:fixed}
+  #print .ek1 td,#print .ek1 th{padding:0 1.5mm;background:none;vertical-align:middle;overflow-wrap:break-word}
+  #print .ek1 th.bb{height:6mm}
+  #print .ek1 td.k{background:none;font-size:9pt;white-space:nowrap}
+  #print .ek1 .hv td,#print .ek1 .at td{text-align:center;font-weight:normal;height:9mm;padding:0 .5mm}
+  #print .ek1 .hv td:first-child{white-space:nowrap;font-size:9.5pt}
+  #print .ek1 .hv th,#print .ek1 .at th{padding:1px 1mm}
+  #print .ek1 p{text-indent:12.5mm;margin:0}
+  #print .ek1 p.dip{font-size:8pt;font-style:italic;text-indent:0;margin:1px 0 5mm -8mm}
+  #print .ek1 p.acik{margin:5mm 0;text-align:left}
+  #print .ek1 p.ek{text-indent:0;margin:4mm 0 7mm}
+  #print .ek1 table.yok{font-size:12pt;width:100%;margin:0;table-layout:auto}
+  #print .ek1 .yok td{border:0;padding:0;white-space:nowrap}
+  #print .ek1 .yok td:first-child{padding-left:12.5mm}
+  #print .ek1 table.imz{font-size:11pt}
+  #print .ek1 .imz td{text-align:center;font-weight:bold;width:33.3%;padding:0}
+  #print .ek1 .imz td:first-child{padding-left:0}
+  #print .ek1 .imz .ad td{font-weight:normal}
   #print .ekb{height:250mm;display:flex;flex-direction:column}
   #print .ekb .fg{flex:1;min-height:0;display:grid;grid-template-columns:1fr 1fr;border:0.6pt solid #000}
   #print .ekb figure{margin:0;min-height:0;min-width:0;display:flex;flex-direction:column;border:0.3pt solid #000}
@@ -1740,31 +1750,37 @@ function ek1HTML(c){
  const no=s=>noIsEmpty(s)?'':s;
  const engel=x.engel==='Bulunmadı'?'bulunmadığı/<s>bulunduğu</s>':x.engel==='Bulundu'?'<s>bulunmadığı</s>/bulunduğu':'bulunmadığı/bulunduğu';
  const gebelik=x.tahminiAy?esc(x.tahminiAy)+' ay':'';
- return `<div class="sf ek1"><div class="ekno">EK-1</div>
-<div class="bas">ATIK DESTEĞİNE ESAS GEBE HAYVANLARDA (SIĞIR, MANDA, KOYUN VE KEÇİ) ATIK MEYDANA GELDİĞİNE DAİR TESPİT TUTANAĞI</div>
-<table><tr><th colspan="2">HAYVAN SAHİBİNİN BİLGİLERİ</th></tr>
+ const acik=x.engel==='Bulundu'&&!isBlank(x.engelAc)?' '+v(x.engelAc):'';
+ /* Uzun açıklama veya adres belgeyi ikinci sayfaya taşırmasın diye üst boşluk ve punto bir kademe küçülür. */
+ const uzun=(acik.length+String(x.adres||'').length)>EK1_UZUN_METIN;
+ return `<div class="sf ek1${uzun?' sik':''}"><div class="ekno">EK-1</div>
+<div class="bas">ATIK DESTEĞİNE ESAS GEBE HAYVANLARDA (SIĞIR, MANDA, KOYUN VE KEÇİ) <br>ATIK MEYDANA GELDİĞİNE DAİR TESPİT TUTANAĞI</div>
+<table><colgroup><col style="width:21%"><col style="width:79%"></colgroup><tr><th class="bb" colspan="2">HAYVAN SAHİBİNİN BİLGİLERİ</th></tr>
 <tr><td class="k">Adı Soyadı:</td><td>${v(x.sahipAd)}</td></tr>
 <tr><td class="k">T.C/Vergi Numarası:</td><td>${v(x.sahipTc)}</td></tr>
 <tr><td class="k">Telefon Numarası:</td><td>${v(x.telefon)}</td></tr>
 <tr><td class="k">İli-İlçesi</td><td>${v(x.ilIlce)}</td></tr>
 <tr><td class="k">İşletme Numarası:</td><td>${v(no(x.isletmeNo))}</td></tr>
 <tr><td class="k">Adresi:</td><td>${v(x.adres||x.mahalle)}</td></tr></table>
-<table class="hv"><tr><th style="width:17%">Tanımlama Numarası</th><th>Tür</th><th>Irk</th><th>Cinsiyet</th><th>Yaş</th><th style="width:14%">Atık Oluştuğundaki Gebelik Yaşı</th><th style="width:30%">Atığın Meydana Geldiği Tarihte TÜRKVET’te Kayıtlı Olduğu İşletme Numarası</th></tr>
-<tr><td>${v(no(x.kupe))}</td><td>${v(c?x.tur:'')}</td><td>${v(x.irk)}</td><td>${v(c?x.cinsiyet:'')}</td><td>${v(c?yasMetni(x):'')}</td><td>${gebelik}</td><td>${v(no(x.turkvetIsletme)||no(x.isletmeNo))}</td></tr></table>
-<table class="at"><tr><th colspan="4">ATIĞA İLİŞKİN BİLGİLER</th></tr>
+<table class="hv"><colgroup><col style="width:16.08%"><col style="width:9.92%"><col style="width:10.2%"><col style="width:9.1%"><col style="width:15.36%"><col style="width:14.86%"><col style="width:24.48%"></colgroup><tr><th class="bb" colspan="7">ATIK YAPAN HAYVANA AİT BİLGİLER</th></tr>
+<tr><th>Tanımlama Numarası</th><th>Tür</th><th>Irk</th><th>Cinsiyet</th><th>Yaş</th><th>Atık Oluştuğundaki Gebelik Yaşı</th><th>Atığın Meydana Geldiği Tarihte TÜRKVET’te Kayıtlı Olduğu İşletme Numarası</th></tr>
+<tr><td>${v(no(x.kupe))||'&nbsp;'}</td><td>${v(c?x.tur:'')}</td><td>${v(x.irk)}</td><td>${v(c?x.cinsiyet:'')}</td><td>${v(c?yasMetni(x):'')}</td><td>${gebelik}</td><td>${v(no(x.turkvetIsletme)||no(x.isletmeNo))}</td></tr>
+</table>
+<table class="at"><colgroup><col style="width:16.08%"><col style="width:29.22%"><col style="width:20.9%"><col style="width:33.8%"></colgroup><tr><th class="bb" colspan="4">ATIĞA İLİŞKİN BİLGİLER</th></tr>
 <tr><th>Atığın Meydana Geldiği Tarih</th><th>Atığın Resmi Veteriner Hekim Tarafından Görülme Tarihi</th><th>Numune Tipi</th><th>Marazi Madde Gönderme Protokolü Oluşturma Tarihi*</th></tr>
-<tr><td>${v(trDate(x.atikTarih))}</td><td>${v(trDate(x.gorTarih))}</td><td>${v((x.numune||[]).join(', '))}</td><td>${v(trDate(x.protT))}</td></tr></table>
+<tr><td>${v(trDate(x.atikTarih))||'&nbsp;'}</td><td>${v(trDate(x.gorTarih))}</td><td>${v((x.numune||[]).join(', '))}</td><td>${v(trDate(x.protT))}</td></tr>
+</table>
 <p class="dip">*: Destekleme ödemesine engel teşkil eden bir durum bulunmaması hâlinde, ilgili tarih atık desteğine hak ediş tarihi olarak kabul edilir.</p>
 <p>Yukarıda bilgileri yazılı olan hayvan/hayvanların, hayvan sahibi tarafından şahsına ait olduğu kabul ve taahhüt edilmiş olup söz konusu hayvan/hayvanların ${x.atikTarih?esc(trDate(x.atikTarih)):BOS_T} tarihinde hayvan sahibinin işletmesinde atık yaptığı tarafımızca yerinde yapılan inceleme sonucunda görülmüştür.</p>
 <p>Bölge Veteriner Kontrol Enstitüsü Müdürlüğüne gönderilmek üzere atığa ilişkin numune/numuneler alınmıştır. İşbu tespit tutanağı ile ekte yer alan Veteriner Laboratuvar Bilgi Sisteminden (VELBİS) oluşturulan protokol, atık desteği başvurusu olarak kabul edilmiştir.</p>
 <p>${c?esc(atikYil(x)):'……..'} yılı Hayvancılık Desteklemelerine İlişkin Cumhurbaşkanı Kararı ve Uygulama Esasları Tebliği ile hayvanların kimliklendirilmesi ve kaydına ilişkin mevzuat doğrultusunda, atık desteğinden yararlanma şartları ile destekleme ödemesine engel teşkil eden tüm hususlar <i>(Tarım cezası, kamu kurum ve kuruluşlarına ait hayvan, TARSİM, atığın gerçekleştiği yıl içerisinde aynı hayvan için başka atık desteği ödemesi, atığın meydana geldiği tarihte atık yapan hayvanın TÜRKVET’te kayıtlı olduğu işletme ile hayvan sahibinin işletmesi uyumu gibi durumlar</i>) kontrol edilmiştir. Yapılan kontroller sonucunda, söz konusu hayvan/hayvanlar için atık desteği ödenmesine engel bir durum ${engel} tespit edilmiştir.</p>
-<table class="acik" style="margin-top:6px"><tr><td class="k" style="width:auto;height:auto">Engel teşkil eden durum var ise açıklama:</td></tr><tr><td>${v(x.engel==='Bulundu'?x.engelAc:'')}</td></tr></table>
-<table class="yok"><tr><td>İşbu tutanak tarafımızca düzenlenerek imza altına alınmıştır.</td><td style="text-align:right;width:32%"><b>Tarih:</b> ${c?esc(trDate(ek1Tarihi(x))):BOS_T}</td></tr></table>
+<p class="acik"><b>Engel teşkil eden durum var ise açıklama:</b>${acik}</p>
+<table class="yok"><tr><td>İşbu tutanak tarafımızca düzenlenerek imza altına alınmıştır.</td><td style="text-align:right;width:30%"><b>Tarih:</b> ${c?esc(trDate(ek1Tarihi(x))):BOS_T}</td></tr></table>
 <p class="ek"><b>Ek:</b> Marazi Madde Gönderme Protokolü</p>
 <table class="yok imz"><tr><td>Resmi Veteriner Hekim</td><td>Resmi Veteriner Hekim</td><td>Hayvan Sahibi</td></tr>
 <tr><td>Adı Soyadı</td><td>Adı Soyadı</td><td>Adı Soyadı</td></tr>
-<tr class="ad"><td>${v(x.vet1)}</td><td>${v(x.vet2)}</td><td>${v(x.sahipAd)}</td></tr>
-<tr><td>İmza</td><td>İmza</td><td>İmza</td></tr><tr class="bos"><td></td><td></td><td></td></tr></table></div>`;
+${c?`<tr class="ad"><td>${v(x.vet1)}</td><td>${v(x.vet2)}</td><td>${v(x.sahipAd)}</td></tr>`:''}
+<tr><td>İmza</td><td>İmza</td><td>İmza</td></tr></table></div>`;
 }
 /* Föy tek sayfadır: 2 fotoğraf alt alta; 3 ve üstü ikili, tek kalan tam genişlik. İmza ve paraf yoktur. */
 function ekbHTML(c){
@@ -1774,7 +1790,7 @@ function ekbHTML(c){
 <div class="fg" style="grid-template-rows:repeat(${satir},1fr)">${f.map((p,i)=>`<figure class="${n<=2||(n%2===1&&i===n-1)?'tam':''}"><div class="im"><img src="${esc(photoSrc(p))}" alt=""></div><figcaption><b>F${i+1}</b> ${esc(ad(p))} · Saat: ${esc(saatHM(p.t))}</figcaption></figure>`).join('')}</div>
 <div class="alt">Ek-B Fotoğraf Föyü · Sayfa 1</div></div>`;
 }
-const EKD_SAYFA=2,EKD_NUSHA=3;
+const EKD_SAYFA=2,EKD_NUSHA=3,EK1_UZUN_METIN=150;
 const EKD_TEDBIR=c=>[
  ['Resmî gözetim','Sürü İlçe Müdürlüğünün gözetimindedir; kontrol, sayım ve numune almaya izin verilir.','Yön. md. 9/1'],
  ['Giriş yasağı','İşletmeye hiçbir yolla hayvan alınmaz. İstisnalar yalnızca İlçe Müdürlüğünün yazılı izniyle uygulanır.','Yön. md. 9/1'],
